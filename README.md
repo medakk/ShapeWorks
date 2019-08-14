@@ -1,7 +1,7 @@
 # ShapeWorks
 =====================
 
-This is the user documentation branch for ShapeWorks. TEST IT
+This is the user documentation branch for ShapeWorks.
 
 *TODO:* continue to build these pages in the gh-pages branch (NOTE: it should never be merged with master)
 
@@ -78,6 +78,7 @@ Until then, please see **[INSTALL.md](INSTALL.md)** for the current build instru
 Documentation
 =====================
 _coming soon:_ framework documentation
+See **[ellipsoidMain.html](ellipsoidMain.html)** for an example of a use case and full run strategy for ShapeWorks. 
 
 Development
 =====================
