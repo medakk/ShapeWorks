@@ -78,7 +78,7 @@ Until then, please see **[INSTALL.md](INSTALL.md)** for the current build instru
 Documentation
 =====================
 _coming soon:_ framework documentation
-See **[ellipsoidMain.html](ellipsoidMain.html)** for an example of a use case and full run strategy for ShapeWorks. 
+See **[ellipsoidMain.html](_build/ellipsoidMain.html)** for an example of a use case and full run strategy for ShapeWorks. 
 
 Development
 =====================
