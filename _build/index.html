@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Diffusion Imaging In Python &#8212; ShapeWorks 5.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Documentation" href="documentation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="diffusion-imaging-in-python">
+<span id="home"></span><h1>Diffusion Imaging In Python<a class="headerlink" href="#diffusion-imaging-in-python" title="Permalink to this headline">¶</a></h1>
+<p><a href="#id1"><span class="problematic" id="id2">DIPY_</span></a> is a <strong>free</strong> and <strong>open source</strong> software project for computational neuroanatomy,
+focusing mainly on <strong>diffusion</strong> <em>magnetic resonance imaging</em> (dMRI) analysis. It implements a
+broad range of algorithms for denoising, registration, reconstruction, tracking, clustering,
+visualization, and statistical analysis of MRI data.</p>
+<div class="section" id="highlights">
+<h2>Highlights<a class="headerlink" href="#highlights" title="Permalink to this headline">¶</a></h2>
+<p><strong>DIPY 1.0.0</strong> is now available. New features include:</p>
+<ul class="simple">
+<li><p>Critical <span class="xref std std-doc">API changes</span></p></li>
+<li><p>Large refactoring of tracking API.</p></li>
+<li><p>New denoising algorithm: MP-PCA.</p></li>
+<li><p>New Gibbs ringing removal.</p></li>
+<li><p>New interpolation module: <code class="docutils literal notranslate"><span class="pre">dipy.core.interpolation</span></code>.</p></li>
+<li><p>New reconstruction models: MTMS-CSD, Mean Signal DKI.</p></li>
+<li><p>Increased coordinate systems consistency.</p></li>
+<li><p>New object to manage safely tractography data: StatefulTractogram</p></li>
+<li><p>New command line interface for downloading datasets: FetchFlow</p></li>
+<li><p>Horizon updated, medical visualization interface powered by QuickBundlesX.</p></li>
+<li><p>Removed all deprecated functions and parameters.</p></li>
+<li><p>Removed compatibility with Python 2.7.</p></li>
+<li><p>Updated minimum dependencies version (Numpy, Scipy).</p></li>
+<li><p>All tutorials updated to API changes and 3 new added.</p></li>
+<li><p>Large documentation update.</p></li>
+<li><p>Closed 289 issues and merged 98 pull requests.</p></li>
+</ul>
+<p>See <span class="xref std std-ref">Older Highlights</span>.</p>
+</div>
+<div class="section" id="announcements">
+<h2>Announcements<a class="headerlink" href="#announcements" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>DIPY Workshop - Titanium Edition (March 11-15, 2019) is now open for registration:</p></li>
+</ul>
+<div style="width: 80% max-width=800px">
+  <a href="https://workshop.dipy.org/" target="_blank"><img alt=" " class="align-center" src="_static/dipy-ws-header.png" style="width: 90%;max-height: 90%"></a>
+</div><ul class="simple">
+<li><p><span class="xref std std-doc">DIPY 1.0</span> released August 5, 2019.</p></li>
+<li><p><span class="xref std std-doc">DIPY 0.16</span> released March 10, 2019.</p></li>
+<li><p><span class="xref std std-doc">DIPY 0.15</span> released December 12, 2018.</p></li>
+</ul>
+<p>See some of our <span class="xref std std-ref">Past Announcements</span></p>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>Here is a quick snippet showing how to calculate <cite>color FA</cite> also known as the
+DEC map. We use a Tensor model to reconstruct the datasets which are
+saved in a Nifti file along with the b-values and b-vectors which are saved as
+text files. Finally, we save our result as a Nifti file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fdwi</span> <span class="o">=</span> <span class="s1">&#39;dwi.nii.gz&#39;</span>
+<span class="n">fbval</span> <span class="o">=</span> <span class="s1">&#39;dwi.bval&#39;</span>
+<span class="n">fbvec</span> <span class="o">=</span> <span class="s1">&#39;dwi.bvec&#39;</span>
+
+<span class="kn">from</span> <span class="nn">dipy.io.image</span> <span class="k">import</span> <span class="n">load_nifti</span><span class="p">,</span> <span class="n">save_nifti</span>
+<span class="kn">from</span> <span class="nn">dipy.io</span> <span class="k">import</span> <span class="n">read_bvals_bvecs</span>
+<span class="kn">from</span> <span class="nn">dipy.core.gradients</span> <span class="k">import</span> <span class="n">gradient_table</span>
+<span class="kn">from</span> <span class="nn">dipy.reconst.dti</span> <span class="k">import</span> <span class="n">TensorModel</span>
+
+<span class="n">data</span><span class="p">,</span> <span class="n">affine</span> <span class="o">=</span> <span class="n">load_nifti</span><span class="p">(</span><span class="n">fdwi</span><span class="p">)</span>
+<span class="n">bvals</span><span class="p">,</span> <span class="n">bvecs</span> <span class="o">=</span> <span class="n">read_bvals_bvecs</span><span class="p">(</span><span class="n">fbval</span><span class="p">,</span> <span class="n">fbvec</span><span class="p">)</span>
+<span class="n">gtab</span> <span class="o">=</span> <span class="n">gradient_table</span><span class="p">(</span><span class="n">bvals</span><span class="p">,</span> <span class="n">bvecs</span><span class="p">)</span>
+
+<span class="n">tenmodel</span> <span class="o">=</span> <span class="n">TensorModel</span><span class="p">(</span><span class="n">gtab</span><span class="p">)</span>
+<span class="n">tenfit</span> <span class="o">=</span> <span class="n">tenmodel</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">save_nifti</span><span class="p">(</span><span class="s1">&#39;colorfa.nii.gz&#39;</span><span class="p">,</span> <span class="n">tenfit</span><span class="o">.</span><span class="n">color_fa</span><span class="p">,</span> <span class="n">affine</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>As an exercise, you can try to calculate <cite>color FA</cite> with your datasets. You will need
+to replace the filepaths <cite>fdwi</cite>, <cite>fbval</cite> and <cite>fbvec</cite>. Here is what
+a slice should look like.</p>
+<img alt="_static/colorfa.png" class="align-center" src="_static/colorfa.png" />
+</div>
+<div class="section" id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
+<p>You can learn more about how you to use <a href="#id3"><span class="problematic" id="id4">DIPY_</span></a> with  your datasets by reading the examples in our <a class="reference internal" href="documentation.html#documentation"><span class="std std-ref">Documentation</span></a>.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<p>We acknowledge support from the following organizations:</p>
+<ul class="simple">
+<li><p>The department of Intelligent Systems Engineering of Indiana University.</p></li>
+<li><p>The National Institute of Biomedical Imaging and Bioengineering, NIH.</p></li>
+<li><p>The Gordon and Betty Moore Foundation and the Alfred P. Sloan Foundation, through the
+University of Washington eScience Institute Data Science Environment.</p></li>
+<li><p>Google supported DIPY through the Google Summer of Code Program during
+Summer 2015, 2016 and 2018.</p></li>
+<li><p>The International Neuroinformatics Coordination Facility.</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">ShapeWorks</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="documentation.html" title="next chapter">Documentation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, SCI Institute.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.11</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
