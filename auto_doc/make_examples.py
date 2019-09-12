@@ -31,20 +31,22 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib._pylab_helpers import Gcf
 
-
-# -----------------------------------------------------------------------------
-# Main script
-# -----------------------------------------------------------------------------
+docdir = '../UseCaseDocumentation/'
+torem = []
+for fil in os.listdir(docdir):
+    if fil.endswith(".py") or fil.endswith(".zip"):
+        shutil.copyfile(op.join(docdir, fil), fil)
+        torem.append(fil)
 
 rootp = op.abspath('..')
-EG_INDEX_FNAME = op.join(rootp, 'auto_doc/examples_index.rst')
+EG_INDEX_FNAME = 'examples_index.rst'
 
 # Copy the py files; check they are in the examples list and warn if not
 with io.open(EG_INDEX_FNAME, 'rt', encoding="utf8") as f:
     eg_index_contents = f.read()
 
 # Add a script to valid_examples.txt if you want it to be built
-flist_name = op.join(rootp, 'auto_doc/valid_examples.txt')
+flist_name = 'valid_examples.txt'
 with io.open(flist_name, "r", encoding="utf8") as flist:
     validated_examples = flist.readlines()
 
@@ -57,12 +59,11 @@ validated_examples = list(filter(None, validated_examples))
 
 # Run the conversion from .py to rst file
 for example in validated_examples:
-    fullpath = op.join('./', example)
-    print(fullpath)
+    print(example)
     if not example.endswith(".py"):
         print("%s not a python file, skipping." % example)
         continue
-    elif not op.isfile(fullpath):
+    elif not op.isfile(example):
         print("Cannot find file, %s, skipping." % example)
         continue
     file_root = example[:-3]
@@ -71,7 +72,7 @@ for example in validated_examples:
         msg = msg % (example, EG_INDEX_FNAME)
         print(msg)
         continue
-    exfile2rstfile(fullpath, opts)
+    exfile2rstfile(example, '.')
 
 # added the path so that scripts can import other scripts on the same directory
 sys.path.insert(0, os.getcwd())
@@ -132,6 +133,9 @@ for script in validated_examples:
 
 if use_xvfb:
     display.stop()
+
+for tor in torem:
+    os.rm(tor)
 
 # clean up stray images, pickles, npy files, etc
 for globber in ('*.nii.gz', '*.dpy', '*.npy', '*.pkl', '*.mat', '*.img',

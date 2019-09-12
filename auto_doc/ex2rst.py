@@ -151,16 +151,15 @@ def exfile2rst(filename):
     return s
 
 
-def exfile2rstfile(filename, opts):
+def exfile2rstfile(filename, outdir):
     """
     """
     #  doc filename
     dfilename = os.path.basename(filename[:-3]) + '.rst'
 
     # open dest file
-    with io.open(os.path.join(opts.outdir,
-                              os.path.basename(dfilename)),
-                 'w', encoding="utf8") as dfile:
+    with io.open(os.path.join(outdir,  os.path.basename(dfilename)),
+            'w', encoding="utf8") as dfile:
 
         # place header
         dfile.write('.. AUTO-GENERATED FILE -- DO NOT EDIT!\n\n')
@@ -168,16 +167,14 @@ def exfile2rstfile(filename, opts):
         dfile.write('.. _example_' + dfilename[:-4] + ':\n\n')
         # write converted ReST
         dfile.write(exfile2rst(filename))
-        if opts.sourceref:
-            # write post example see also box
-            msg = ("\n\n"
-                   ".. admonition:: Example source code\n\n"
-                   "   You can download :download:`the full source code of"
-                   " this example <{0}>`. This same script is also included in"
-                   " the {1} source distribution under the"
-                   " :file:`doc/examples/` directory."
-                   ).format(filename, opts.project)
 
+        msg = ("\n\n"
+               ".. admonition:: Example source code\n\n"
+               "   You can download :download:`the full source code of"
+               " this example <{0}>`. This same script is also included in"
+               " the {1} source distribution under the"
+               " :file:`UseCaseDocumentation/` directory."
+               ).format(filename, 'ShapeWorks')
         dfile.write(msg)
 
     print('finished', filename)
