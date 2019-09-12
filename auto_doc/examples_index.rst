@@ -15,4 +15,4 @@ Examples
 Ellipsoid Example
 ~~~~~~~~~~~~~~~~
 
-- :ref:`ellipsoidMain`
+- :ref:`example_ellipsoidMain`

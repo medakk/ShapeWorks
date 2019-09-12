@@ -35,7 +35,7 @@ docdir = '../UseCaseDocumentation/'
 torem = 'torem.txt'
 open(torem, 'w').write('')
 for fil in os.listdir(docdir):
-    if fil.endswith(".py") or fil.endswith(".zip"):
+    if osp.isfile(fil) and (fil.endswith(".py") or fil.endswith(".zip")):
         shutil.copyfile(op.join(docdir, fil), fil)
         open(torem, 'a+').write(fil + '\n')
 
