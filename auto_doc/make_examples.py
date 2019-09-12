@@ -32,11 +32,12 @@ import matplotlib.pyplot as plt
 from matplotlib._pylab_helpers import Gcf
 
 docdir = '../UseCaseDocumentation/'
-torem = []
+torem = 'torem.txt'
+open(torem, 'w').write('')
 for fil in os.listdir(docdir):
     if fil.endswith(".py") or fil.endswith(".zip"):
         shutil.copyfile(op.join(docdir, fil), fil)
-        torem.append(fil)
+        open(torem, 'a+').write(fil + '\n')
 
 rootp = op.abspath('..')
 EG_INDEX_FNAME = 'examples_index.rst'
@@ -133,9 +134,6 @@ for script in validated_examples:
 
 if use_xvfb:
     display.stop()
-
-for tor in torem:
-    os.rm(tor)
 
 # clean up stray images, pickles, npy files, etc
 for globber in ('*.nii.gz', '*.dpy', '*.npy', '*.pkl', '*.mat', '*.img',
