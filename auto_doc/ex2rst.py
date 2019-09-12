@@ -180,6 +180,8 @@ def exfile2rstfile(filename, opts):
 
         dfile.write(msg)
 
+    print('finished', filename)
+
 
 def main():
     parser = OptionParser(
