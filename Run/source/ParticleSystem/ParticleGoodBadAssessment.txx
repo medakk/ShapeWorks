@@ -1,10 +1,10 @@
-#ifndef __itkParticleGoodBadAssessment_txx
-#define __itkParticleGoodBadAssessment_txx
+#ifndef _ParticleGoodBadAssessment_txx
+#define _ParticleGoodBadAssessment_txx
 
-#include "itkParticleMeanCurvatureAttribute.h"
+#include "ParticleMeanCurvatureAttribute.h"
 #include  "Utils.h"
 #include <vector>
-namespace itk{
+
 
 template<class TGradientNumericType, unsigned int VDimension>
 std::vector<std::vector<int> >
@@ -112,7 +112,6 @@ ParticleGoodBadAssessment<TGradientNumericType, VDimension>::computeParticlesNor
             normals[i][j] = n[j];
     }
     return normals;
-}
 }
 
 #endif

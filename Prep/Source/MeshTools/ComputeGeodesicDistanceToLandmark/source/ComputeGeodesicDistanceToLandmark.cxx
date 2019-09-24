@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "vnl/vnl_vector.h"
+#include <vnl/vnl_vector.h>
 
 #define _USE_MATH_DEFINES
 

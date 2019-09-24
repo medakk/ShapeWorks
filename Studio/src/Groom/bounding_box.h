@@ -15,12 +15,12 @@
 #ifndef __st_bounding_box_h
 #define __st_bounding_box_h
 
-#include "itkImage.h"
+#include <itkImage.h>
 #include "tinyxml.h"
 #include <sstream>
 #include <string>
 #include "tool.h"
-#include "itkImageRegion.h"
+#include <itkImageRegion.h>
 
 namespace shapetools
 {

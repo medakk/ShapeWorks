@@ -1,36 +1,20 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMRegressionShapeMatrixAttribute_h
-#define __itkPSMRegressionShapeMatrixAttribute_h
+#ifndef __PSMRegressionShapeMatrixAttribute_h
+#define __PSMRegressionShapeMatrixAttribute_h
 
-#include "itkPSMShapeMatrixAttribute.h"
-#include "itkPSMParticleSystem.h"
-#include "vnl/vnl_vector.h"
+#include "PSMShapeMatrixAttribute.h"
+#include "PSMParticleSystem.h"
+#include <vnl/vnl_vector.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMRegressionShapeMatrixAttribute
  *
  *
  *
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT PSMRegressionShapeMatrixAttribute
+class PSMRegressionShapeMatrixAttribute
   : public PSMShapeMatrixAttribute<T,VDimension>
 {
 public:
@@ -38,9 +22,9 @@ public:
   typedef T DataType;
   typedef PSMRegressionShapeMatrixAttribute Self;
   typedef PSMShapeMatrixAttribute<T,VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -70,12 +54,12 @@ public:
       of these callback methods, the corresponding flag in m_DefinedCallbacks
       should be set to true so that the PSMParticleSystem will know to register
       the appropriate event with this method. */
-  virtual void DomainAddEventCallback(Object *, const EventObject &e);
-  virtual void PositionAddEventCallback(Object *o, const EventObject &e);
-  virtual void PositionSetEventCallback(Object *o, const EventObject &e);
+  virtual void DomainAddEventCallback(Object *, const itk::EventObject &e);
+  virtual void PositionAddEventCallback(Object *o, const itk::EventObject &e);
+  virtual void PositionSetEventCallback(Object *o, const itk::EventObject &e);
   
   /** Unimplemented.  Reserved for future. */
-  virtual void PositionRemoveEventCallback(Object *, const EventObject &) 
+  virtual void PositionRemoveEventCallback(Object *, const itk::EventObject &) 
   {
     itkExceptionMacro("Method has not been implemented");
   }
@@ -177,7 +161,7 @@ protected:
   }
   virtual ~PSMRegressionShapeMatrixAttribute() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   { Superclass::PrintSelf(os,indent);  }
 
 private:
@@ -198,10 +182,10 @@ private:
   vnl_matrix<double> m_MeanMatrix;
 };
 
-} // end namespace
+
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMRegressionShapeMatrixAttribute.hxx"
+#include "PSMRegressionShapeMatrixAttribute.hxx"
 #endif
 
 #endif

@@ -12,15 +12,17 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleEnsembleEntropyFunction_h
-#define __itkParticleEnsembleEntropyFunction_h
+#ifndef _ParticleEnsembleEntropyFunction_h
+#define _ParticleEnsembleEntropyFunction_h
 
-#include "itkParticleShapeMatrixAttribute.h"
-#include "itkParticleVectorFunction.h"
+#include "ParticleShapeMatrixAttribute.h"
+#include "ParticleVectorFunction.h"
 #include <vector>
 
-namespace itk
-{
+
+
+//using namespace itk;
+
 
 /**
  * \class ParticleEnsembleEntropyFunction
@@ -32,8 +34,8 @@ class ParticleEnsembleEntropyFunction : public ParticleVectorFunction<VDimension
 public:
  /** Standard class typedefs. */
   typedef ParticleEnsembleEntropyFunction Self;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
   typedef ParticleVectorFunction<VDimension> Superclass;
   itkTypeMacro( ParticleEnsembleEntropyFunction, ParticleVectorFunction);
 
@@ -217,16 +219,16 @@ protected:
 };
 
 
-} //end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 #include "Templates/itkParticleEnsembleEntropyFunction+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-#include "itkParticleEnsembleEntropyFunction.txx"
+#include "ParticleEnsembleEntropyFunction.txx"
 #endif
 
-#include "itkParticleEnsembleEntropyFunction.txx"
+#include "ParticleEnsembleEntropyFunction.txx"
 
 #endif

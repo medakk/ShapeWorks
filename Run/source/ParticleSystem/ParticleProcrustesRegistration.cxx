@@ -12,10 +12,10 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#include "itkParticleProcrustesRegistration.h"
+#include "ParticleProcrustesRegistration.h"
 #include "Procrustes3D.h"
 
-namespace itk {
+
 
 template<>
 void
@@ -145,4 +145,4 @@ ParticleProcrustesRegistration<3>::RunRegistration(int d)
 //        std::cout << std::endl;
     }
 }
-} // end namespace
+

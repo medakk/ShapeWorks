@@ -12,23 +12,23 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleMeanCurvatureAttribute_h
-#define __itkParticleMeanCurvatureAttribute_h
+#ifndef _ParticleMeanCurvatureAttribute_h
+#define _ParticleMeanCurvatureAttribute_h
 
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "itkParticleContainer.h"
-#include "itkParticleContainerArrayAttribute.h"
-#include "itkParticleImageDomainWithCurvature.h"
-#include "itkParticleSystem.h"
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include "ParticleContainer.h"
+#include "ParticleContainerArrayAttribute.h"
+#include "ParticleImageDomainWithCurvature.h"
+#include "ParticleSystem.h"
 
-namespace itk
-{
+//using namespace itk;
+
 /** \class ParticleMeanCurvatureAttribute
  *  \brief
  */
 template <class TNumericType, unsigned int VDimension>
-class ITK_EXPORT ParticleMeanCurvatureAttribute
+class ParticleMeanCurvatureAttribute
   : public ParticleContainerArrayAttribute<TNumericType,VDimension>
 {
 public:
@@ -36,9 +36,9 @@ public:
   typedef TNumericType NumericType;
   typedef ParticleMeanCurvatureAttribute Self;
   typedef ParticleContainerArrayAttribute<TNumericType,VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   
   /** Numeric types. */
   typedef ParticleSystem<VDimension> ParticleSystemType; 
@@ -59,7 +59,7 @@ public:
   unsigned int GetVerbosity()
   { return m_verbosity; }
 
-  virtual void PositionAddEventCallback(Object *o, const EventObject &e) 
+  virtual void PositionAddEventCallback(Object *o, const itk::EventObject &e) 
   {
     Superclass::PositionAddEventCallback(o, e);
     const ParticlePositionAddEvent &event = dynamic_cast<const ParticlePositionAddEvent &>(e);
@@ -67,14 +67,14 @@ public:
     this->ComputeMeanCurvature(ps, event.GetPositionIndex(), event.GetDomainIndex());
   }
 
-  virtual void PositionSetEventCallback(Object *o, const EventObject &e)
+  virtual void PositionSetEventCallback(Object *o, const itk::EventObject &e)
   {
     const ParticlePositionSetEvent &event = dynamic_cast<const ParticlePositionSetEvent &>(e);
     const ParticleSystemType *ps= dynamic_cast<const ParticleSystemType *>(o);
     this->ComputeMeanCurvature(ps, event.GetPositionIndex(), event.GetDomainIndex());
   }
   
-  virtual void DomainAddEventCallback(Object *o, const EventObject &e)
+  virtual void DomainAddEventCallback(Object *o, const itk::EventObject &e)
   {
     Superclass::DomainAddEventCallback(o, e);
     m_MeanCurvatureList.push_back(0.0);
@@ -114,7 +114,7 @@ protected:
   }
   virtual ~ParticleMeanCurvatureAttribute() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {  Superclass::PrintSelf(os,indent);  }
 
 private:
@@ -126,7 +126,7 @@ private:
   unsigned int m_verbosity;
 };
 
-} // end namespace
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -134,9 +134,9 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-#include "itkParticleMeanCurvatureAttribute.txx"
+#include "ParticleMeanCurvatureAttribute.txx"
 #endif
 
-#include "itkParticleMeanCurvatureAttribute.txx"
+#include "ParticleMeanCurvatureAttribute.txx"
 
 #endif

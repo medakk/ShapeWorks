@@ -12,10 +12,10 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleShapeStatistics_txx
-#define __itkParticleShapeStatistics_txx
+#ifndef _ParticleShapeStatistics_txx
+#define _ParticleShapeStatistics_txx
 
-#include "itkParticleShapeStatistics.h"
+#include "ParticleShapeStatistics.h"
 #include "tinyxml.h"
 
 template <unsigned int VDimension>
@@ -154,7 +154,7 @@ int ParticleShapeStatistics<VDimension>
   if (elem) this->m_domainsPerShape = atoi(elem->GetText());
 
   // Read the point files.  Assumes all the same size.
-  typename itk::ParticlePositionReader<VDimension>::Pointer reader1 = itk::ParticlePositionReader<VDimension>::New();
+  typename ParticlePositionReader<VDimension>::Pointer reader1 = ParticlePositionReader<VDimension>::New();
   reader1->SetFileName( pointsfiles[0].c_str() );
   reader1->Update();
   m_numSamples1 = 0;
@@ -215,8 +215,8 @@ int ParticleShapeStatistics<VDimension>
     for (unsigned int k = 0; k < m_domainsPerShape; k++) 
       {
       // read file
-      typename itk::ParticlePositionReader<VDimension>::Pointer reader
-        = itk::ParticlePositionReader<VDimension>::New();
+      typename ParticlePositionReader<VDimension>::Pointer reader
+        = ParticlePositionReader<VDimension>::New();
       reader->SetFileName( pointsfiles[i*m_domainsPerShape + k].c_str() );
       reader->Update();
       unsigned int q = reader->GetOutput().size();  
@@ -354,8 +354,8 @@ int ParticleShapeStatistics<VDimension>
     for (unsigned int k = 0; k < m_domainsPerShape; k++) 
       {
       // read file
-      typename itk::ParticlePositionReader<VDimension>::Pointer reader
-        = itk::ParticlePositionReader<VDimension>::New();
+      typename ParticlePositionReader<VDimension>::Pointer reader
+        = ParticlePositionReader<VDimension>::New();
       reader->SetFileName( m_pointsfiles[i*m_domainsPerShape + k].c_str() );
       reader->Update();
       unsigned int q = reader->GetOutput().size();  

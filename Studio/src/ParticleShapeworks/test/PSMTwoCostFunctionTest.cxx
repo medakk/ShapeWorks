@@ -16,10 +16,9 @@
  *
  *=========================================================================*/
 #include <iostream>
-#include "itkPSMTwoCostFunction.h"
-#include "itkMacro.h"
+#include "PSMTwoCostFunction.h"
+#include <itkMacro.h>
 
-namespace itk {
 
 template <unsigned int VDimension>
 class TestTwoCostFunction : public PSMCostFunction<VDimension>
@@ -27,8 +26,8 @@ class TestTwoCostFunction : public PSMCostFunction<VDimension>
 public:
  /** Standard class typedefs. */
   typedef TestTwoCostFunction Self;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
   typedef PSMCostFunction<VDimension> Superclass;
   itkTypeMacro( TestTwoCostFunction, PSMCostFunction);
 
@@ -91,7 +90,7 @@ protected:
   double m_Value;
 };
 
-} //end namespace
+
 
 /** This test exercises functionality of the base itkPSMParticleSystem class. */
 int itkPSMTwoCostFunctionTest(int, char* [] )
@@ -171,7 +170,7 @@ int itkPSMTwoCostFunctionTest(int, char* [] )
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

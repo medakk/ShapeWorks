@@ -1,20 +1,5 @@
-/*=========================================================================
-  Program:   ShapeWorks: Particle-based Shape Correspondence & Visualization
-  Module:    $RCSfile: itkPSMProcrustesRegistration.cxx,v $
-  Date:      $Date: 2011/03/24 01:17:33 $
-  Version:   $Revision: 1.5 $
-  Author:    $Author: wmartin $
+#include "PSMProcrustesRegistration.h"
 
-  Copyright (c) 2009 Scientific Computing and Imaging Institute.
-  See ShapeWorksLicense.txt for details.
-
-     This software is distributed WITHOUT ANY WARRANTY; without even 
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
-     PURPOSE.  See the above copyright notices for more information.
-=========================================================================*/
-#include "itkPSMProcrustesRegistration.h"
-
-namespace itk {
 
 template<unsigned int VDimension>
 void
@@ -151,4 +136,4 @@ PSMProcrustesRegistration<VDimension>
   // Explicitly instantiate the function for 3D and 2D
   template void PSMProcrustesRegistration<3>::RunRegistration(int d);
   template void PSMProcrustesRegistration<2>::RunRegistration(int d);
-} // end namespace itk
+

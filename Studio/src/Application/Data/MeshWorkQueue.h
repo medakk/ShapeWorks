@@ -18,7 +18,7 @@
 #include <QMutex>
 
 // vnl
-#include "vnl/vnl_vector.h"
+#include <vnl/vnl_vector.h>
 
 class MeshWorkItem
 {

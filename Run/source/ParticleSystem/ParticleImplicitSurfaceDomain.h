@@ -12,13 +12,13 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleImplicitSurfaceDomain_h
-#define __itkParticleImplicitSurfaceDomain_h
+#ifndef _ParticleImplicitSurfaceDomain_h
+#define _ParticleImplicitSurfaceDomain_h
 
-#include "itkParticleImageDomainWithCurvature.h"
+#include "ParticleImageDomainWithCurvature.h"
 //Prateep
-#include "vnl/vnl_matrix_fixed.h"
-#include "vnl/vnl_inverse.h"
+#include <vnl/vnl_matrix_fixed.h>
+#include <vnl/vnl_inverse.h>
 
 #if defined(SW_USE_MESH) || defined(SW_USE_FEAMESH)
 #include "TriMesh.h"
@@ -26,8 +26,8 @@
 #include "meshFIM.h"
 #endif
 
-namespace itk
-{
+//using namespace itk;
+
 /** \class ParticleImplicitSurfaceDomain
  *
  *  A 3D cartesian domain that constrains points so that they always lie an
@@ -37,16 +37,16 @@ namespace itk
  *  as an image.
  */
 template <class T, unsigned int VDimension=3>
-class ITK_EXPORT ParticleImplicitSurfaceDomain
+class ParticleImplicitSurfaceDomain
   : public ParticleImageDomainWithCurvature<T, VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef ParticleImplicitSurfaceDomain Self;
   typedef ParticleImageDomainWithCurvature<T, VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   typedef typename Superclass::ImageType ImageType;
   typedef typename Superclass::PointType PointType;
 
@@ -210,7 +210,7 @@ protected:
     m_mesh = NULL;
 #endif
     }
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
     os << indent << "m_Tolerance = " << m_Tolerance << std::endl;
@@ -246,7 +246,7 @@ private:
   void operator=(const Self&); //purposely not implemented
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -254,9 +254,9 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleImplicitSurfaceDomain.txx"
+# include "ParticleImplicitSurfaceDomain.txx"
 #endif
 
-#include "itkParticleImplicitSurfaceDomain.txx"
+#include "ParticleImplicitSurfaceDomain.txx"
 
 #endif

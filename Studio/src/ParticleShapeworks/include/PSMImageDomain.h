@@ -1,29 +1,13 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMImageDomain_h
-#define __itkPSMImageDomain_h
+#ifndef __PSMImageDomain_h
+#define __PSMImageDomain_h
 
-#include "itkImage.h"
-#include "itkPSMRegionDomain.h"
-#include "itkLinearInterpolateImageFunction.h"
+#include <itkImage.h>
+#include "PSMRegionDomain.h"
+#include <itkLinearInterpolateImageFunction.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMImageDomain
  *  A bounding-box region domain that sets its bounding box according to the
  *  origin, spacing, and RequestedRegion of a specified itk::Image.  This
@@ -35,18 +19,18 @@ namespace itk
  *
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT PSMImageDomain : public PSMRegionDomain<VDimension>
+class PSMImageDomain : public PSMRegionDomain<VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef PSMImageDomain Self;
   typedef PSMRegionDomain<VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Type of the ITK image used by this class. */
-  typedef Image<T, VDimension> ImageType;
+  typedef itk::Image<T, VDimension> ImageType;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -57,7 +41,7 @@ public:
   /** Point type of the domain (not the image). */
   typedef typename Superclass::PointType PointType;
 
-  typedef LinearInterpolateImageFunction<ImageType, typename PointType::CoordRepType>
+  typedef itk::LinearInterpolateImageFunction<ImageType, typename PointType::CoordRepType>
   ScalarInterpolatorType;
 
 
@@ -123,7 +107,7 @@ protected:
     m_ScalarInterpolator = ScalarInterpolatorType::New();
   }
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
     
@@ -140,6 +124,6 @@ private:
   typename ScalarInterpolatorType::Pointer m_ScalarInterpolator;
 };
 
-} // end namespace itk
+
 
 #endif

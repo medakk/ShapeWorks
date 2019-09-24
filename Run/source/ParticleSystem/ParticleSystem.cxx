@@ -12,9 +12,9 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#include "itkParticleSystem.h"
+#include "ParticleSystem.h"
 
-namespace itk {
+
 
 /** For efficiency, we specialize for 3D and 2D */
 template<>
@@ -102,4 +102,4 @@ ParticleSystem<2>
   return ans;
 }
 
-} // end namespace
+

@@ -15,49 +15,51 @@
 
 =========================================================================*/
 
-#include "itkCommand.h"
-#include "itkImage.h"
-#include "itkVTKImageExport.h"
-#include "itkVTKImageImport.h"
-#include "itkConfidenceConnectedImageFilter.h"
-#include "itkCastImageFilter.h"
-#include "itkRGBPixel.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
+#include <itkCommand.h>
+#include <itkImage.h>
+#include <itkVTKImageExport.h>
+#include <itkVTKImageImport.h>
+#include <itkConfidenceConnectedImageFilter.h>
+#include <itkCastImageFilter.h>
+#include <itkRGBPixel.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
 
-#include "itkRigid3DTransform.h"
-#include "itkResampleImageFilter.h"
-#include "itkLinearInterpolateImageFunction.h"
-#include "itkNearestNeighborInterpolateImageFunction.h"
+#include <itkRigid3DTransform.h>
+#include <itkResampleImageFilter.h>
+#include <itkLinearInterpolateImageFunction.h>
+#include <itkNearestNeighborInterpolateImageFunction.h>
 
-#include "vtkImageImport.h"
-#include "vtkImageExport.h"
-#include "vtkPolyData.h"
-#include "vtkPolyDataMapper.h"
-#include "vtkContourFilter.h"
-#include "vtkImageData.h"
-#include "vtkDataSet.h"
-#include "vtkProperty.h"
-#include "vtkPolyDataWriter.h"
+#include <vtkImageImport.h>
+#include <vtkImageExport.h>
+#include <vtkPolyData.h>
+#include <vtkPolyDataMapper.h>
+#include <vtkContourFilter.h>
+#include <vtkImageData.h>
+#include <vtkDataSet.h>
+#include <vtkProperty.h>
+#include <vtkPolyDataWriter.h>
 
-#include "vtkRenderer.h"
-#include "vtkRenderWindow.h"
-#include "vtkRenderWindowInteractor.h"
-#include "vtkActor.h"
-#include "vtkImagePlaneWidget.h"
-#include "vtkCellPicker.h"
+#include <vtkRenderer.h>
+#include <vtkRenderWindow.h>
+#include <vtkRenderWindowInteractor.h>
+#include <vtkActor.h>
+#include <vtkImagePlaneWidget.h>
+#include <vtkCellPicker.h>
 
-#include "vtkSmartPointer.h"
-#include "vtkTransform.h"
-#include "vtkVertexGlyphFilter.h"
-#include "vtkPoints.h"
-#include "vtkCellArray.h"
-#include "vtkIterativeClosestPointTransform.h"
-#include "vtkTransformPolyDataFilter.h"
-#include "vtkLandmarkTransform.h"
-#include "vtkMath.h"
+#include <vtkSmartPointer.h>
+#include <vtkTransform.h>
+#include <vtkVertexGlyphFilter.h>
+#include <vtkPoints.h>
+#include <vtkCellArray.h>
+#include <vtkIterativeClosestPointTransform.h>
+#include <vtkTransformPolyDataFilter.h>
+#include <vtkLandmarkTransform.h>
+#include <vtkMath.h>
 
 #include "OptionParser.h"
+
+//using namespace itk;
 
 optparse::OptionParser buildParser()
 {
@@ -85,17 +87,16 @@ optparse::OptionParser buildParser()
 }
 
 
-namespace itk
-{
+
 template <class TScalarType>
 class Rigid3DTransformSurrogate : public Rigid3DTransform < TScalarType >
 {
 public:
     /** Standard class typedefs. */
     typedef Rigid3DTransformSurrogate        Self;
-    typedef Rigid3DTransform< TScalarType >  Superclass;
-    typedef SmartPointer< Self >             Pointer;
-    typedef SmartPointer< const Self >       ConstPointer;
+    typedef itk::Rigid3DTransform< TScalarType >  Superclass;
+    typedef itk::SmartPointer< Self >             Pointer;
+    typedef itk::SmartPointer< const Self >       ConstPointer;
 
     itkNewMacro(Self);
 
@@ -105,7 +106,6 @@ private:
 
 };
 
-}
 
 /**
  * This function will connect the given itk::VTKImageExport filter to
@@ -273,7 +273,7 @@ int main(int argc, char * argv [] )
 
         std::cout << "The resulting matrix is: " << *m << std::endl;
 
-        typedef itk::Rigid3DTransformSurrogate<double>  TransformType;
+        typedef Rigid3DTransformSurrogate<double>  TransformType;
         TransformType::Pointer transform = TransformType::New();
         TransformType::ParametersType p;
         p.set_size(12);

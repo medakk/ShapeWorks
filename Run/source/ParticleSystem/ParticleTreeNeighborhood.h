@@ -12,13 +12,12 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleTreeNeighborhood_h
-#define __itkParticleTreeNeighborhood_h
+#ifndef _ParticleTreeNeighborhood_h
+#define _ParticleTreeNeighborhood_h
 
-#include "itkParticleNeighborhood.h"
+#include "ParticleNeighborhood.h"
 
-namespace itk
-{
+
 /** \class ParticleTreeNeighborhood
  *
  * This class implements a ParticleNeighborhood tree that caches point values
@@ -29,15 +28,15 @@ namespace itk
  * considered for a given point and radius.
  */
 template <unsigned int VDimension=3>
-class ITK_EXPORT ParticleTreeNeighborhood : public ParticleNeighborhood<VDimension>
+class ParticleTreeNeighborhood : public ParticleNeighborhood<VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef ParticleTreeNeighborhood Self;
   typedef ParticleNeighborhood Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -52,7 +51,7 @@ public:
   itkPowersOfTwoTree<Dimension> TreeType;
   
   /** Point type used to store particle locations. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
 
   /** Domain type.  The Domain object provides bounds and distance
       information. */
@@ -90,7 +89,7 @@ public:
   
 protected:
   ParticleTreeNeighborhood() {}
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
     m_PointContainer->PrintSelf(os, indent);
@@ -105,7 +104,7 @@ private:
   DomainType m_Domain;
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -113,7 +112,7 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-//# include "itkParticleTreeNeighborhood.txx"
+//# include "ParticleTreeNeighborhood.txx"
 #endif
 
 #endif

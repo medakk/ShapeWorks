@@ -12,15 +12,12 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticlePositionWriter_txx
-#define __itkParticlePositionWriter_txx
+#ifndef _ParticlePositionWriter_txx
+#define _ParticlePositionWriter_txx
 
 #include <fstream>
 
-#include "itkParticlePositionWriter.h"
-
-namespace itk
-{
+#include "ParticlePositionWriter.h"
 
 template <unsigned int VDimension>
 void ParticlePositionWriter<VDimension>::Update()
@@ -47,8 +44,6 @@ void ParticlePositionWriter<VDimension>::Update()
     }
 
    out.close();
-}
-
 }
 
 #endif

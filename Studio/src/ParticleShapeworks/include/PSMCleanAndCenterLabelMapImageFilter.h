@@ -1,27 +1,10 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMCleanAndCenterLabelMapImageFilter_h
-#define __itkPSMCleanAndCenterLabelMapImageFilter_h
+#ifndef __PSMCleanAndCenterLabelMapImageFilter_h
+#define __PSMCleanAndCenterLabelMapImageFilter_h
 
-#include "itkImageToImageFilter.h"
+#include <itkImageToImageFilter.h>
 
-namespace itk
-{
+//using namespace itk;
+
 /** \class PSMCleanAndCenterLabelMapImageFilter 
  *
  * \brief Process an input segmentation to produce an isotropically spaced
@@ -60,15 +43,15 @@ namespace itk
  * \author Josh Cates
  */
 template< class TImage>
-class ITK_EXPORT PSMCleanAndCenterLabelMapImageFilter:
+class PSMCleanAndCenterLabelMapImageFilter:
   public ImageToImageFilter<TImage, TImage>
 {
 public:
   /** Standard class typedefs. */
   typedef PSMCleanAndCenterLabelMapImageFilter      Self;
   typedef ImageToImageFilter< TImage, TImage > Superclass;
-  typedef SmartPointer< Self >                 Pointer;
-  typedef SmartPointer< const Self >           ConstPointer;
+  typedef itk::SmartPointer< Self >                 Pointer;
+  typedef itk::SmartPointer< const Self >           ConstPointer;
 
   /** Image-type-related typedefs */
   typedef TImage ImageType;
@@ -106,7 +89,7 @@ public:
 protected:
   PSMCleanAndCenterLabelMapImageFilter();
   ~PSMCleanAndCenterLabelMapImageFilter() {}
-  void PrintSelf(std::ostream & os, Indent indent) const;
+  void PrintSelf(std::ostream & os, itk::Indent indent) const;
   
    /** Isolates the largest connected component in an image.  Pixels in this
    *  component are set to the foreground value and pixels in other components
@@ -148,10 +131,9 @@ private:
   PixelType  m_ForegroundValue;
   PixelType  m_BackgroundValue;
 };
-} // end namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMCleanAndCenterLabelMapImageFilter.hxx"
+#include "PSMCleanAndCenterLabelMapImageFilter.hxx"
 #endif
 
 #endif

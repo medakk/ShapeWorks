@@ -17,17 +17,17 @@
 
 #include <iostream>
 #include <vector>
-#include "vnl/vnl_vector.h"
-#include "vnl/algo/vnl_symmetric_eigensystem.h"
-#include "vnl/vnl_matrix.h"
-#include "itkParticlePositionReader.h"
-#include "vnl/vnl_vector_fixed.h"
-#include "vnl/algo/vnl_matrix_inverse.h"
+#include <vnl/vnl_vector.h>
+#include <vnl/algo/vnl_symmetric_eigensystem.h>
+#include <vnl/vnl_matrix.h>
+#include "ParticlePositionReader.h"
+#include <vnl/vnl_vector_fixed.h>
+#include <vnl/algo/vnl_matrix_inverse.h>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <cstdio>
-#include "itkParticlePositionWriter.h"
+#include "ParticlePositionWriter.h"
 
 /**
  * \class ParticleShapeStatistics
@@ -35,7 +35,7 @@
  * and group ids.
  */
 template <unsigned int VDimension = 3>
-class ITK_EXPORT ParticleShapeStatistics
+class ParticleShapeStatistics
 {
 public:
   ParticleShapeStatistics() {}
@@ -184,9 +184,9 @@ protected:
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleShapeStatistics.txx"
+# include "ParticleShapeStatistics.txx"
 #endif
 
-#include "itkParticleShapeStatistics.txx"
+#include "ParticleShapeStatistics.txx"
 
 #endif // ifndef _ParticleShapeStatistics_h

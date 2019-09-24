@@ -1,32 +1,15 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMPointTree_hxx
-#define __itkPSMPointTree_hxx
-#include "itkPSMPointTree.h"
+#ifndef __PSMPointTree_hxx
+#define __PSMPointTree_hxx
+#include "PSMPointTree.h"
 
 #include <cmath>
 
-namespace itk
-{
+//using namespace itk;
+
 
   template <unsigned int VDimension>
     void PSMPointTreeNode<VDimension>
-    ::PrintSelf(std::ostream& os, Indent indent) const
+    ::PrintSelf(std::ostream& os, itk::Indent indent) const
     {
       os << indent << "PSMPointTreeNode: ";
       os << "m_LowerBound = " << m_LowerBound;
@@ -204,7 +187,7 @@ namespace itk
     }
 
   template  <unsigned int VDimension>
-    void PSMPointTree<VDimension>::PrintSelf(std::ostream& os, Indent indent) const
+    void PSMPointTree<VDimension>::PrintSelf(std::ostream& os, itk::Indent indent) const
     {
       os << indent << "BranchesPerNode = " << BranchesPerNode << std::endl;
       os << indent << "m_Depth = " << m_Depth << std::endl;
@@ -213,5 +196,5 @@ namespace itk
       Superclass::PrintSelf(os, indent);
     }
 
-} // end namespace itk
+
 #endif

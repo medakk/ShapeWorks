@@ -13,8 +13,8 @@
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
 #include "isosurface_pipeline.h"
-#include "vtkTransform.h"
-#include "itkParticleSystem.h"
+#include <vtkTransform.h>
+#include "ParticleSystem.h"
 
 void isosurface_pipeline::write_vtk_mesh(const char *fn)
 {
@@ -28,8 +28,8 @@ void isosurface_pipeline::write_vtk_mesh(const char *fn)
 void isosurface_pipeline::SetTransformCallback(itk::Object *o, const itk::EventObject &e)
 {
   // NOTE: Ignoring scale
-  const itk::ParticleTransformSetEvent &event = dynamic_cast<const itk::ParticleTransformSetEvent &>(e);
-  const itk::ParticleSystem<3> *ps= dynamic_cast<const itk::ParticleSystem<3> *>(o);
+  const ParticleTransformSetEvent &event = dynamic_cast<const ParticleTransformSetEvent &>(e);
+  const ParticleSystem<3> *ps= dynamic_cast<const ParticleSystem<3> *>(o);
 
   unsigned int d = event.GetDomainIndex();
   if (d != m_MyDomain)
@@ -47,7 +47,7 @@ void isosurface_pipeline::SetTransformCallback(itk::Object *o, const itk::EventO
   m1 = vtkMatrix4x4::New();
   t  = vtkTransform::New();
 
-  itk::ParticleSystem<3>::TransformType T = ps->GetTransform(d) * ps->GetPrefixTransform(d);
+  ParticleSystem<3>::TransformType T = ps->GetTransform(d) * ps->GetPrefixTransform(d);
 
   m1->SetElement(0, 0, T(0,0)); // * transforms[i].scale);
   m1->SetElement(1, 0, T(1,0)); // * transforms[i].scale);
@@ -92,8 +92,8 @@ void isosurface_pipeline::SetTransformCallback(itk::Object *o, const itk::EventO
 void isosurface_pipeline::SetPrefixTransformCallback(itk::Object *o, const itk::EventObject &e)
 {
   // NOTE: Ignoring scale
-  const itk::ParticlePrefixTransformSetEvent &event = dynamic_cast<const itk::ParticlePrefixTransformSetEvent &>(e);
-  const itk::ParticleSystem<3> *ps= dynamic_cast<const itk::ParticleSystem<3> *>(o);
+  const ParticlePrefixTransformSetEvent &event = dynamic_cast<const ParticlePrefixTransformSetEvent &>(e);
+  const ParticleSystem<3> *ps= dynamic_cast<const ParticleSystem<3> *>(o);
 
   unsigned int d = event.GetDomainIndex();
   if (d != m_MyDomain)
@@ -111,7 +111,7 @@ void isosurface_pipeline::SetPrefixTransformCallback(itk::Object *o, const itk::
   m1 = vtkMatrix4x4::New();
   t  = vtkTransform::New();
 
-  itk::ParticleSystem<3>::TransformType T = ps->GetTransform(d) * ps->GetPrefixTransform(d);
+  ParticleSystem<3>::TransformType T = ps->GetTransform(d) * ps->GetPrefixTransform(d);
 
   m1->SetElement(0, 0, T(0,0)); // * transforms[i].scale);
   m1->SetElement(1, 0, T(1,0)); // * transforms[i].scale);

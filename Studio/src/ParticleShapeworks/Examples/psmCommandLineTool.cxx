@@ -16,16 +16,16 @@
  *=========================================================================*/
 
 #include <iostream>
-#include "itkPSMCommandLineClass.h"
-#include "itkPSMProjectReader.h"
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkExceptionObject.h"
-#include "itkGDCMImageIOFactory.h"
-#include "itkMetaImageIOFactory.h"
-#include "itkObjectFactoryBase.h"
-#include "itkNrrdImageIOFactory.h"
-#include "itkExceptionObject.h"
+#include "PSMCommandLineClass.h"
+#include "PSMProjectReader.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkExceptionObject.h>
+#include <itkGDCMImageIOFactory.h>
+#include <itkMetaImageIOFactory.h>
+#include <itkObjectFactoryBase.h>
+#include <itkNrrdImageIOFactory.h>
+#include <itkExceptionObject.h>
 
 
 int main(int argc, char *argv[])
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
 
   catch (itk::ExceptionObject &e)
   {
-    std::cerr << "ITK exception with description: " << e.GetDescription()
+    std::cerr << " exception with description: " << e.GetDescription()
       << "\n at location:" << e.GetLocation()
       << "\n in file:" << e.GetFile() << std::endl;
     return EXIT_FAILURE;

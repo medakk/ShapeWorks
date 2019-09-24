@@ -1,22 +1,20 @@
-#ifndef __itkTPGACLevelSetImageFilter_txx
-#define __itkTPGACLevelSetImageFilter_txx
+#ifndef _TPGACLevelSetImageFilter_txx
+#define _TPGACLevelSetImageFilter_txx
 
-#include "itkTPGACLevelSetImageFilter.h"
-
-namespace itk {
+#include "TPGACLevelSetImageFilter.h"
 
 
 template <class TInputImage, class TFeatureImage, class TOutputType>
  TPGACLevelSetImageFilter< TInputImage, TFeatureImage, TOutputType>
  ::TPGACLevelSetImageFilter()
-   : GeodesicActiveContourLevelSetImageFilter<TInputImage, TFeatureImage, TOutputType>()
+   : itk::GeodesicActiveContourLevelSetImageFilter<TInputImage, TFeatureImage, TOutputType>()
  {
    // call parent constructor
  }
 
 template <class TInputImage, class TFeatureImage, class TOutputType>
 void TPGACLevelSetImageFilter<TInputImage, TFeatureImage, TOutputType>
-::PrintSelf(std::ostream &os, Indent indent) const
+::PrintSelf(std::ostream &os, itk::Indent indent) const
 {
   Superclass::PrintSelf(os, indent);
 }
@@ -250,8 +248,8 @@ typename TPGACLevelSetImageFilter< TInputImage, TFeatureImage, TOutputType>::Val
   }
 
   // create a 3x3x3 nbh iterator over the output image
-  Size<3> radius = {1,1,1};
-  NeighborhoodIterator<OutputImageType>
+  itk::Size<3> radius = {1,1,1};
+  itk::NeighborhoodIterator<OutputImageType>
     nbhIterator(radius, this->GetOutput(),
         this->GetOutput()->GetRequestedRegion());
 
@@ -367,7 +365,5 @@ typename TPGACLevelSetImageFilter< TInputImage, TFeatureImage, TOutputType>::Val
   //   return the new value
   return temp_value;
 }
-
-}// end namespace itk
 
 #endif

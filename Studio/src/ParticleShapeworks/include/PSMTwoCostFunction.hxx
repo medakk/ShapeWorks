@@ -1,27 +1,8 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMTwoCostFunction_hxx
-#define __itkPSMTwoCostFunction_hxx
-#include "itkPSMTwoCostFunction.h"
+#ifndef __PSMTwoCostFunction_hxx
+#define __PSMTwoCostFunction_hxx
+#include "PSMTwoCostFunction.h"
 
-namespace itk 
-{
-
+ 
 template <unsigned int VDimension>
 typename PSMTwoCostFunction<VDimension>::VectorType
 PSMTwoCostFunction<VDimension>
@@ -36,6 +17,8 @@ PSMTwoCostFunction<VDimension>
     ansA.fill(0.0);
     VectorType ansB;
     ansB.fill(0.0);
+
+//using namespace itk;
 
     const_cast<PSMTwoCostFunction *>(this)->m_Counter = m_Counter + 1.0;
 
@@ -177,7 +160,5 @@ PSMTwoCostFunction<VDimension>
 
     return 0.0;
 }
-
-} // end namespace itk
 
 #endif

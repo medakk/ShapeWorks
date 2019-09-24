@@ -12,18 +12,19 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkMaximumEntropyCorrespondenceSampler_h
-#define __itkMaximumEntropyCorrespondenceSampler_h
+#ifndef _MaximumEntropyCorrespondenceSampler_h
+#define _MaximumEntropyCorrespondenceSampler_h
 
-#include "itkMaximumEntropySurfaceSampler.h"
-#include "itkParticleDualVectorFunction.h"
-#include "itkParticleEnsembleEntropyFunction.h"
-#include "itkParticleShapeLinearRegressionMatrixAttribute.h"
-#include "itkParticleShapeMixedEffectsMatrixAttribute.h"
-#include "itkParticleMeshBasedGeneralEntropyGradientFunction.h"
+#include "MaximumEntropySurfaceSampler.h"
+#include "ParticleDualVectorFunction.h"
+#include "ParticleEnsembleEntropyFunction.h"
+#include "ParticleShapeLinearRegressionMatrixAttribute.h"
+#include "ParticleShapeMixedEffectsMatrixAttribute.h"
+#include "ParticleMeshBasedGeneralEntropyGradientFunction.h"
 
-namespace itk
-{
+
+//using namespace itk;
+
   
 /** \class MaximumEntropyCorrespondenceSampler
  *
@@ -31,15 +32,15 @@ namespace itk
  *
  */
 template <class TImage>
-class ITK_EXPORT MaximumEntropyCorrespondenceSampler
+class MaximumEntropyCorrespondenceSampler
   : public MaximumEntropySurfaceSampler<TImage> 
 {
 public:
   /** Standard class typedefs. */
   typedef MaximumEntropyCorrespondenceSampler  Self;
   typedef MaximumEntropySurfaceSampler<TImage>  Superclass;
-  typedef SmartPointer<Self>   Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>   Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -266,7 +267,7 @@ protected:
   MaximumEntropyCorrespondenceSampler();
   virtual ~MaximumEntropyCorrespondenceSampler() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
   }
@@ -295,16 +296,16 @@ private:
   typename ParticleMeshBasedGeneralEntropyGradientFunction<Dimension>::Pointer m_MeshBasedGeneralEntropyGradientFunction;
 };
 
-} // end namespace itk
+
 
 #if ITK_TEMPLATE_EXPLICIT
 #include "Templates/itkMaximumEntropyCorrespondenceSampler+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-#include "itkMaximumEntropyCorrespondenceSampler.txx"
+#include "MaximumEntropyCorrespondenceSampler.txx"
 #endif
 
-#include "itkMaximumEntropyCorrespondenceSampler.txx"
+#include "MaximumEntropyCorrespondenceSampler.txx"
 
 #endif

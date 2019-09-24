@@ -336,7 +336,7 @@ void Reconstruction::computeDenseMean(
       PointSetType::Pointer targetLandMarks = PointSetType::New();
       PointType pt;
       PointSetType::PointsContainer::Pointer
-        targetLandMarkContainer = targetLandMarks->GetPoints();
+        targetLandMarkContainefr = targetLandMarks->GetPoints();
       id = itk::NumericTraits< PointIdType >::Zero;
 
       int nt = 0;

@@ -12,8 +12,8 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleGradientDescentPositionOptimizer_txx
-#define __itkParticleGradientDescentPositionOptimizer_txx
+#ifndef _ParticleGradientDescentPositionOptimizer_txx
+#define _ParticleGradientDescentPositionOptimizer_txx
 
 #ifdef SW_USE_OPENMP
 #include <omp.h>
@@ -26,12 +26,11 @@ const int global_iteration = 1;
 #include <ctime>
 #include <time.h>
 #include <string>
-#include "itkParticleImageDomainWithGradients.h"
+#include "ParticleImageDomainWithGradients.h"
 #include <vector>
 #include <fstream>
 #include <sstream>
-namespace itk
-{
+
 template <class TGradientNumericType, unsigned int VDimension>
 ParticleGradientDescentPositionOptimizer<TGradientNumericType, VDimension>
 ::ParticleGradientDescentPositionOptimizer()
@@ -477,6 +476,6 @@ ParticleGradientDescentPositionOptimizer<TGradientNumericType, VDimension>
 
 }
 
-} // end namespace
+
 
 #endif

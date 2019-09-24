@@ -4,8 +4,8 @@
 #include <itkeigen/Eigen/Dense>
 #include <itkeigen/Eigen/Sparse>
 
-#include "itkThinPlateSplineKernelTransform2.h"
-#include "itkCompactlySupportedRBFSparseKernelTransform.h"
+#include "ThinPlateSplineKernelTransform2.h"
+#include "CompactlySupportedRBFSparseKernelTransform.h"
 
 #include <itkImageToVTKImageFilter.h>
 #include <itkVTKImageToImageFilter.h>
@@ -20,7 +20,7 @@
 #include <itkBSplineInterpolateImageFunction.h>
 
 #include <itkMultiplyImageFilter.h>
-#include "itkImageRegionConstIterator.h"
+#include <itkImageRegionConstIterator.h>
 #include <itkImageDuplicator.h>
 #include <vtkSmartPointer.h>
 
@@ -32,15 +32,13 @@
 #define assert(a) { if (!static_cast<bool>(a)) { throw std::runtime_error("a"); } }
 #endif
 
-namespace itk
-{
 template<typename TImageType, typename TCoordRep = double>
-class ITK_TEMPLATE_EXPORT BSplineInterpolateImageFunctionWithDoubleCoefficents
-        : public BSplineInterpolateImageFunction <TImageType, TCoordRep, double>
+class BSplineInterpolateImageFunctionWithDoubleCoefficents
+  : public itk::BSplineInterpolateImageFunction <TImageType, TCoordRep, double>
 {};
-}
 
-template < template < typename TCoordRep, unsigned > class TTransformType = itk::CompactlySupportedRBFSparseKernelTransform,
+
+template < template < typename TCoordRep, unsigned > class TTransformType = CompactlySupportedRBFSparseKernelTransform,
            template < typename ImageType, typename TCoordRep > class TInterpolatorType = itk::LinearInterpolateImageFunction,
            typename TCoordRep = double, typename PixelType = float, typename ImageType = itk::Image<PixelType, 3>>
 class Reconstruction {

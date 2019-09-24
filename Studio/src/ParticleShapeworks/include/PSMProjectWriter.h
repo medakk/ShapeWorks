@@ -1,28 +1,11 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
+#ifndef __PSMProjectWriter_h
+#define __PSMProjectWriter_h
 
-#ifndef __itkPSMProjectWriter_h
-#define __itkPSMProjectWriter_h
+#include "PSMProject.h"
 
-#include "itkPSMProject.h"
+//using namespace itk;
 
-namespace itk
-{
+
 
 /**
  * \class PSMProjectWriter
@@ -32,14 +15,14 @@ namespace itk
  * The following code illustrates how to use this class to write a PSMProject to a file.
  *
  */
-class ITK_EXPORT PSMProjectWriter : public Object
+class PSMProjectWriter : public Object
 {
 public:
   /** Standard class typedefs. */
   typedef PSMProjectWriter Self;
   typedef Object           Superclass;
-  typedef SmartPointer< Self >       Pointer;
-  typedef SmartPointer< const Self > ConstPointer;
+  typedef itk::SmartPointer< Self >       Pointer;
+  typedef itk::SmartPointer< const Self > ConstPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -75,7 +58,5 @@ public:
   /** The filename of the project to be written. */
   std::string m_FileName;
 };
-
-} // namespace itk
 
 #endif

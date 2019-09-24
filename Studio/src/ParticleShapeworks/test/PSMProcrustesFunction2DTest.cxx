@@ -18,9 +18,9 @@
 
 #include <iostream>
 #include <fstream>
-#include "itkPSMProcrustesFunction.h"
-#include "itkCommand.h"
-#include "itkPSMProjectReader.h"
+#include "PSMProcrustesFunction.h"
+#include <itkCommand.h>
+#include "PSMProjectReader.h"
 
 int itkPSMProcrustesFunction2DTest( int argc, char* argv[] )
 {
@@ -37,7 +37,7 @@ int itkPSMProcrustesFunction2DTest( int argc, char* argv[] )
   if (argc < 2)
     {
     std::cout << "Wrong number of arguments. \nUse: "
-              << "itkPSMProcrustesFunctionTest parameter_file [output_path] [input_path]\n"
+              << "PSMProcrustesFunctionTest parameter_file [output_path] [input_path]\n"
               << "See itk::PSMParameterFileReader for documentation on the parameter file format.\n"
               <<" Note that input_path will be prefixed to any file names and paths in the xml parameter file.\n"
               << std::endl;
@@ -161,7 +161,7 @@ int itkPSMProcrustesFunction2DTest( int argc, char* argv[] )
   
   catch(itk::ExceptionObject &e)
     {
-    errstring = "ITK exception with description: " + std::string(e.GetDescription())
+    errstring = " exception with description: " + std::string(e.GetDescription())
       + std::string("\n at location:") + std::string(e.GetLocation())
       + std::string("\n in file:") + std::string(e.GetFile());
     passed = false;

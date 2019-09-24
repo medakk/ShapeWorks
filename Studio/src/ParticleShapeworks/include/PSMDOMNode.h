@@ -1,35 +1,18 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
+#ifndef __PSMDOMNode_h
+#define __PSMDOMNode_h
 
-#ifndef __itkPSMDOMNode_h
-#define __itkPSMDOMNode_h
-
-#include "itkDOMNode.h"
-#include "itkObject.h"
-#include "itkObjectFactory.h"
+#include <itkDOMNode.h>
+#include <itkObject.h>
+#include <itkObjectFactory.h>
+#include <itkStringTools.h>
+#include <itkFancyString.h>
 
 #include <string>
 #include <vector>
 #include <list>
 #include <map>
 
-namespace itk
-{
+//using namespace itk;
 
 /**
  * \class PSMDOMNode
@@ -49,8 +32,8 @@ public:
   /** Standard class typedefs. */
   typedef PSMDOMNode                     Self;
   typedef DOMNode                      Superclass;
-  typedef SmartPointer< Self >        Pointer;
-  typedef SmartPointer< const Self >  ConstPointer;
+  typedef itk::SmartPointer< Self >        Pointer;
+  typedef itk::SmartPointer< const Self >  ConstPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -93,7 +76,7 @@ public:
 
 protected:
   PSMDOMNode() {}
-  void PrintSelf(std::ostream &os, Indent indent) const
+  void PrintSelf(std::ostream &os, itk::Indent indent) const
   { Superclass::PrintSelf(os,indent); }
 
 private:
@@ -107,9 +90,4 @@ private:
 
 };
 
-} // namespace itk
-
-#include "itkStringTools.h"
-#include "itkFancyString.h"
-
-#endif // __itkPSMDOMNode_h
+#endif // __PSMDOMNode_h

@@ -12,12 +12,11 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleSurfaceNeighborhood_txx
-#define __itkParticleSurfaceNeighborhood_txx
+#ifndef _ParticleSurfaceNeighborhood_txx
+#define _ParticleSurfaceNeighborhood_txx
 
 
-namespace itk
-{
+
 template <class TImage>
 typename ParticleSurfaceNeighborhood<TImage>::PointVectorType
 ParticleSurfaceNeighborhood<TImage>
@@ -101,6 +100,5 @@ ParticleSurfaceNeighborhood<TImage>
   return ret;
 }
 
-}
 
 #endif

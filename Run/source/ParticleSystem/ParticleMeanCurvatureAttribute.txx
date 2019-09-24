@@ -12,11 +12,10 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#include "itkZeroCrossingImageFilter.h"
-#include "itkImageRegionConstIteratorWithIndex.h"
+#include <itkZeroCrossingImageFilter.h>
+#include <itkImageRegionConstIteratorWithIndex.h>
 
-namespace itk
-{
+
 
 template <class TNumericType, unsigned int VDimension>
 void
@@ -85,4 +84,4 @@ ComputeCurvatureStatistics(const ParticleSystemType *system, unsigned int d)
   }
 }
 
-} // end namespace itk
+

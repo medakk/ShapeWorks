@@ -15,13 +15,13 @@
 
 =========================================================================*/
 
-#ifndef __itkMultiplyByConstantImageFilter_h
-#define __itkMultiplyByConstantImageFilter_h
+#ifndef _MultiplyByConstantImageFilter_h
+#define _MultiplyByConstantImageFilter_h
 
 #include <itkUnaryFunctorImageFilter.h>
 #include <itkNumericTraits.h>
 
-namespace itk
+
 {
   
 /** \class MultiplyByConstantImageFilter
@@ -46,7 +46,7 @@ template< class TInput, class TConstant, class TOutput>
 class MultiplyByConstant
 {
 public:
-  MultiplyByConstant() : m_Constant(NumericTraits<TConstant>::One) {};
+  MultiplyByConstant() : m_Constant(itk::NumericTraits<TConstant>::One) {};
   ~MultiplyByConstant() {};
   bool operator!=( const MultiplyByConstant & other ) const
     {
@@ -70,7 +70,7 @@ public:
 }
 
 template <class TInputImage, class TConstant, class TOutputImage>
-class ITK_EXPORT MultiplyByConstantImageFilter :
+class MultiplyByConstantImageFilter :
       public
 UnaryFunctorImageFilter<TInputImage,TOutputImage, 
                         Functor::MultiplyByConstant< 
@@ -85,8 +85,8 @@ public:
     Functor::MultiplyByConstant< 
       typename TInputImage::PixelType, TConstant,
       typename TOutputImage::PixelType>   >             Superclass;
-  typedef SmartPointer<Self>                            Pointer;
-  typedef SmartPointer<const Self>                      ConstPointer;
+  typedef itk::SmartPointer<Self>                            Pointer;
+  typedef itk::SmartPointer<const Self>                      ConstPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -126,11 +126,11 @@ protected:
   MultiplyByConstantImageFilter() {};
   virtual ~MultiplyByConstantImageFilter() {};
    
-  void PrintSelf(std::ostream &os, Indent indent) const
+  void PrintSelf(std::ostream &os, itk::Indent indent) const
     {
     Superclass::PrintSelf(os, indent);
     os << indent << "Constant: " 
-       << static_cast<typename NumericTraits<TConstant>::PrintType>(this->GetConstant())
+       << static_cast<typename itk::NumericTraits<TConstant>::PrintType>(this->GetConstant())
        << std::endl;
     }
 
@@ -141,6 +141,6 @@ private:
 };
 
 
-} // end namespace itk
+
 
 #endif

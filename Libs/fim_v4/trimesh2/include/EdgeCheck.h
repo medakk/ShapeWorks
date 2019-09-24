@@ -26,6 +26,6 @@ edgeCheck(const Iterator & it)
   return false;
 }
 
-//} //end namespace
+//
 
 #endif

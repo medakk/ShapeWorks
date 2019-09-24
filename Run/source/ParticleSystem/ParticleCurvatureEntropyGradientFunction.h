@@ -12,17 +12,16 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleCurvatureEntropyGradientFunction_h
-#define __itkParticleCurvatureEntropyGradientFunction_h
+#ifndef _ParticleCurvatureEntropyGradientFunction_h
+#define _ParticleCurvatureEntropyGradientFunction_h
 
-#include "itkParticleEntropyGradientFunction.h"
-#include "itkParticleImageDomainWithGradients.h"
-#include "itkParticleImageDomainWithCurvature.h"
-#include "itkParticleMeanCurvatureAttribute.h"
-#include "itkCommand.h"
+#include "ParticleEntropyGradientFunction.h"
+#include "ParticleImageDomainWithGradients.h"
+#include "ParticleImageDomainWithCurvature.h"
+#include "ParticleMeanCurvatureAttribute.h"
+#include <itkCommand.h>
 
-namespace itk
-{
+//using namespace itk;
 
 /**
  * \class ParticleCurvatureEntropyGradientFunction
@@ -41,8 +40,8 @@ class ParticleCurvatureEntropyGradientFunction
 public:
  /** Standard class typedefs. */
   typedef ParticleCurvatureEntropyGradientFunction Self;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
   typedef ParticleEntropyGradientFunction<TGradientNumericType, VDimension> Superclass;
   itkTypeMacro( ParticleCurvatureEntropyGradientFunction, ParticleEntropyGradientFunction);
 
@@ -208,16 +207,16 @@ protected:
   
 };
 
-} //end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 # include "Templates/itkParticleCurvatureEntropyGradientFunction+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleCurvatureEntropyGradientFunction.txx"
+# include "ParticleCurvatureEntropyGradientFunction.txx"
 #endif
 
-#include "itkParticleCurvatureEntropyGradientFunction.txx"
+#include "ParticleCurvatureEntropyGradientFunction.txx"
 
 #endif

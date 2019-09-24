@@ -1,16 +1,16 @@
 
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkResampleImageFilter.h"
-#include "itkIdentityTransform.h"
-#include "itkTranslationTransform.h"
-#include "itkAntiAliasBinaryImageFilter.h"
-#include "itkImageRegionIteratorWithIndex.h"
-#include "itkChangeInformationImageFilter.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include <itkResampleImageFilter.h>
+#include <itkIdentityTransform.h>
+#include <itkTranslationTransform.h>
+#include <itkAntiAliasBinaryImageFilter.h>
+#include <itkImageRegionIteratorWithIndex.h>
+#include <itkChangeInformationImageFilter.h>
 #include "string.h"
-#include "itkImageMomentsCalculator.h"
-#include "itkIndex.h"
+#include <itkImageMomentsCalculator.h>
+#include <itkIndex.h>
 #include <fstream>
 
 //this has been added for image region iteration as the image was not updated even after set

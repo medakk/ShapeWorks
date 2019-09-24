@@ -22,7 +22,7 @@
 #include <itkImageFileReader.h>
 
 //--------- ITK <-> VTK ---------------
-#include "itkImageToVTKImageFilter.h"
+#include <itkImageToVTKImageFilter.h>
 
 
 using namespace std;

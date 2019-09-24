@@ -12,13 +12,11 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticlePositionReader_txx
-#define __itkParticlePositionReader_txx
+#ifndef _ParticlePositionReader_txx
+#define _ParticlePositionReader_txx
 
 #include <fstream>
-#include "itkParticlePositionReader.h"
-namespace itk
-{
+#include "ParticlePositionReader.h"
 
 template <unsigned int VDimension>
 void ParticlePositionReader<VDimension>::Update()
@@ -49,8 +47,6 @@ void ParticlePositionReader<VDimension>::Update()
   m_Output.pop_back();
   //  std::cout << "Read " << counter-1 << " points. " << std::endl;
   in.close();
-}
-
 }
 
 #endif

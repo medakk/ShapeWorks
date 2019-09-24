@@ -12,16 +12,15 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleEntropyGradientFunction_h
-#define __itkParticleEntropyGradientFunction_h
+#ifndef _ParticleEntropyGradientFunction_h
+#define _ParticleEntropyGradientFunction_h
 
-#include "itkParticleVectorFunction.h"
-#include "itkParticleContainerArrayAttribute.h"
-#include "itkParticleImageDomainWithGradients.h"
+#include "ParticleVectorFunction.h"
+#include "ParticleContainerArrayAttribute.h"
+#include "ParticleImageDomainWithGradients.h"
 #include <vector>
 
-namespace itk
-{
+//using namespace itk;
 
 /**
  * \class ParticleEntropyGradientFunction
@@ -79,8 +78,8 @@ class ParticleEntropyGradientFunction : public ParticleVectorFunction<VDimension
 public:
  /** Standard class typedefs. */
   typedef ParticleEntropyGradientFunction Self;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
   typedef ParticleVectorFunction<VDimension> Superclass;
   itkTypeMacro( ParticleEntropyGradientFunction, ParticleVectorFunction);
 
@@ -224,16 +223,16 @@ protected:
 };
 
 
-} //end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 # include "Templates/itkParticleEntropyGradientFunction+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleEntropyGradientFunction.txx"
+# include "ParticleEntropyGradientFunction.txx"
 #endif
 
-#include "itkParticleEntropyGradientFunction.txx"
+#include "ParticleEntropyGradientFunction.txx"
 
 #endif

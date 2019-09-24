@@ -5,13 +5,13 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "vnl/vnl_vector.h"
+#include <vnl/vnl_vector.h>
 
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkBinaryThresholdImageFilter.h"
-#include "itkImageRegionIteratorWithIndex.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include <itkBinaryThresholdImageFilter.h>
+#include <itkImageRegionIteratorWithIndex.h>
 
 
 #define _USE_MATH_DEFINES

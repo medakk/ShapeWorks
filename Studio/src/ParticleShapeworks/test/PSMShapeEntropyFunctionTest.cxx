@@ -16,11 +16,11 @@
  *
  *=========================================================================*/
 #include <iostream>
-#include "itkPSMShapeEntropyFunction.h"
-#include "itkPSMParticleSystem.h"
-#include "itkPSMRegionNeighborhood.h"
-#include "itkPSMRegionDomain.h"
-#include "itkMacro.h"
+#include "PSMShapeEntropyFunction.h"
+#include "PSMParticleSystem.h"
+#include "PSMRegionNeighborhood.h"
+#include "PSMRegionDomain.h"
+#include <itkMacro.h>
 
 /** This test exercises functionality of the base itkPSMShapeEntropyFunction class */
 int itkPSMShapeEntropyFunctionTest(int, char* [] )
@@ -84,7 +84,7 @@ int itkPSMShapeEntropyFunctionTest(int, char* [] )
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

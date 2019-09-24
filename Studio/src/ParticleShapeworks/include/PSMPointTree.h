@@ -1,33 +1,16 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMPointTree_h
-#define __itkPSMPointTree_h
+#ifndef __PSMPointTree_h
+#define __PSMPointTree_h
 
-#include "itkPSMPointIndexPair.h"
-#include "itkLightObject.h"
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "itkTreeContainer.h"
-#include "itkPoint.h"
+#include "PSMPointIndexPair.h"
+#include <itkLightObject.h>
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include <itkTreeContainer.h>
+#include <itkPoint.h>
 #include <list>
 
-namespace itk
-{
+//using namespace itk;
+
 
 /** Compute pow(a,b)=c at compile time.  */
 template <int a, int b>
@@ -57,8 +40,8 @@ class PSMPointTreeNode : public LightObject
 public:
   /** Standard class typedefs. */
   typedef PSMPointTreeNode   Self;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
   typedef LightObject Superclass;
   itkTypeMacro( PSMPointTreeNode, LightObject);
 
@@ -70,7 +53,7 @@ public:
   itkStaticConstMacro(BranchesPerNode, int, (powstruct<2, VDimension>::c));
 
   /** Point type stored in the leaf nodes. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
 
   /** List type for storing lists of points+indices. */
   typedef std::list<PSMPointIndexPair<VDimension> > PointListType;
@@ -136,7 +119,7 @@ public:
   { this->GetBranch(b) = n; }
   
   /** Standard ITK PrintSelf method. */  
-  void PrintSelf(std::ostream& os, Indent indent) const;
+  void PrintSelf(std::ostream& os, itk::Indent indent) const;
 
   /** Get the list of elements which contain points and associated indices. */
   const PointListType &GetList() const
@@ -171,15 +154,15 @@ private:
  *  itkPSMNeighborhood classes.
  */
  template <unsigned int VDimension>
- class ITK_EXPORT PSMPointTree : public DataObject
+ class PSMPointTree : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef PSMPointTree Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
     /** Shorthand for the object pointed to by each node.   */
   typedef PSMPointTreeNode<VDimension> NodeType;
@@ -198,7 +181,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(PSMPointTree, DataObject);
+  itkTypeMacro(PSMPointTree, itk::DataObject);
 
   /** Dimensionality of the domain. */
   itkStaticConstMacro(Dimension, unsigned int, VDimension);
@@ -266,7 +249,7 @@ public:
     return true;
   }
   
-  void PrintSelf(std::ostream& os, Indent indent) const;
+  void PrintSelf(std::ostream& os, itk::Indent indent) const;
 protected:
   PSMPointTree()
   {
@@ -293,10 +276,8 @@ private:
   unsigned int m_Depth;
 };
 
-} // end namespace itk
-
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMPointTree.hxx"
+#include "PSMPointTree.hxx"
 #endif
 
 #endif

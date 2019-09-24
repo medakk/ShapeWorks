@@ -12,11 +12,11 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticlePointIndexPair_h
-#define __itkParticlePointIndexPair_h
+#ifndef _ParticlePointIndexPair_h
+#define _ParticlePointIndexPair_h
 
-#include "itkPoint.h"
-namespace itk {
+#include <itkPoint.h>
+
 /** 
     Struct containing a Point and an index value associated with a point.  This
     object is used mainly by itkParticleNeighborhood*/
@@ -42,6 +42,5 @@ struct ParticlePointIndexPair
   unsigned int Index;
 };
 
-}
 #endif
 

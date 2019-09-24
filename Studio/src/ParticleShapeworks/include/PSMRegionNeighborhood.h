@@ -1,28 +1,12 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMRegionNeighborhood_h
-#define __itkPSMRegionNeighborhood_h
+#ifndef __PSMRegionNeighborhood_h
+#define __PSMRegionNeighborhood_h
 
-#include "itkPSMNeighborhood.h"
-#include "itkPSMPointTree.h"
+#include "PSMNeighborhood.h"
+#include "PSMPointTree.h"
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMRegionNeighborhood
  *
  * PSMRegionNeighborhood is a general purpose neighborhood object that
@@ -32,15 +16,15 @@ namespace itk
  * FindNeighborhoodPoints is somewhat optimized. 
  */
 template <unsigned int VDimension>
-class ITK_EXPORT PSMRegionNeighborhood : public PSMNeighborhood<VDimension>
+class PSMRegionNeighborhood : public PSMNeighborhood<VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef PSMRegionNeighborhood Self;
   typedef PSMNeighborhood<VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -73,7 +57,7 @@ public:
   itkSetMacro(TreeLevels, unsigned int);
   itkGetMacro(TreeLevels, unsigned int);
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     os << indent << "m_TreeLevels = " << m_TreeLevels << std::endl;
     m_Tree->PrintSelf(os, indent);
@@ -140,10 +124,10 @@ private:
 
 };
 
-} // end namespace itk
+
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMRegionNeighborhood.hxx"
+#include "PSMRegionNeighborhood.hxx"
 #endif
 
 #endif

@@ -1,30 +1,14 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMImageDomainWithCurvature_h
-#define __itkPSMImageDomainWithCurvature_h
+#ifndef __PSMImageDomainWithCurvature_h
+#define __PSMImageDomainWithCurvature_h
 
-#include "itkPSMImageDomainWithHessians.h"
-#include "itkImageRegionIteratorWithIndex.h"
-#include "itkImageRegionIterator.h"
-#include "itkDiscreteGaussianImageFilter.h"
+#include "PSMImageDomainWithHessians.h"
+#include <itkImageRegionIteratorWithIndex.h>
+#include <itkImageRegionIterator.h>
+#include <itkDiscreteGaussianImageFilter.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMImageDomainWithCurvature
  *
  * An image domain that extends PSMImageDomainWithHessianGradients with Hessian
@@ -37,16 +21,16 @@ namespace itk
  * \sa PSMDomain
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT PSMImageDomainWithCurvature
+class PSMImageDomainWithCurvature
   : public PSMImageDomainWithHessians<T, VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef PSMImageDomainWithCurvature Self;
   typedef PSMImageDomainWithHessians<T, VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   typedef typename Superclass::PointType PointType;  
   typedef typename Superclass::ImageType ImageType;
@@ -122,7 +106,7 @@ protected:
     m_CurvatureImage = ImageType::New();
   }
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
   }
@@ -185,6 +169,6 @@ private:
   typename ScalarInterpolatorType::Pointer m_CurvatureInterpolator;
 };
 
-} // end namespace itk
+
 
 #endif

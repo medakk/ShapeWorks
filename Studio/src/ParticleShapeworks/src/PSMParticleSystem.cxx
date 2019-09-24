@@ -1,23 +1,6 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#include "itkPSMParticleSystem.h"
+#include "PSMParticleSystem.h"
 
-namespace itk {
+//using namespace itk;
 
 /** For efficiency, we specialize for 3D and 2D */
 template<>
@@ -40,14 +23,13 @@ PSMParticleSystem<2>::PointType
 PSMParticleSystem<2>
 ::TransformPoint(const PointType &p, const TransformType &T) const
 {
-  PointType ans;
+  PSMParticleSystem<2>::PointType ans;
 
   ans[0] = T[0][0] * p[0] + T[0][1] * p[1] + T[0][2];
   ans[1] = T[1][0] * p[0] + T[1][1] * p[1] + T[1][2];
 
   return ans;
 }
-
 
 /** For efficiency, we specialize for 3D and 2D */
 template<>
@@ -78,4 +60,3 @@ PSMParticleSystem<2>
   return ans;
 }
 
-} // end namespace

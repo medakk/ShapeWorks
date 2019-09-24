@@ -34,10 +34,10 @@
 //#define USE_TPS
 
 //-------------- vnl --------------------------
-#include "vnl/vnl_vector.h"
-#include "vnl/vnl_matrix.h"
-//#include "vnl/algo/vnl_svd.h"
-#include "vnl/algo/vnl_symmetric_eigensystem.h"
+#include <vnl/vnl_vector.h>
+#include <vnl/vnl_matrix.h>
+//#include <vnl/algo/vnl_svd.h>
+#include <vnl/algo/vnl_symmetric_eigensystem.h>
 
 //-------------- adapted ITK filters --------------------------
 #include "Transforms/itkThinPlateSplineKernelTransform2.h"
@@ -69,8 +69,8 @@ const unsigned int Dimension = 3;
 
 // warping ----------
 typedef   double CoordinateRepType;
-typedef   itk::CompactlySupportedRBFSparseKernelTransform < CoordinateRepType,Dimension>     RBFTransformType;
-typedef   itk::ThinPlateSplineKernelTransform2< CoordinateRepType,Dimension>  ThinPlateSplineType;
+typedef   CompactlySupportedRBFSparseKernelTransform < CoordinateRepType,Dimension>     RBFTransformType;
+typedef   ThinPlateSplineKernelTransform2< CoordinateRepType,Dimension>  ThinPlateSplineType;
 typedef   itk::Point< CoordinateRepType,Dimension >  PointType;
 typedef   std::vector< PointType >                   PointArrayType;
 #ifdef USE_TPS

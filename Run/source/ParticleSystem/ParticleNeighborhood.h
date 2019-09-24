@@ -12,19 +12,18 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleNeighborhood_h
-#define __itkParticleNeighborhood_h
+#ifndef _ParticleNeighborhood_h
+#define _ParticleNeighborhood_h
 
-#include "itkDataObject.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
-#include "itkParticleDomain.h"
-#include "itkParticleContainer.h"
-#include "itkParticlePointIndexPair.h"
+#include <itkDataObject.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
+#include "ParticleDomain.h"
+#include "ParticleContainer.h"
+#include "ParticlePointIndexPair.h"
 #include <vector>
 
-namespace itk
-{
+
 /** \class ParticleNeighborhood
  *
  * A ParticleNeighborhood is responsible for computing neighborhoods of
@@ -35,27 +34,27 @@ namespace itk
  * FindNeighborhoodPoints is called.
  */
 template <unsigned int VDimension=3>
-class ITK_EXPORT ParticleNeighborhood : public DataObject
+class ParticleNeighborhood : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef ParticleNeighborhood Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ParticleNeighborhood, DataObject);
+  itkTypeMacro(ParticleNeighborhood, itk::DataObject);
 
   /** Dimensionality of the domain of the particle system. */
   itkStaticConstMacro(Dimension, unsigned int, VDimension);
 
   /** Point type used to store particle locations. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
 
   /** Domain type.  The Domain object provides bounds and distance
       information. */
@@ -108,7 +107,7 @@ public:
   
 protected:
   ParticleNeighborhood() {}
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
   }
@@ -122,7 +121,7 @@ private:
   typename DomainType::Pointer m_Domain;
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -130,7 +129,7 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-//# include "itkParticleNeighborhood.txx"
+//# include "ParticleNeighborhood.txx"
 #endif
 
 #endif

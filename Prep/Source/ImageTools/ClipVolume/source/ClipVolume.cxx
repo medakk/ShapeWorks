@@ -8,10 +8,10 @@
 #include <climits>
 
 // ITK Dependencies
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkImage.h"
-#include "itkImageRegionIteratorWithIndex.h"
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include <itkImage.h>
+#include <itkImageRegionIteratorWithIndex.h>
 
 const unsigned int dimensions = 3;
 

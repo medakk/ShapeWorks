@@ -1,28 +1,12 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMParticleSystem_hxx
-#define __itkPSMParticleSystem_hxx
-#include "itkPSMParticleSystem.h"
+#ifndef __PSMParticleSystem_hxx
+#define __PSMParticleSystem_hxx
+#include "PSMParticleSystem.h"
 
-#include "itkCommand.h"
+#include <itkCommand.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 
 template <unsigned int VDimension>
 PSMParticleSystem<VDimension>::PSMParticleSystem()
@@ -88,7 +72,7 @@ void PSMParticleSystem<VDimension>::AddDomain( DomainType *input, int threadId)
 
 template <unsigned int VDimension>
 void PSMParticleSystem<VDimension>
-::PrintSelf(std::ostream& os, Indent indent) const
+::PrintSelf(std::ostream& os, itk::Indent indent) const
 {
   Superclass::PrintSelf(os, indent);
 
@@ -313,70 +297,69 @@ PSMParticleSystem<VDimension>::RegisterAttribute( PSMAttribute<VDimension> *attr
   // PSMParticleSystem with appropriate events.
   if (attr->m_DefinedCallbacks.Event == true)
     {
-    typename MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< PSMAttribute<VDimension> >::New();
+    typename itk::MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< PSMAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &PSMAttribute<VDimension>::EventCallback);
     this->AddObserver(ParticleEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.EventWithIndex == true)
     {
-    typename MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< PSMAttribute<VDimension> >::New();
+    typename itk::MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< PSMAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &PSMAttribute<VDimension>::EventWithIndexCallback);
     this->AddObserver(ParticleEventWithIndex(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.DomainAddEvent == true)
     {
-    typename MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< PSMAttribute<VDimension> >::New();
+    typename itk::MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< PSMAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &PSMAttribute<VDimension>::DomainAddEventCallback);
     this->AddObserver(ParticleDomainAddEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.TransformSetEvent == true)
     {
-    typename MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< PSMAttribute<VDimension> >::New();
+    typename itk::MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< PSMAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &PSMAttribute<VDimension>::TransformSetEventCallback);
     this->AddObserver(ParticleTransformSetEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.PrefixTransformSetEvent == true)
     {
-    typename MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< PSMAttribute<VDimension> >::New();
+    typename itk::MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< PSMAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &PSMAttribute<VDimension>::PrefixTransformSetEventCallback);
     this->AddObserver(ParticlePrefixTransformSetEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.NeighborhoodSetEvent == true)
     {
-    typename MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< PSMAttribute<VDimension> >::New();
+    typename itk::MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< PSMAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &PSMAttribute<VDimension>::NeighborhoodSetEventCallback);
     this->AddObserver(ParticleNeighborhoodSetEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.PositionSetEvent == true)
     {
-    typename MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< PSMAttribute<VDimension> >::New();
+    typename itk::MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< PSMAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &PSMAttribute<VDimension>::PositionSetEventCallback);
     this->AddObserver(ParticlePositionSetEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.PositionAddEvent == true)
     {
-    typename MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< PSMAttribute<VDimension> >::New();
+    typename itk::MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< PSMAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &PSMAttribute<VDimension>::PositionAddEventCallback);
     this->AddObserver(ParticlePositionAddEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.PositionRemoveEvent == true)
     {
-    typename MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< PSMAttribute<VDimension> >::New();
+    typename itk::MemberCommand< PSMAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< PSMAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &PSMAttribute<VDimension>::PositionRemoveEventCallback);
     this->AddObserver(ParticlePositionRemoveEvent(), tmpcmd);
     }
 }
 
 
-} // end namespace
 
-#endif //__itkPSMParticleSystem_hxx
+#endif //__PSMParticleSystem_hxx

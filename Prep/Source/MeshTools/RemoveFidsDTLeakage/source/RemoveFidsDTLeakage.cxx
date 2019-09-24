@@ -3,12 +3,12 @@
 #include <sstream>
 #include <string>
 
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
 
-#include "itkImageDuplicator.h"
-#include "itkImageRegionIterator.h"
+#include <itkImageDuplicator.h>
+#include <itkImageRegionIterator.h>
 #define _USE_MATH_DEFINES
 
 

@@ -1,29 +1,13 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMImplicitSurfaceDomain_hxx
-#define __itkPSMImplicitSurfaceDomain_hxx
-#include "itkPSMImplicitSurfaceDomain.h"
+#ifndef __PSMImplicitSurfaceDomain_hxx
+#define __PSMImplicitSurfaceDomain_hxx
+#include "PSMImplicitSurfaceDomain.h"
 
-#include "vnl/vnl_math.h"
-#include "vnl/vnl_cross.h"
+#include <vnl/vnl_math.h>
+#include <vnl/vnl_cross.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 
 template<class T, unsigned int VDimension>
 void
@@ -155,5 +139,5 @@ PSMImplicitSurfaceDomain<T, VDimension>::Distance(const PointType &a, const Poin
     return sqrt(sum);
 }
 
-} // end namespace
+
 #endif

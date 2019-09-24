@@ -16,11 +16,11 @@
  *
  *=========================================================================*/
 #include <iostream>
-#include "itkMacro.h"
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkPSMImplicitSurfaceImageFilter.h"
+#include <itkMacro.h>
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include "PSMImplicitSurfaceImageFilter.h"
 
 /** This test exercises functionality of the base itkPSMTrimLabelMapImageFilter class */
 int itkPSMImplicitSurfaceImage2DFilterTest(int argc, char* argv[] )
@@ -32,7 +32,7 @@ int itkPSMImplicitSurfaceImage2DFilterTest(int argc, char* argv[] )
   if (argc < 3)
     {
       std::cout << "Wrong number of arguments.  You need at least an input file name and output file name. \nUse: " 
-                << "itkPSMImplicitSurfaceImageFilterTest InputImage OutputImage [blurring_sigma] [isosurface_value]" << std::endl;
+                << "PSMImplicitSurfaceImageFilterTest InputImage OutputImage [blurring_sigma] [isosurface_value]" << std::endl;
       return EXIT_FAILURE;
     }
 
@@ -69,7 +69,7 @@ int itkPSMImplicitSurfaceImage2DFilterTest(int argc, char* argv[] )
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

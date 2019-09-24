@@ -12,16 +12,15 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleImageDomainWithCurvature_h
-#define __itkParticleImageDomainWithCurvature_h
+#ifndef _ParticleImageDomainWithCurvature_h
+#define _ParticleImageDomainWithCurvature_h
 
-#include "itkParticleImageDomainWithHessians.h"
-#include "itkImageRegionIteratorWithIndex.h"
-#include "itkImageRegionIterator.h"
-#include "itkDiscreteGaussianImageFilter.h"
+#include "ParticleImageDomainWithHessians.h"
+#include <itkImageRegionIteratorWithIndex.h>
+#include <itkImageRegionIterator.h>
+#include <itkDiscreteGaussianImageFilter.h>
 
-namespace itk
-{
+
 /** \class ParticleImageDomainWithCurvature
  *
  * An image domain that extends ParticleImageDomainWithHessianGradients with Hessian
@@ -34,16 +33,16 @@ namespace itk
  * \sa ParticleDomain
  */
 template <class T, unsigned int VDimension=3>
-class ITK_EXPORT ParticleImageDomainWithCurvature
+class ParticleImageDomainWithCurvature
   : public ParticleImageDomainWithHessians<T, VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef ParticleImageDomainWithCurvature Self;
   typedef ParticleImageDomainWithHessians<T, VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   typedef typename Superclass::PointType PointType;  
   typedef typename Superclass::ImageType ImageType;
@@ -119,7 +118,7 @@ protected:
     m_CurvatureImage = ImageType::New();
   }
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
   }
@@ -182,7 +181,7 @@ private:
   typename ScalarInterpolatorType::Pointer m_CurvatureInterpolator;
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -190,7 +189,7 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-//# include "itkParticleImageDomainWithCurvature.txx"
+//# include "ParticleImageDomainWithCurvature.txx"
 #endif
 
 #endif

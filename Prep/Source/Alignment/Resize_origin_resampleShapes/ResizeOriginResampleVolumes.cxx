@@ -1,16 +1,16 @@
-#include "itkImage.h"
+#include <itkImage.h>
 
-#include "itkImageFileReader.h"
+#include <itkImageFileReader.h>
 
-#include "itkImageFileWriter.h"
+#include <itkImageFileWriter.h>
 
-#include "itkResampleImageFilter.h"
+#include <itkResampleImageFilter.h>
 
-#include "itkNearestNeighborInterpolateImageFunction.h"
+#include <itkNearestNeighborInterpolateImageFunction.h>
 
-#include "itkLinearInterpolateImageFunction.h"
+#include <itkLinearInterpolateImageFunction.h>
 
-#include "itkIdentityTransform.h"
+#include <itkIdentityTransform.h>
 
 #include "tinyxml.h"
 

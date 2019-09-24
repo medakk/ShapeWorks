@@ -1,12 +1,12 @@
 
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkResampleImageFilter.h"
-#include "itkIdentityTransform.h"
-#include "itkAntiAliasBinaryImageFilter.h"
-#include "itkImageRegionIterator.h"
-#include "itkChangeInformationImageFilter.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include <itkResampleImageFilter.h>
+#include <itkIdentityTransform.h>
+#include <itkAntiAliasBinaryImageFilter.h>
+#include <itkImageRegionIterator.h>
+#include <itkChangeInformationImageFilter.h>
 #include "string.h"
 
 #include "OptionParser.h"

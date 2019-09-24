@@ -20,23 +20,23 @@
 #include <vector>
 #include <math.h>
 #include <numeric>
-#include "itkPSMCommandLineClass.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-//#include "itkPSMCommandLineClass.cxx"
-#include "itkPSMImplicitSurfaceImageFilter.h"
-#include "itkExceptionObject.h"
-#include "itkDOMNode.h"
-#include "itkDOMNodeXMLWriter.h"
-#include "itkTranslationTransform.h"
-#include "itkImageRegionIteratorWithIndex.h"
-#include "itkNearestNeighborInterpolateImageFunction.h"
-#include "itkResampleImageFilter.h"
-#include "itkChangeInformationImageFilter.h"
-#include "itkNumericTraits.h"
-#include "itkArray.h"
+#include "PSMCommandLineClass.h"
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+//#include "PSMCommandLineClass.cxx"
+#include "PSMImplicitSurfaceImageFilter.h"
+#include <itkExceptionObject.h>
+#include <itkDOMNode.h>
+#include <itkDOMNodeXMLWriter.h>
+#include <itkTranslationTransform.h>
+#include <itkImageRegionIteratorWithIndex.h>
+#include <itkNearestNeighborInterpolateImageFunction.h>
+#include <itkResampleImageFilter.h>
+#include <itkChangeInformationImageFilter.h>
+#include <itkNumericTraits.h>
+#include <itkArray.h>
 
-namespace itk{
+
 // Function for generating random Gaussians using polar Box-Muller method
 static void RandomGaussian(double n, double mean, double sigma, std::vector<double> & r)
 {
@@ -170,7 +170,7 @@ static void Center(itk::Image<float, 2> *input)
   resampler->SetInput(input);
   resampler->Update();
 }
-} // end namespace itk
+
 
 // Function to return the greater absolute of two values with different signs
 static bool abs_compare(double a, double b)
@@ -188,7 +188,7 @@ int itkPSMCommandLineClass2DTest( int argc, char* argv[] )
   if (argc < 1)
   {
     std::cout << "Wrong number of arguments. \nUse: "
-    << "itkPSMCommandLineClass2DTest [output_path] [input_path]\n"
+    << "PSMCommandLineClass2DTest [output_path] [input_path]\n"
     << "Note that input_path will be prefixed to any file names and paths in the xml parameter file.\n"
     << std::endl;
     return EXIT_FAILURE;
@@ -454,7 +454,7 @@ int itkPSMCommandLineClass2DTest( int argc, char* argv[] )
   
   catch(itk::ExceptionObject &e)
   {
-    std::cerr << "ITK exception with description: " << e.GetDescription()
+    std::cerr << " exception with description: " << e.GetDescription()
     << "\n at location:" << e.GetLocation()
     << "\n in file:" << e.GetFile() << std::endl;
     return EXIT_FAILURE;

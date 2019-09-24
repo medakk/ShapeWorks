@@ -12,15 +12,14 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleImageDomain_h
-#define __itkParticleImageDomain_h
+#ifndef _ParticleImageDomain_h
+#define _ParticleImageDomain_h
 
-#include "itkImage.h"
-#include "itkParticleClipRegionDomain.h"
-#include "itkLinearInterpolateImageFunction.h"
+#include <itkImage.h>
+#include "ParticleClipRegionDomain.h"
+#include <itkLinearInterpolateImageFunction.h>
 
-namespace itk
-{
+
 /** \class ParticleImageDomain
  *  A bounding-box region domain that sets its bounding box according to the
  *  origin, spacing, and RequestedRegion of a specified itk::Image.  This
@@ -32,18 +31,18 @@ namespace itk
  *
  */
 template <class T, unsigned int VDimension=3>
-class ITK_EXPORT ParticleImageDomain : public ParticleClipRegionDomain<VDimension>
+class ParticleImageDomain : public ParticleClipRegionDomain<VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef ParticleImageDomain Self;
   typedef ParticleRegionDomain<VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Type of the ITK image used by this class. */
-  typedef Image<T, VDimension> ImageType;
+  typedef itk::Image<T, VDimension> ImageType;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -54,7 +53,7 @@ public:
   /** Point type of the domain (not the image). */
   typedef typename Superclass::PointType PointType;
 
-  typedef LinearInterpolateImageFunction<ImageType, typename PointType::CoordRepType>
+  typedef itk::LinearInterpolateImageFunction<ImageType, typename PointType::CoordRepType>
   ScalarInterpolatorType;
 
   /** Dimensionality of the domain of the particle system. */
@@ -133,7 +132,7 @@ protected:
     m_ScalarInterpolator = ScalarInterpolatorType::New();
   }
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
     
@@ -150,7 +149,7 @@ private:
   typename ScalarInterpolatorType::Pointer m_ScalarInterpolator;
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -158,7 +157,7 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-//# include "itkParticleImageDomain.txx"
+//# include "ParticleImageDomain.txx"
 #endif
 
 #endif

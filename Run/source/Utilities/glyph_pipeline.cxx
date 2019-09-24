@@ -13,18 +13,18 @@
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
 #include "glyph_pipeline.h"
-#include "vtkFloatArray.h"
+#include <vtkFloatArray.h>
 #include "string_io.h"
-#include "vtkTransform.h"
-#include "vtkPointData.h"
+#include <vtkTransform.h>
+#include <vtkPointData.h>
 #include <cstdlib>
 #include <vector>
 
 void glyph_pipeline::SetPrefixTransformCallback(itk::Object *o, const itk::EventObject &e)
 {
   // NOTE: Ignoring scale
-  const itk::ParticlePrefixTransformSetEvent &event = dynamic_cast<const itk::ParticlePrefixTransformSetEvent &>(e);
-  const itk::ParticleSystem<3> *ps= dynamic_cast<const itk::ParticleSystem<3> *>(o);
+  const ParticlePrefixTransformSetEvent &event = dynamic_cast<const ParticlePrefixTransformSetEvent &>(e);
+  const ParticleSystem<3> *ps= dynamic_cast<const ParticleSystem<3> *>(o);
 
   unsigned int d = event.GetDomainIndex();
   if (d != m_MyDomain)
@@ -42,7 +42,7 @@ void glyph_pipeline::SetPrefixTransformCallback(itk::Object *o, const itk::Event
   m1 = vtkMatrix4x4::New();
   t  = vtkTransform::New();
 
-  itk::ParticleSystem<3>::TransformType T = ps->GetTransform(d) * ps->GetPrefixTransform(d);
+  ParticleSystem<3>::TransformType T = ps->GetTransform(d) * ps->GetPrefixTransform(d);
   
   m1->SetElement(0, 0, T(0,0)); // * transforms[i].scale);
   m1->SetElement(1, 0, T(1,0)); // * transforms[i].scale);
@@ -88,8 +88,8 @@ void glyph_pipeline::SetPrefixTransformCallback(itk::Object *o, const itk::Event
 void glyph_pipeline::SetTransformCallback(itk::Object *o, const itk::EventObject &e)
 {
   // NOTE: Ignoring scale
-  const itk::ParticleTransformSetEvent &event = dynamic_cast<const itk::ParticleTransformSetEvent &>(e);
-  const itk::ParticleSystem<3> *ps= dynamic_cast<const itk::ParticleSystem<3> *>(o);
+  const ParticleTransformSetEvent &event = dynamic_cast<const ParticleTransformSetEvent &>(e);
+  const ParticleSystem<3> *ps= dynamic_cast<const ParticleSystem<3> *>(o);
 
   unsigned int d = event.GetDomainIndex();
   if (d != m_MyDomain)
@@ -107,7 +107,7 @@ void glyph_pipeline::SetTransformCallback(itk::Object *o, const itk::EventObject
   m1 = vtkMatrix4x4::New();
   t  = vtkTransform::New();
 
-  itk::ParticleSystem<3>::TransformType T = ps->GetTransform(d) * ps->GetPrefixTransform(d);
+  ParticleSystem<3>::TransformType T = ps->GetTransform(d) * ps->GetPrefixTransform(d);
   
   m1->SetElement(0, 0, T(0,0)); // * transforms[i].scale);
   m1->SetElement(1, 0, T(1,0)); // * transforms[i].scale);
@@ -152,8 +152,8 @@ void glyph_pipeline::SetTransformCallback(itk::Object *o, const itk::EventObject
 
 void glyph_pipeline::AddPointCallback(itk::Object *o, const itk::EventObject &e)
 {
-  const itk::ParticlePositionAddEvent &event = dynamic_cast<const itk::ParticlePositionAddEvent &>(e);
-  const itk::ParticleSystem<3> *ps= dynamic_cast<const itk::ParticleSystem<3> *>(o);
+  const ParticlePositionAddEvent &event = dynamic_cast<const ParticlePositionAddEvent &>(e);
+  const ParticleSystem<3> *ps= dynamic_cast<const ParticleSystem<3> *>(o);
 
   unsigned int d = event.GetDomainIndex();
   if (d != m_MyDomain)
@@ -188,8 +188,8 @@ void glyph_pipeline::AddPointCallback(itk::Object *o, const itk::EventObject &e)
 
 void glyph_pipeline::SetPointCallback(itk::Object *o, const itk::EventObject &e)
 {
-  const itk::ParticlePositionSetEvent &event = dynamic_cast<const itk::ParticlePositionSetEvent &>(e);
-  const itk::ParticleSystem<3> *ps= dynamic_cast<const itk::ParticleSystem<3> *>(o);
+  const ParticlePositionSetEvent &event = dynamic_cast<const ParticlePositionSetEvent &>(e);
+  const ParticleSystem<3> *ps= dynamic_cast<const ParticleSystem<3> *>(o);
 
   unsigned int d = event.GetDomainIndex();
   if (d != m_MyDomain) return;
@@ -294,7 +294,7 @@ void glyph_pipeline::recolor()
 
 
 void glyph_pipeline::color_neighborhood(unsigned long int selected_point,
-                                        double sigma, itk::ParticleSystem<3> *ps)
+                                        double sigma, ParticleSystem<3> *ps)
 {
   // Reset lookup table.
   for (unsigned int i = 0; i < m_lut->GetNumberOfTableValues(); i++)
@@ -304,7 +304,7 @@ void glyph_pipeline::color_neighborhood(unsigned long int selected_point,
   
   // If this is point 0, color all of its neighbors the same color.
   std::vector<double> weights;
-  itk::ParticleSystem<3>::PointVectorType neighborhood
+  ParticleSystem<3>::PointVectorType neighborhood
     = ps->FindNeighborhoodPoints(selected_point, weights, sigma, 0);
  
   for (unsigned int i = 0; i < neighborhood.size(); i++)

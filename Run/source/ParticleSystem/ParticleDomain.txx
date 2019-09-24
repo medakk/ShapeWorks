@@ -12,11 +12,10 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleDomain_txx
-#define __itkParticleDomain_txx
+#ifndef _ParticleDomain_txx
+#define _ParticleDomain_txx
 
-namespace itk
-{
+
 
 template <unsigned int VDimension>
 ParticleDomain<VDimension>::ParticleDomain()  : m_ConstraintsEnabled(true)
@@ -24,12 +23,12 @@ ParticleDomain<VDimension>::ParticleDomain()  : m_ConstraintsEnabled(true)
 }
 
 template <unsigned int VDimension>
-void ParticleDomain<VDimension>::PrintSelf(std::ostream& os, Indent indent) const
+void ParticleDomain<VDimension>::PrintSelf(std::ostream& os, itk::Indent indent) const
 {
   Superclass::PrintSelf(os, indent);
 }
 
 
-} // end namespace
 
-#endif //__itkParticleDomain_txx
+
+#endif //_ParticleDomain_txx

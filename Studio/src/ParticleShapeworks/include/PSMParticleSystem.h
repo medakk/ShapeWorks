@@ -1,43 +1,27 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMParticleSystem_h
-#define __itkPSMParticleSystem_h
+#ifndef __PSMParticleSystem_h
+#define __PSMParticleSystem_h
 
-#include "itkDataObject.h"
-#include "itkObjectFactory.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
-#include "itkPSMAttribute.h"
-#include "itkPSMDomain.h"
-#include "vnl/vnl_matrix_fixed.h"
-#include "vnl/vnl_vector_fixed.h"
-#include "itkPSMContainer.h"
-#include "itkPSMEvents.h"
-#include "itkCommand.h"
-#include "itkEventObject.h"
-#include "itkPSMNeighborhood.h"
-#include "vnl/vnl_inverse.h"
-#include "vnl/vnl_det.h"
+#include <itkDataObject.h>
+#include <itkObjectFactory.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
+#include "PSMAttribute.h"
+#include "PSMDomain.h"
+#include <vnl/vnl_matrix_fixed.h>
+#include <vnl/vnl_vector_fixed.h>
+#include "PSMContainer.h"
+#include "PSMEvents.h"
+#include <itkCommand.h>
+#include <itkEventObject.h>
+#include "PSMNeighborhood.h"
+#include <vnl/vnl_inverse.h>
+#include <vnl/vnl_det.h>
 #include <map>
 #include <vector>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMParticleSystem
  *
  * \brief A facade class that manages interactions with a particle
@@ -65,21 +49,21 @@ namespace itk
  * \author Josh Cates
  */
 template <unsigned int VDimension>
-class ITK_EXPORT PSMParticleSystem : public DataObject
+class PSMParticleSystem : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef PSMParticleSystem Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(PSMParticleSystem, DataObject);
+  itkTypeMacro(PSMParticleSystem, itk::DataObject);
 
   /** Dimensionality of the domain of the particle system. */
   itkStaticConstMacro(Dimension, unsigned int, VDimension);
@@ -88,7 +72,7 @@ public:
   typedef PSMDomain<VDimension> DomainType;
   
   /** Point type used to store particle locations. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
 
   /** Class used to compute neighborhoods of points. One is associated with
       each domain.*/
@@ -432,7 +416,7 @@ public:
   
 protected:
   PSMParticleSystem();
-  void PrintSelf(std::ostream& os, Indent indent) const;
+  void PrintSelf(std::ostream& os, itk::Indent indent) const;
   virtual ~PSMParticleSystem() {};
 
   /** Set the number of domains.  This method modifies the size of the
@@ -527,10 +511,10 @@ private:
   std::vector<bool> m_FixedParticleFlags;
 };
 
-} // end namespace itk
+
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMParticleSystem.hxx"
+#include "PSMParticleSystem.hxx"
 #endif
 
 #endif

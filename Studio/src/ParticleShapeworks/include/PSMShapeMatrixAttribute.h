@@ -1,32 +1,16 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMShapeMatrixAttribute_h
-#define __itkPSMShapeMatrixAttribute_h
+#ifndef __PSMShapeMatrixAttribute_h
+#define __PSMShapeMatrixAttribute_h
 
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "itkPSMAttribute.h"
-#include "itkPSMContainer.h"
-#include "itkPSMParticleSystem.h"
-#include "vnl/vnl_matrix.h"
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include "PSMAttribute.h"
+#include "PSMContainer.h"
+#include "PSMParticleSystem.h"
+#include <vnl/vnl_matrix.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMShapeMatrixAttribute
  *
  * \brief Each column describes a shape.  A shape may be composed of
@@ -42,7 +26,7 @@ namespace itk
  * \author Josh Cates
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT PSMShapeMatrixAttribute
+class PSMShapeMatrixAttribute
   : public vnl_matrix<T>, public PSMAttribute<VDimension>
 {
 public:
@@ -50,9 +34,9 @@ public:
   typedef T DataType;
   typedef PSMShapeMatrixAttribute Self;
   typedef PSMAttribute<VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -67,7 +51,7 @@ public:
       of these callback methods, the corresponding flag in m_DefinedCallbacks
       should be set to true so that the PSMParticleSystem will know to register
       the appropriate event with this method. */
-  virtual void DomainAddEventCallback(Object *, const EventObject &e);
+  virtual void DomainAddEventCallback(Object *, const itk::EventObject &e);
 
   /** Resize the existing matrix to a given size. */  
   virtual void ResizeMatrix(int , int );
@@ -75,14 +59,14 @@ public:
   /** Callback defining actions when a position is added to a
       ParticleSystem.  This method will likely be called from
       itkParticleSystem with the event ParticleAddEvent. */  
-  virtual void PositionAddEventCallback(Object *o, const EventObject &e);
+  virtual void PositionAddEventCallback(Object *o, const itk::EventObject &e);
   
   /** Callback for defining actions when a position value is set --
       usually from ParticleSystem. */
-  virtual void PositionSetEventCallback(Object *o, const EventObject &e);
+  virtual void PositionSetEventCallback(Object *o, const itk::EventObject &e);
   
   /** Reserved for future implementation. */  
-  virtual void PositionRemoveEventCallback(Object *, const EventObject &) 
+  virtual void PositionRemoveEventCallback(Object *, const itk::EventObject &) 
   {
     itkExceptionMacro("This Attribute class does not support particle position removal.");
   }
@@ -118,7 +102,7 @@ protected:
   }
   virtual ~PSMShapeMatrixAttribute() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {  Superclass::PrintSelf(os,indent);  }
 
   int m_DomainsPerShape;
@@ -129,10 +113,9 @@ private:
 
 };
 
-} // end namespace
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMShapeMatrixAttribute.hxx"
+#include "PSMShapeMatrixAttribute.hxx"
 #endif
 
 #endif

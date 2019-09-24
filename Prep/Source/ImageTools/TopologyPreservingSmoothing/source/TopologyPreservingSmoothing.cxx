@@ -1,18 +1,18 @@
-#include "itkThresholdImageFilter.h"
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkTPGACLevelSetImageFilter.h"
+#include <itkThresholdImageFilter.h>
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include "TPGACLevelSetImageFilter.h"
 #include "tinyxml.h"
-#include "itkCurvatureAnisotropicDiffusionImageFilter.h"
-#include "itkGradientAnisotropicDiffusionImageFilter.h"
-#include "itkGradientMagnitudeRecursiveGaussianImageFilter.h"
-#include "itkGradientMagnitudeImageFilter.h"
-#include "itkSigmoidImageFilter.h"
-//#include "itkBinaryThresholdImageFilter.h"
-#include "itkDiscreteGaussianImageFilter.h"
-#include "itkCurvatureFlowImageFilter.h"
-#include "itkRescaleIntensityImageFilter.h"
+#include <itkCurvatureAnisotropicDiffusionImageFilter.h>
+#include <itkGradientAnisotropicDiffusionImageFilter.h>
+#include <itkGradientMagnitudeRecursiveGaussianImageFilter.h>
+#include <itkGradientMagnitudeImageFilter.h>
+#include <itkSigmoidImageFilter.h>
+//#include <itkBinaryThresholdImageFilter.h>
+#include <itkDiscreteGaussianImageFilter.h>
+#include <itkCurvatureFlowImageFilter.h>
+#include <itkRescaleIntensityImageFilter.h>
 #include <vector>
 #include <iostream>
 #include <string>
@@ -41,7 +41,7 @@ int main( int argc, char *argv[])
     //typedef itk::GradientMagnitudeRecursiveGaussianImageFilter<ImageType, ImageType> GradientFilterType;
     typedef itk::GradientMagnitudeImageFilter<ImageType, ImageType> GradientFilterType;
     typedef itk::SigmoidImageFilter<ImageType, ImageType> SigmoidFilterType;
-    typedef itk::TPGACLevelSetImageFilter<ImageType, ImageType> TPLevelSetImageFilterType;
+    typedef TPGACLevelSetImageFilter<ImageType, ImageType> TPLevelSetImageFilterType;
     //typedef itk::BinaryThresholdImageFilter<OutputImageType, OutputImageType> ThresholdFilterType;
 
     // variables

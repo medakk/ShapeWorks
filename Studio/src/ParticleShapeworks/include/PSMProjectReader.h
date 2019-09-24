@@ -1,29 +1,12 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
+#ifndef __PSMProjectReader_h
+#define __PSMProjectReader_h
 
-#ifndef __itkPSMProjectReader_h
-#define __itkPSMProjectReader_h
+#include "PSMProject.h"
+#include "PSMDOMNodeXMLReader.h"
 
-#include "itkPSMProject.h"
-#include "itkPSMDOMNodeXMLReader.h"
+//using namespace itk;
 
-namespace itk
-{
+
 
 /**
  * \class PSMProjectReader
@@ -38,14 +21,14 @@ namespace itk
  *       this class, i.e. a PSMProject object, is not an image and
  *       cannot be connected to an ITK process pipeline.
  */
-class ITK_EXPORT PSMProjectReader : public PSMDOMNodeXMLReader
+class PSMProjectReader : public PSMDOMNodeXMLReader
 {
 public:
   /** Standard class typedefs. */
   typedef PSMProjectReader    Self;
   typedef PSMDOMNodeXMLReader Superclass;
-  typedef SmartPointer< Self >        Pointer;
-  typedef SmartPointer< const Self >  ConstPointer;
+  typedef itk::SmartPointer< Self >        Pointer;
+  typedef itk::SmartPointer< const Self >  ConstPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -76,7 +59,5 @@ public:
   /** The PSMProject object that will be created by the reader. */
   PSMProject::Pointer m_Output;
 };
-
-} // namespace itk
 
 #endif

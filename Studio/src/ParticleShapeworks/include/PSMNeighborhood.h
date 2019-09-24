@@ -1,33 +1,17 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMNeighborhood_h
-#define __itkPSMNeighborhood_h
+#ifndef __PSMNeighborhood_h
+#define __PSMNeighborhood_h
 
-#include "itkDataObject.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
-#include "itkPSMDomain.h"
-#include "itkPSMContainer.h"
-#include "itkPSMPointIndexPair.h"
+#include <itkDataObject.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
+#include "PSMDomain.h"
+#include "PSMContainer.h"
+#include "PSMPointIndexPair.h"
 #include <vector>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMNeighborhood
  *
  * A PSMNeighborhood is responsible for computing neighborhoods of
@@ -41,27 +25,27 @@ namespace itk
  *
  */
 template <unsigned int VDimension>
-class ITK_EXPORT PSMNeighborhood : public DataObject
+class PSMNeighborhood : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef PSMNeighborhood Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
   
   /** Run-time type information (and related methods). */
-  itkTypeMacro(PSMNeighborhood, DataObject);
+  itkTypeMacro(PSMNeighborhood, itk::DataObject);
   
   /** Dimensionality of the domain of the particle system. */
   itkStaticConstMacro(Dimension, unsigned int, VDimension);
   
   /** Point type used to store particle locations. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
   
   /** Domain type.  The Domain object provides bounds and distance
       information. */
@@ -119,7 +103,7 @@ public:
   
 protected:
   PSMNeighborhood() {}
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
   }
@@ -133,6 +117,6 @@ private:
   typename DomainType::Pointer m_Domain;
 };
 
-} // end namespace itk
+
 
 #endif

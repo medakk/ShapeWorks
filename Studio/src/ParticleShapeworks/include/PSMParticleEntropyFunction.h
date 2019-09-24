@@ -1,31 +1,15 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicabcle law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMParticleEntropyFunction_h
-#define __itkPSMParticleEntropyFunction_h
+#ifndef __PSMParticleEntropyFunction_h
+#define __PSMParticleEntropyFunction_h
 
-#include "itkPSMCostFunction.h"
-#include "itkPSMContainerArrayAttribute.h"
-#include "itkPSMImageDomainWithGradients.h"
+#include "PSMCostFunction.h"
+#include "PSMContainerArrayAttribute.h"
+#include "PSMImageDomainWithGradients.h"
 #include <vector>
-#include "itkPSMImplicitSurfaceDomain.h"
+#include "PSMImplicitSurfaceDomain.h"
 
-namespace itk
-{
+//using namespace itk;
+
+
 
 /**
  * \class PSMParticleEntropyFunction
@@ -87,8 +71,8 @@ class PSMParticleEntropyFunction : public PSMCostFunction<VDimension>
 public:
  /** Standard class typedefs. */
   typedef PSMParticleEntropyFunction Self;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
   typedef PSMCostFunction<VDimension> Superclass;
   itkTypeMacro( PSMParticleEntropyFunction, PSMCostFunction);
 
@@ -258,10 +242,8 @@ protected:
 };
 
 
-} //end namespace
-
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMParticleEntropyFunction.hxx"
+#include "PSMParticleEntropyFunction.hxx"
 #endif
 
 #endif

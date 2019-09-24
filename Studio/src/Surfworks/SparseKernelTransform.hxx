@@ -1,22 +1,6 @@
-/*=========================================================================
-
-  Program:   Insight Segmentation & Registration Toolkit
-  Module:    $RCSfile: itkSparseKernelTransform.txx,v $
-  Language:  C++
-  Date:      $Date: 2006-11-28 14:22:18 $
-  Version:   $Revision: 1.1 $
-
-  Copyright (c) Insight Software Consortium. All rights reserved.
-  See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
-
-     This software is distributed WITHOUT ANY WARRANTY; without even
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-     PURPOSE.  See the above copyright notices for more information.
-
-=========================================================================*/
-#ifndef _itkSparseKernelTransform_txx
-#define _itkSparseKernelTransform_txx
-#include "itkSparseKernelTransform.h"
+#ifndef _SparseKernelTransform_txx
+#define _SparseKernelTransform_txx
+#include "SparseKernelTransform.h"
 
 // Report timings
 #include <itkTimeProbe.h>
@@ -27,8 +11,7 @@
 
 #include <vector>
 
-namespace itk
-{
+
 
 
 /**
@@ -151,7 +134,7 @@ ComputeReflexiveG( PointsIterator ) const
     for(unsigned d = 0; d < NDimensions; d++)
         m_GMatrix(d,d) = m_Stiffness;
 
-    //m_GMatrix.fill( NumericTraits< TScalarType >::Zero );
+    //m_GMatrix.fill( itk::NumericTraits< TScalarType >::Zero );
     //m_GMatrix.fill_diagonal( m_Stiffness );
 
     return m_GMatrix;
@@ -660,7 +643,7 @@ SparseKernelTransform<TScalarType, NDimensions>
 
     typedef typename OutputPointType::ValueType ValueType;
 
-    result.Fill( NumericTraits< ValueType >::Zero );
+    result.Fill( itk::NumericTraits< ValueType >::Zero );
 
     this->ComputeDeformationContribution( thisPoint, result );
 
@@ -918,7 +901,7 @@ GetFixedParameters( void ) const
 template <class TScalarType, unsigned int NDimensions>
 void
 SparseKernelTransform<TScalarType, NDimensions>::
-PrintSelf(std::ostream& os, Indent indent) const
+PrintSelf(std::ostream& os, itk::Indent indent) const
 {
     Superclass::PrintSelf(os,indent);
     if (m_SourceLandmarks)
@@ -938,6 +921,6 @@ PrintSelf(std::ostream& os, Indent indent) const
     }
     os << indent << "Stiffness: " << m_Stiffness << std::endl;
 }
-} // namespace itk
+
 
 #endif

@@ -1,10 +1,10 @@
-#include "itkImage.h"
+#include <itkImage.h>
 #include <itkImageFileReader.h>
 #include <itkExtractImageFilter.h>
-#include "itkImageFileWriter.h"
-#include "itkImageRegionIteratorWithIndex.h"
-#include "itkIndex.h"
-#include "itkBinaryFillholeImageFilter.h"
+#include <itkImageFileWriter.h>
+#include <itkImageRegionIteratorWithIndex.h>
+#include <itkIndex.h>
+#include <itkBinaryFillholeImageFilter.h>
 #include "OptionParser.h"
 
 optparse::OptionParser buildParser()

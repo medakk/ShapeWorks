@@ -12,22 +12,22 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleContainerArrayAttribute_h
-#define __itkParticleContainerArrayAttribute_h
+#ifndef _ParticleContainerArrayAttribute_h
+#define _ParticleContainerArrayAttribute_h
 
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "itkParticleAttribute.h"
-#include "itkParticleContainer.h"
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include "ParticleAttribute.h"
+#include "ParticleContainer.h"
 #include <vector>
 
-namespace itk
-{
+//using namespace itk;
+
 /** \class ParticleContainerArrayAttribute
  *  \brief 
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT ParticleContainerArrayAttribute
+class ParticleContainerArrayAttribute
   : public std::vector<typename ParticleContainer<T>::Pointer >, public ParticleAttribute<VDimension>
 {
 public:
@@ -35,9 +35,9 @@ public:
   typedef T DataType;
   typedef ParticleContainerArrayAttribute Self;
   typedef ParticleAttribute<VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -49,20 +49,20 @@ public:
       of these callback methods, the corresponding flag in m_DefinedCallbacks
       should be set to true so that the ParticleSystem will know to register
       the appropriate event with this method. */
-  virtual void DomainAddEventCallback(Object *, const EventObject &)
+  virtual void DomainAddEventCallback(Object *, const itk::EventObject &)
   {
     this->resize( this->size() +1);
     this->operator[](this->size() -1) = ParticleContainer<T>::New();
   }
 
-  virtual void PositionAddEventCallback(Object *o, const EventObject &e) 
+  virtual void PositionAddEventCallback(Object *o, const itk::EventObject &e) 
   {
-    const itk::ParticlePositionAddEvent &event
-      = dynamic_cast<const itk::ParticlePositionAddEvent &>(e);
+    const ParticlePositionAddEvent &event
+      = dynamic_cast<const ParticlePositionAddEvent &>(e);
     this->operator[](event.GetDomainIndex())->operator[](event.GetPositionIndex()) = 0.0;    
   }
 
-  virtual void PositionRemoveEventCallback(Object *, const EventObject &) 
+  virtual void PositionRemoveEventCallback(Object *, const itk::EventObject &) 
   {
     // NEED TO IMPLEMENT THIS
   }
@@ -88,7 +88,7 @@ protected:
   }
   virtual ~ParticleContainerArrayAttribute() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {  Superclass::PrintSelf(os,indent);  }
   
  private:
@@ -97,6 +97,6 @@ protected:
   
 };
 
-} // end namespace
+
 
 #endif

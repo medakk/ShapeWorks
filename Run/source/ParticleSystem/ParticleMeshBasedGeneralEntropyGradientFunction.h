@@ -6,14 +6,13 @@
  * Class for mesh based features/attributes for shape correspondence
  */
 
-#include "itkParticleVectorFunction.h"
+#include "ParticleVectorFunction.h"
 #include <vector>
 #include <numeric>
-#include "itkParticleGeneralShapeMatrix.h"
-#include "itkParticleGeneralShapeGradientMatrix.h"
+#include "ParticleGeneralShapeMatrix.h"
+#include "ParticleGeneralShapeGradientMatrix.h"
 
-namespace itk
-{
+
 
 template <unsigned int VDimension>
 class ParticleMeshBasedGeneralEntropyGradientFunction : public ParticleVectorFunction<VDimension>
@@ -21,8 +20,8 @@ class ParticleMeshBasedGeneralEntropyGradientFunction : public ParticleVectorFun
 public:
     /** Standard class typedefs. */
     typedef ParticleMeshBasedGeneralEntropyGradientFunction Self;
-    typedef SmartPointer<Self>  Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
+    typedef itk::SmartPointer<Self>  Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
     typedef ParticleVectorFunction<VDimension> Superclass;
     itkTypeMacro( ParticleMeshBasedGeneralEntropyGradientFunction, ParticleVectorFunction)
 
@@ -258,16 +257,16 @@ protected:
     vnl_matrix_type * m_InverseCovMatrix;
     int num_dims, num_samples;
 };
-} // end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 #include "Templates/itkParticleMeshBasedGeneralEntropyGradientFunction+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-#include "itkParticleMeshBasedGeneralEntropyGradientFunction.txx"
+#include "ParticleMeshBasedGeneralEntropyGradientFunction.txx"
 #endif
 
-#include "itkParticleMeshBasedGeneralEntropyGradientFunction.txx"
+#include "ParticleMeshBasedGeneralEntropyGradientFunction.txx"
 
 #endif // ITKPARTICLEMESHBASEDGENERALENTROPYGRADIENTFUNCTION_H

@@ -15,8 +15,8 @@
 #include <Data/ItkToVtk.h>
 
 #include <vtkSurfaceReconstructionFilter.h>
-#include "itkNrrdImageIOFactory.h"
-#include "itkMetaImageIOFactory.h"
+#include <itkNrrdImageIOFactory.h>
+#include <itkMetaImageIOFactory.h>
 #include <vtkMarchingCubes.h>
 #include <Groom/ShapeWorksGroom.h>
 

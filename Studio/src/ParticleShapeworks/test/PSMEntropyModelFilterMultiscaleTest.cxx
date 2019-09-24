@@ -16,13 +16,13 @@
  *
  *=========================================================================*/
 #include <iostream>
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkPSMEntropyModelFilter.h"
-#include "itkPSMProjectReader.h"
-#include "itkCommand.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include "PSMEntropyModelFilter.h"
+#include "PSMProjectReader.h"
+#include <itkCommand.h>
 
-namespace itk{
+
 
 class MyMultiscaleIterationCommand : public itk::Command
 {
@@ -30,10 +30,10 @@ public:
  /** Standard class typedefs. */
   typedef MyMultiscaleIterationCommand         Self;
   typedef Command                    Superclass;
-  typedef SmartPointer< Self >       Pointer;
-  typedef SmartPointer< const Self > ConstPointer;
+  typedef itk::SmartPointer< Self >       Pointer;
+  typedef itk::SmartPointer< const Self > ConstPointer;
 
-  typedef Image<float, 3> ImageType;
+  typedef itk::Image<float, 3> ImageType;
 
   /** Run-time type information (and related methods). */
   itkTypeMacro(MyMultiscaleIterationCommand, Command);
@@ -42,7 +42,7 @@ public:
   itkNewMacro(Self);
 
   /** This method will be passed a PSMGradientDescentOptimizer */
-  virtual void Execute(Object *caller, const EventObject &)
+  virtual void Execute(Object *caller, const itk::EventObject &)
   {    
     PSMEntropyModelFilter<ImageType> *o 
       = static_cast<PSMEntropyModelFilter<ImageType> *>(caller);
@@ -60,7 +60,7 @@ public:
     std::cout << std::endl;
     std::cout << " Regularization = " << o->GetRegularizationConstant() << std::endl;
   }
-  virtual void Execute(const Object *, const EventObject &)
+  virtual void Execute(const Object *, const itk::EventObject &)
   {
     std::cout << "SHOULDN'T BE HERE" << std::endl;
   }
@@ -73,7 +73,7 @@ private:
   void operator=(const Self &); //purposely not implemented
 };
 
-} // end namespace itk
+
 
 /** This test exercises functionality of the base itkPSMEntropyModelFilter class */
 int itkPSMEntropyModelFilterMultiscaleTest(int argc, char* argv[] )
@@ -87,7 +87,7 @@ int itkPSMEntropyModelFilterMultiscaleTest(int argc, char* argv[] )
   if (argc < 2)
     {
       std::cout << "Wrong number of arguments. \nUse: " 
-	<< "itkPSMEntropyModelFilterTest parameter_file [output_path]\n"
+	<< "PSMEntropyModelFilterTest parameter_file [output_path]\n"
         << "See itk::PSMParameterFileReader for documentation on the parameter file format."
 	<< std::endl;
       return EXIT_FAILURE;
@@ -213,7 +213,7 @@ int itkPSMEntropyModelFilterMultiscaleTest(int argc, char* argv[] )
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

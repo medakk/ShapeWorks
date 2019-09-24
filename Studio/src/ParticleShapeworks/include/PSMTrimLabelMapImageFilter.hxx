@@ -1,54 +1,35 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMTrimLabelMapImageFilter_hxx
-#define __itkPSMTrimLabelMapImageFilter_hxx
+#ifndef __PSMTrimLabelMapImageFilter_hxx
+#define __PSMTrimLabelMapImageFilter_hxx
 
-#include "itkPSMTrimLabelMapImageFilter.h"
-#include "itkProgressReporter.h"
-#include "itkImageRegionIterator.h"
-#include "itkNumericTraits.h"
-#include "itkConnectedComponentImageFilter.h"
-#include "itkConnectedThresholdImageFilter.h"
-#include "itkImageRegionIterator.h"
-#include "itkImageRegionIteratorWithIndex.h"
-#include "itkResampleImageFilter.h"
-#include "itkTranslationTransform.h"
-#include "itkNearestNeighborInterpolateImageFunction.h"
-#include "itkExtractImageFilter.h"
-#include "itkArray.h"
+#include <itkPSMTrimLabelMapImageFilter.h>
+#include <itkProgressReporter.h>
+#include <itkImageRegionIterator.h>
+#include <itkNumericTraits.h>
+#include <itkConnectedComponentImageFilter.h>
+#include <itkConnectedThresholdImageFilter.h>
+#include <itkImageRegionIterator.h>
+#include <itkImageRegionIteratorWithIndex.h>
+#include <itkResampleImageFilter.h>
+#include <itkTranslationTransform.h>
+#include <itkNearestNeighborInterpolateImageFunction.h>
+#include <itkExtractImageFilter.h>
+#include <itkArray.h>
 #include <map>
 
-//#include "itkImageFileWriter.h"
+//using namespace itk;
 
-namespace itk
-{
 template< class TImage >
 PSMTrimLabelMapImageFilter< TImage >
 ::PSMTrimLabelMapImageFilter()
 {
-  m_ForegroundValue = NumericTraits< PixelType >::One;
-  m_BackgroundValue = NumericTraits< PixelType >::Zero;
+  m_ForegroundValue = itk::NumericTraits< PixelType >::One;
+  m_BackgroundValue = itk::NumericTraits< PixelType >::Zero;
 }
 
 template< class TImage >
 void
 PSMTrimLabelMapImageFilter< TImage >
-::PrintSelf(std::ostream & os, Indent indent) const
+::PrintSelf(std::ostream & os, itk::Indent indent) const
 {
   Superclass::PrintSelf(os, indent);
   os << indent << "m_ForegroundValue = " << m_ForegroundValue << std::endl;
@@ -188,7 +169,7 @@ PSMTrimLabelMapImageFilter<TImage>::FillHoles(ImageType *work) const
   // Find a background value seed at the boundary. Assumption is that
   // the corner index is background.
   typename ConnectedThresholdImageFilter<ImageType, ImageType>::IndexType seed;
-  seed.Fill(NumericTraits<PixelType>::Zero);
+  seed.Fill(itk::NumericTraits<PixelType>::Zero);
   
   // Flood fill the background with the foreground value.
   typename itk::ConnectedThresholdImageFilter<ImageType, ImageType >::Pointer
@@ -252,7 +233,7 @@ PSMTrimLabelMapImageFilter<TImage>::Center(ImageType *work) const
   Array<double> params(Dimension);
   params.Fill(0.0);
   double count = 0.0;
-  Point<double, Dimension> point;
+  itk::Point<double, Dimension> point;
   for (; ! oit.IsAtEnd(); ++oit, ++sit)
     {
     if (oit.Get() != m_BackgroundValue)
@@ -474,7 +455,5 @@ PSMTrimLabelMapImageFilter<TImage>::Crop(ImageType *work)
 //   //
 //   inputPtr->SetRequestedRegion( outputPtr->GetRequestedRegion() );
 // }
-
-} // end namespace itk
 
 #endif

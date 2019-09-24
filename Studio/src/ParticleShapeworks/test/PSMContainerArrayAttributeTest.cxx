@@ -16,13 +16,13 @@
  *
  *=========================================================================*/
 #include <iostream>
-#include "itkPSMContainerArrayAttribute.h"
-#include "itkPSMParticleSystem.h"
-#include "itkPSMRegionNeighborhood.h"
-#include "itkPSMRegionDomain.h"
-#include "itkMacro.h"
+#include "PSMContainerArrayAttribute.h"
+#include "PSMParticleSystem.h"
+#include "PSMRegionNeighborhood.h"
+#include "PSMRegionDomain.h"
+#include <itkMacro.h>
 
-namespace itk {
+
 
 template<class T, unsigned int VDimension>
 class TestContainerArrayAttribute : public PSMContainerArrayAttribute<T, VDimension>
@@ -32,9 +32,9 @@ public:
   typedef T DataType;
   typedef TestContainerArrayAttribute Self;
   typedef PSMContainerArrayAttribute<T, VDimension> Superclass;
-  typedef SmartPointer<Self> Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self> Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -46,17 +46,17 @@ public:
       of these callback methods, the corresponding flag in m_DefinedCallbacks
       should be set to true so that the ParticleSystem will know to register
       the appropriate event with this method. */
-  virtual void DomainAddEventCallback(Object *, const EventObject &)
+  virtual void DomainAddEventCallback(Object *, const itk::EventObject &)
   {
     this->resize( this->size() +1);
     this->operator[](this->size() -1) = PSMContainer<T>::New();
     m_AddDomainCount++;
   }
 
-  virtual void PositionAddEventCallback(Object *, const EventObject &e) 
+  virtual void PositionAddEventCallback(Object *, const itk::EventObject &e) 
   {
-    const itk::ParticlePositionAddEvent &event
-      = dynamic_cast<const itk::ParticlePositionAddEvent &>(e);
+    const ParticlePositionAddEvent &event
+      = dynamic_cast<const ParticlePositionAddEvent &>(e);
     this->operator[](event.GetDomainIndex())->operator[](event.GetPositionIndex()) = 0.0;    
     m_AddPositionCount++;
   }
@@ -136,7 +136,7 @@ int itkPSMContainerArrayAttributeTest(int, char* [] )
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

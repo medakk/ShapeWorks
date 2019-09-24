@@ -15,7 +15,7 @@
 #ifndef __st__tool_h
 #define __st__tool_h
 
-#include "itkImage.h"
+#include <itkImage.h>
 
 namespace shapetools
 {

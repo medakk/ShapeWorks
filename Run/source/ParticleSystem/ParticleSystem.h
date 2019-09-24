@@ -12,28 +12,28 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleSystem_h
-#define __itkParticleSystem_h
+#ifndef _ParticleSystem_h
+#define _ParticleSystem_h
 
-#include "itkDataObject.h"
-#include "itkObjectFactory.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
-#include "itkParticleAttribute.h"
-#include "itkParticleDomain.h"
-#include "vnl/vnl_matrix_fixed.h"
-#include "vnl/vnl_vector_fixed.h"
-#include "itkParticleContainer.h"
-#include "itkParticleEvents.h"
-#include "itkCommand.h"
-#include "itkEventObject.h"
-#include "itkParticleNeighborhood.h"
-#include "vnl/vnl_inverse.h"
+#include <itkDataObject.h>
+#include <itkObjectFactory.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
+#include "ParticleAttribute.h"
+#include "ParticleDomain.h"
+#include <vnl/vnl_matrix_fixed.h>
+#include <vnl/vnl_vector_fixed.h>
+#include "ParticleContainer.h"
+#include "ParticleEvents.h"
+#include <itkCommand.h>
+#include <itkEventObject.h>
+#include "ParticleNeighborhood.h"
+#include <vnl/vnl_inverse.h>
 #include <map>
 #include <vector>
 
-namespace itk
-{
+//using namespace itk;
+
 /** \class ParticleSystem
  *  \brief  A facade class managing interactions with a particle system.
  *
@@ -50,21 +50,21 @@ namespace itk
  * coordinate frame.
  */
 template <unsigned int VDimension=3>
-class ITK_EXPORT ParticleSystem : public DataObject
+class ParticleSystem : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef ParticleSystem Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ParticleSystem, DataObject);
+  itkTypeMacro(ParticleSystem, itk::DataObject);
 
   /** Dimensionality of the domain of the particle system. */
   itkStaticConstMacro(Dimension, unsigned int, VDimension);
@@ -73,7 +73,7 @@ public:
   typedef ParticleDomain<VDimension> DomainType;
   
   /** Point type used to store particle locations. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
 
   /** Class used to compute neighborhoods of points. One is associated with
       each domain.*/
@@ -404,7 +404,7 @@ public:
   
 protected:
   ParticleSystem();
-  void PrintSelf(std::ostream& os, Indent indent) const;
+  void PrintSelf(std::ostream& os, itk::Indent indent) const;
   virtual ~ParticleSystem() {};
 
   /** Set the number of domains.  This method modifies the size of the
@@ -502,16 +502,16 @@ private:
   std::vector< std::vector<bool> > m_FixedParticleFlags;
 };
 
-} // end namespace itk
+
 
 #if ITK_TEMPLATE_EXPLICIT
 # include "Templates/itkParticleSystem+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleSystem.txx"
+# include "ParticleSystem.txx"
 #endif
 
-#include "itkParticleSystem.txx"
+#include "ParticleSystem.txx"
 
 #endif

@@ -16,11 +16,11 @@
  *
  *=========================================================================*/
 #include <iostream>
-#include "itkMacro.h"
-#include "itkPSMGradientDescentOptimizer.h"
-#include "itkPSMShapeEntropyFunction.h"
-#include "itkPSMRegionNeighborhood.h"
-#include "itkPSMRegionDomain.h"
+#include <itkMacro.h>
+#include "PSMGradientDescentOptimizer.h"
+#include "PSMShapeEntropyFunction.h"
+#include "PSMRegionNeighborhood.h"
+#include "PSMRegionDomain.h"
 
 /** This test exercises functionality of the base itkPSMGradientDescentOptimizerFilter class */
 int itkPSMGradientDescentOptimizerTest(int, char* [] )
@@ -87,7 +87,7 @@ int itkPSMGradientDescentOptimizerTest(int, char* [] )
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

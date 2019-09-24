@@ -1,21 +1,20 @@
 #ifndef ITKPARTICLEGENERALSHAPEGRADIENTMATRIX_H
 #define ITKPARTICLEGENERALSHAPEGRADIENTMATRIX_H
 
-#include "itkParticleAttribute.h"
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "itkParticleContainer.h"
-#include "vnl/vnl_matrix.h"
+#include "ParticleAttribute.h"
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include "ParticleContainer.h"
+#include <vnl/vnl_matrix.h>
 
-#include "itkParticleImplicitSurfaceDomain.h"
-#include "itkParticleImageDomainWithGradients.h"
-#include "itkParticleImageDomainWithHessians.h"
+#include "ParticleImplicitSurfaceDomain.h"
+#include "ParticleImageDomainWithGradients.h"
+#include "ParticleImageDomainWithHessians.h"
 #include "TriMesh.h"
 
-#include "itkParticleSystem.h"
+#include "ParticleSystem.h"
 
-namespace itk
-{
+
 /** \class ParticleGeneralShapeGradientMatrix
  *
  * \brief Each column describes a shape.  A shape may be composed of
@@ -26,7 +25,7 @@ namespace itk
  * Each column represents a single shape.
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT ParticleGeneralShapeGradientMatrix
+class dParticleGeneralShapeGradientMatrix
         : public vnl_matrix<T>, public ParticleAttribute<VDimension>
 {
 public:
@@ -34,9 +33,9 @@ public:
     typedef T DataType;
     typedef ParticleGeneralShapeGradientMatrix Self;
     typedef ParticleAttribute<VDimension> Superclass;
-    typedef SmartPointer<Self>  Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
-    typedef WeakPointer<const Self>  ConstWeakPointer;
+    typedef itk::SmartPointer<Self>  Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
+    typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
     typedef ParticleSystem<VDimension> ParticleSystemType;
     /** Method for creation through the object factory. */
@@ -96,7 +95,7 @@ public:
 
     void SetValues(const ParticleSystemType *ps, int idx, int d)
     {
-        const typename itk::ParticleSystem<VDimension>::PointType posLocal = ps->GetPosition(idx, d);
+        const typename ParticleSystem<VDimension>::PointType posLocal = ps->GetPosition(idx, d);
 
         unsigned int k = 0;
         int dom = d % m_DomainsPerShape;
@@ -189,7 +188,7 @@ public:
 
                 // mat3 = H/|grad_f| * (I - n*n');
                 typename ParticleImageDomainWithHessians<float,3>::VnlMatrixType mat3 = pH * mat1;
-                typename itk::ParticleSystem<VDimension>::VnlMatrixType tmp;
+                typename ParticleSystem<VDimension>::VnlMatrixType tmp;
                 tmp.set_size(VDimension, VDimension);
                 tmp.fill(0.0);
                 for (unsigned int c = 0; c<VDimension; c++)
@@ -241,20 +240,20 @@ public:
         }
     }
 
-    virtual void DomainAddEventCallback(Object *, const EventObject &e)
+    virtual void DomainAddEventCallback(Object *, const itk::EventObject &e)
     {
-        const itk::ParticleDomainAddEvent &event = dynamic_cast<const itk::ParticleDomainAddEvent &>(e);
+        const ParticleDomainAddEvent &event = dynamic_cast<const ParticleDomainAddEvent &>(e);
         unsigned int d = event.GetDomainIndex();
 
         if ( d % m_DomainsPerShape  == 0 )
             this->ResizeMatrix(this->rows(), this->cols()+3); //3 columns for every shape
     }
 
-    virtual void PositionAddEventCallback(Object *o, const EventObject &e)
+    virtual void PositionAddEventCallback(Object *o, const itk::EventObject &e)
     {
         // update the size of matrix based on xyz, normals and number of attributes being used
-        const itk::ParticlePositionAddEvent &event = dynamic_cast<const itk::ParticlePositionAddEvent &>(e);
-        const itk::ParticleSystem<VDimension> *ps= dynamic_cast<const itk::ParticleSystem<VDimension> *>(o);
+        const ParticlePositionAddEvent &event = dynamic_cast<const ParticlePositionAddEvent &>(e);
+        const ParticleSystem<VDimension> *ps= dynamic_cast<const ParticleSystem<VDimension> *>(o);
         const int d = event.GetDomainIndex();
         const unsigned int idx = event.GetPositionIndex();
 
@@ -274,18 +273,18 @@ public:
         this->SetValues(ps, idx, d);
     }
 
-    virtual void PositionSetEventCallback(Object *o, const EventObject &e)
+    virtual void PositionSetEventCallback(Object *o, const itk::EventObject &e)
     {
         // update xyz, normals and number of attributes being used
-        const itk::ParticlePositionSetEvent &event = dynamic_cast<const itk::ParticlePositionSetEvent &>(e);
-        const itk::ParticleSystem<VDimension> *ps= dynamic_cast<const itk::ParticleSystem<VDimension> *>(o);
+        const ParticlePositionSetEvent &event = dynamic_cast<const ParticlePositionSetEvent &>(e);
+        const ParticleSystem<VDimension> *ps= dynamic_cast<const ParticleSystem<VDimension> *>(o);
         const int d = event.GetDomainIndex();
         const unsigned int idx = event.GetPositionIndex();
 
         this->SetValues(ps, idx, d);
     }
 
-    virtual void PositionRemoveEventCallback(Object *, const EventObject &)
+    virtual void PositionRemoveEventCallback(Object *, const itk::EventObject &)
     {
         // NEED TO IMPLEMENT THIS
     }
@@ -302,7 +301,7 @@ protected:
     }
     virtual ~ParticleGeneralShapeGradientMatrix() {}
 
-    void PrintSelf(std::ostream& os, Indent indent) const
+    void PrintSelf(std::ostream& os, itk::Indent indent) const
     {  Superclass::PrintSelf(os,indent);  }
 
     int m_DomainsPerShape;
@@ -318,7 +317,7 @@ private:
 
 }; // end class
 
-} // end namespace
+
 
 
 

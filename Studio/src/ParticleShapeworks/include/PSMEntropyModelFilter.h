@@ -1,37 +1,21 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMEntropyModelFilter_h
-#define __itkPSMEntropyModelFilter_h
+#ifndef __PSMEntropyModelFilter_h
+#define __PSMEntropyModelFilter_h
 
-#include "itkInPlaceImageFilter.h"
-#include "itkPSMParticleSystem.h"
-#include "itkPSMImplicitSurfaceDomain.h"
-#include "itkPSMShapeEntropyFunction.h"
-#include "itkPSMParticleEntropyFunction.h"
-#include "itkPSMGradientDescentOptimizer.h"
-#include "itkPSMContainerArrayAttribute.h"
-//#include "itkPSMMeanCurvatureAttribute.h"
-#include "itkPSMSurfaceNeighborhood.h"
-#include "itkPSMTwoCostFunction.h"
-#include "itkCommand.h"
+#include <InPlaceImageFilter.h>
+#include "PSMParticleSystem.h"
+#include "PSMImplicitSurfaceDomain.h"
+#include "PSMShapeEntropyFunction.h"
+#include "PSMParticleEntropyFunction.h"
+#include "PSMGradientDescentOptimizer.h"
+#include "PSMContainerArrayAttribute.h"
+//#include "PSMMeanCurvatureAttribute.h"
+#include "PSMSurfaceNeighborhood.h"
+#include "PSMTwoCostFunction.h"
+#include <itkCommand.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
   
 /** \class PSMEntropyModelFilter
  *
@@ -75,15 +59,15 @@ namespace itk
  * \author Josh Cates
  */
 template <class TImage, class TShapeMatrix = PSMShapeMatrixAttribute<double, TImage::ImageDimension> >
-class ITK_EXPORT PSMEntropyModelFilter
-  : public InPlaceImageFilter<TImage,TImage> 
+class PSMEntropyModelFilter
+  : public itk::InPlaceImageFilter<TImage,TImage> 
 {
  public:
   /** Standard class typedefs. */
   typedef PSMEntropyModelFilter  Self;
-  typedef InPlaceImageFilter<TImage,TImage>  Superclass;
-  typedef SmartPointer<Self>   Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::InPlaceImageFilter<TImage,TImage>  Superclass;
+  typedef itk::SmartPointer<Self>   Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
   
   /** Dimensionality of the domain of the particle system. */
   itkStaticConstMacro(Dimension, unsigned int, TImage::ImageDimension);
@@ -561,7 +545,7 @@ class ITK_EXPORT PSMEntropyModelFilter
    PSMEntropyModelFilter();
    virtual ~PSMEntropyModelFilter() {};
    
-   void PrintSelf(std::ostream& os, Indent indent) const
+   void PrintSelf(std::ostream& os, itk::Indent indent) const
      {
        Superclass::PrintSelf(os, indent);
      }
@@ -596,7 +580,7 @@ class ITK_EXPORT PSMEntropyModelFilter
    
    /** A callback method that will be called after each iteration of
        the Solver. */
-   void OptimizerIterateCallback(Object *, const EventObject &);
+   void OptimizerIterateCallback(Object *, const itk::EventObject &);
 
    /** Returns a pointer to the domain that is referenced by the given
        name*/
@@ -715,10 +699,10 @@ class ITK_EXPORT PSMEntropyModelFilter
   std::vector<CuttingPlaneType> m_CuttingPlanes;
 };
   
-} // end namespace itk
+
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMEntropyModelFilter.hxx"
+#include "PSMEntropyModelFilter.hxx"
 #endif
 
 #endif

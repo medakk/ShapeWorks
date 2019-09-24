@@ -16,8 +16,8 @@
 #define __st_bounding_box_txx
 
 #include "bounding_box.h"
-#include "itkImageRegionIterator.h"
-#include "itkImageRegionIteratorWithIndex.h"
+#include <itkImageRegionIterator.h>
+#include <itkImageRegionIteratorWithIndex.h>
 
 namespace shapetools
 {

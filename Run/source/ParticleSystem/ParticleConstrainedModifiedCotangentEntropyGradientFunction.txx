@@ -12,11 +12,11 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleConstrainedModifiedCotangentEntropyGradientFunction_txx
-#define __itkParticleConstrainedModifiedCotangentEntropyGradientFunction_txx
-#include "vnl/vnl_matrix_fixed.h"
-#include "vnl/vnl_vector_fixed.h"
-#include "vnl/vnl_matrix.h"
+#ifndef _ParticleConstrainedModifiedCotangentEntropyGradientFunction_txx
+#define _ParticleConstrainedModifiedCotangentEntropyGradientFunction_txx
+#include <vnl/vnl_matrix_fixed.h>
+#include <vnl/vnl_vector_fixed.h>
+#include <vnl/vnl_matrix.h>
 
 #include <vtkSmartPointer.h>
 #include <vtkPointData.h>
@@ -26,7 +26,7 @@
 #include <vtkKdTreePointLocator.h>
 #include <vtkKdTree.h>
 
-namespace itk {
+//using namespace itk;
 
 template <class TGradientNumericType, unsigned int VDimension>
 void
@@ -165,7 +165,7 @@ ParticleConstrainedModifiedCotangentEntropyGradientFunction<TGradientNumericType
     itk::Point<double, VDimension> planept;
     for (unsigned int i = 0; i < VDimension; i++)
     { planept[i] = x[i] - (domain->GetCuttingPlaneNormal()[i] * D); }
-    m_CurrentNeighborhood.push_back( itk::ParticlePointIndexPair<VDimension>(planept, 0));
+    m_CurrentNeighborhood.push_back( ParticlePointIndexPair<VDimension>(planept, 0));
     m_CurrentWeights.push_back(0.3);
     // end PRATEEP
 
@@ -222,7 +222,7 @@ ParticleConstrainedModifiedCotangentEntropyGradientFunction<TGradientNumericType
             spherept[j] = domain->GetSphereCenter( i )[j] + ( q[j] * domain->GetSphereRadius( i ) );
 
         //spherepoints.push_back( spherept );
-        m_CurrentNeighborhood.push_back( itk::ParticlePointIndexPair<VDimension>( spherept, 0 ) );
+        m_CurrentNeighborhood.push_back( ParticlePointIndexPair<VDimension>( spherept, 0 ) );
 
         // give small weight to this sphere point
         // m_CurrentWeights.push_back( 0.01 );
@@ -299,5 +299,5 @@ ParticleConstrainedModifiedCotangentEntropyGradientFunction<TGradientNumericType
     return gradE ;
 }
 
-}// end namespace
+
 #endif

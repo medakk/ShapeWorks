@@ -1,27 +1,11 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMTrimLabelMapImageFilter_h
-#define __itkPSMTrimLabelMapImageFilter_h
+#ifndef __PSMTrimLabelMapImageFilter_h
+#define __PSMTrimLabelMapImageFilter_h
 
-#include "itkImageToImageFilter.h"
+#include <itkImageToImageFilter.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMTrimLabelMapImageFilter 
  *
  * \brief Process an input segmentation to produce an automatically
@@ -58,15 +42,15 @@ namespace itk
  * \author Josh Cates
  */
 template< class TImage>
-class ITK_EXPORT PSMTrimLabelMapImageFilter:
+class PSMTrimLabelMapImageFilter:
   public ImageToImageFilter<TImage, TImage>
 {
 public:
   /** Standard class typedefs. */
   typedef PSMTrimLabelMapImageFilter      Self;
   typedef ImageToImageFilter< TImage, TImage > Superclass;
-  typedef SmartPointer< Self >                 Pointer;
-  typedef SmartPointer< const Self >           ConstPointer;
+  typedef itk::SmartPointer< Self >                 Pointer;
+  typedef itk::SmartPointer< const Self >           ConstPointer;
 
   /** Image-type-related typedefs */
   typedef TImage ImageType;
@@ -112,7 +96,7 @@ public:
 protected:
   PSMTrimLabelMapImageFilter();
   ~PSMTrimLabelMapImageFilter() {}
-  void PrintSelf(std::ostream & os, Indent indent) const;
+  void PrintSelf(std::ostream & os, itk::Indent indent) const;
   
    /** Isolates the largest connected component in an image.  Pixels in this
    *  component are set to the foreground value and pixels in other components
@@ -152,10 +136,9 @@ private:
   PixelType  m_ForegroundValue;
   PixelType  m_BackgroundValue;
 };
-} // end namespace itk
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMTrimLabelMapImageFilter.hxx"
+#include "PSMTrimLabelMapImageFilter.hxx"
 #endif
 
 #endif

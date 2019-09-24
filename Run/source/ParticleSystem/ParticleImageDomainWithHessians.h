@@ -12,21 +12,20 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleImageDomainWithHessians_h
-#define __itkParticleImageDomainWithHessians_h
+#ifndef _ParticleImageDomainWithHessians_h
+#define _ParticleImageDomainWithHessians_h
 
-#include "itkImage.h"
-#include "itkParticleImageDomainWithGradients.h"
-#include "itkLinearInterpolateImageFunction.h"
-#include "itkGradientImageFilter.h"
-#include "itkFixedArray.h"
-#include "itkImageDuplicator.h"
-#include "itkDiscreteGaussianImageFilter.h"
-#include "itkDerivativeImageFilter.h"
-#include "vnl/vnl_matrix_fixed.h"
+#include <itkImage.h>
+#include "ParticleImageDomainWithGradients.h"
+#include <itkLinearInterpolateImageFunction.h>
+#include <itkGradientImageFilter.h>
+#include <itkFixedArray.h>
+#include <itkImageDuplicator.h>
+#include <itkDiscreteGaussianImageFilter.h>
+#include <itkDerivativeImageFilter.h>
+#include <vnl/vnl_matrix_fixed.h>
 
-namespace itk
-{
+
 /** \class ParticleImageDomainWithHessians
  *
  * An image domain that extends ParticleImageDomainWithHessianGradients with Hessian
@@ -39,16 +38,16 @@ namespace itk
  * \sa ParticleDomain
  */
 template <class T, unsigned int VDimension=3>
-class ITK_EXPORT ParticleImageDomainWithHessians
+class ParticleImageDomainWithHessians
   : public ParticleImageDomainWithGradients<T, VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef ParticleImageDomainWithHessians Self;
   typedef ParticleImageDomainWithGradients<T, VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
     /** Point type of the domain (not necessarily of the image). */
   typedef typename Superclass::PointType PointType;
@@ -82,8 +81,8 @@ public:
     // Compute the second derivatives and set up the interpolators
     for (unsigned int i = 0; i < VDimension; i++)
       {
-      typename DerivativeImageFilter<ImageType, ImageType>::Pointer
-        deriv = DerivativeImageFilter<ImageType, ImageType>::New();
+      typename itk::DerivativeImageFilter<ImageType, ImageType>::Pointer
+        deriv = itk::DerivativeImageFilter<ImageType, ImageType>::New();
       deriv->SetInput(gaussian->GetOutput());
       deriv->SetDirection(i);
       deriv->SetOrder(2);
@@ -102,16 +101,16 @@ public:
       {
       for (unsigned int j = i+1; j < VDimension; j++, k++)
         {
-        typename DerivativeImageFilter<ImageType, ImageType>::Pointer
-          deriv1 = DerivativeImageFilter<ImageType, ImageType>::New();
+        typename itk::DerivativeImageFilter<ImageType, ImageType>::Pointer
+          deriv1 = itk::DerivativeImageFilter<ImageType, ImageType>::New();
         deriv1->SetInput(gaussian->GetOutput());
         deriv1->SetDirection(i);
         deriv1->SetUseImageSpacingOn();
         deriv1->SetOrder(1);
         deriv1->Update();
 
-        typename DerivativeImageFilter<ImageType, ImageType>::Pointer
-          deriv2 = DerivativeImageFilter<ImageType, ImageType>::New();
+        typename itk::DerivativeImageFilter<ImageType, ImageType>::Pointer
+          deriv2 = itk::DerivativeImageFilter<ImageType, ImageType>::New();
         deriv2->SetInput(deriv1->GetOutput());
         deriv2->SetDirection(j);
         deriv2->SetUseImageSpacingOn();
@@ -182,7 +181,7 @@ protected:
   ParticleImageDomainWithHessians() : m_Sigma(0.0)
   {  }
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
   }
@@ -205,7 +204,7 @@ private:
   typename ScalarInterpolatorType::Pointer m_Interpolators[VDimension + ((VDimension * VDimension) - VDimension) / 2];
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -213,7 +212,7 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-//# include "itkParticleImageDomainWithHessians.txx"
+//# include "ParticleImageDomainWithHessians.txx"
 #endif
 
 #endif

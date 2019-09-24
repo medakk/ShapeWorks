@@ -1,34 +1,18 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMRBFCorrespondenceInterpolator_h
-#define __itkPSMRBFCorrespondenceInterpolator_h
+#ifndef __PSMRBFCorrespondenceInterpolator_h
+#define __PSMRBFCorrespondenceInterpolator_h
 
 #include <vector>
 #include <vnl/vnl_vector.h>
 #include <vnl/vnl_matrix.h>
 #include <vnl/algo/vnl_svd.h>
 
-#include "itkFunctionBase.h"
-#include "itkPoint.h"
-#include "itkMacro.h"
+//using namespace itk;
 
-namespace itk
-{
+#include <itkFunctionBase.h>
+#include <itkPoint.h>
+#include <itkMacro.h>
+
+
 
 /** \class PSMRBFCorrespondenceInterpolator
  * \brief 
@@ -37,8 +21,8 @@ namespace itk
  * \ingroup 
  */
 template <unsigned int VDimension>
-class ITK_EXPORT PSMRBFCorrespondenceInterpolator :
-  public FunctionBase<Point<double,VDimension>, Point<double,VDimension> >
+class PSMRBFCorrespondenceInterpolator :
+  public FunctionBase itk::Point<double,VDimension>, itk::Point<double,VDimension> >
 {
 public:
   /** Dimensionality of the points. */
@@ -46,10 +30,10 @@ public:
 
   /** Standard class typedefs. */
   typedef PSMRBFCorrespondenceInterpolator    Self;
-  typedef Point<double,VDimension>            PointType;
+  typedef itk::Point<double,VDimension>            PointType;
   typedef FunctionBase <PointType, PointType> Superclass;
-  typedef SmartPointer<Self>                  Pointer;
-  typedef SmartPointer<const Self>            ConstPointer;
+  typedef itk::SmartPointer<Self>                  Pointer;
+  typedef itk::SmartPointer<const Self>            ConstPointer;
 
   /** Method to create through the object factory. */
   itkNewMacro(Self);
@@ -94,7 +78,7 @@ public:
 protected:
   PSMRBFCorrespondenceInterpolator();
   virtual ~PSMRBFCorrespondenceInterpolator() {}
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os,indent);
   }
@@ -114,10 +98,10 @@ private:
   
 };
 
-} // end namespace itk
+
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMRBFCorrespondenceInterpolator.hxx"
+#include "PSMRBFCorrespondenceInterpolator.hxx"
 #endif
 
 #endif

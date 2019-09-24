@@ -1,19 +1,18 @@
 #ifndef ITKPARTICLEGENERALSHAPEMATRIX_H
 #define ITKPARTICLEGENERALSHAPEMATRIX_H
 
-#include "itkParticleAttribute.h"
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "itkParticleContainer.h"
-#include "vnl/vnl_matrix.h"
+#include "ParticleAttribute.h"
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include "ParticleContainer.h"
+#include <vnl/vnl_matrix.h>
 
-#include "itkParticleImplicitSurfaceDomain.h"
-#include "itkParticleImageDomainWithGradients.h"
+#include "ParticleImplicitSurfaceDomain.h"
+#include "ParticleImageDomainWithGradients.h"
 #include "TriMesh.h"
 
-#include "itkParticleSystem.h"
-namespace itk
-{
+#include "ParticleSystem.h"
+
 /** \class ParticleGeneralShapeMatrix
  *
  * \brief Each column describes a shape.  A shape may be composed of
@@ -24,7 +23,7 @@ namespace itk
  * Each column represents a single shape.
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT ParticleGeneralShapeMatrix
+class ParticleGeneralShapeMatrix
         : public vnl_matrix<T>, public ParticleAttribute<VDimension>
 {
 public:
@@ -32,9 +31,9 @@ public:
     typedef T DataType;
     typedef ParticleGeneralShapeMatrix Self;
     typedef ParticleAttribute<VDimension> Superclass;
-    typedef SmartPointer<Self>  Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
-    typedef WeakPointer<const Self>  ConstWeakPointer;
+    typedef itk::SmartPointer<Self>  Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
+    typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
     typedef ParticleSystem<VDimension> ParticleSystemType;
 
@@ -93,9 +92,9 @@ public:
         }
     }
 
-    virtual void DomainAddEventCallback(Object *, const EventObject &e)
+    virtual void DomainAddEventCallback(Object *, const itk::EventObject &e)
     {
-        const itk::ParticleDomainAddEvent &event = dynamic_cast<const itk::ParticleDomainAddEvent &>(e);
+        const ParticleDomainAddEvent &event = dynamic_cast<const ParticleDomainAddEvent &>(e);
         unsigned int d = event.GetDomainIndex();
 
         if ( d % m_DomainsPerShape  == 0 )
@@ -176,7 +175,7 @@ public:
 
     }
 
-    virtual void PositionAddEventCallback(Object *o, const EventObject &e)
+    virtual void PositionAddEventCallback(Object *o, const itk::EventObject &e)
     {
         // update the size of matrix based on xyz, normals and number of attributes being used
         const ParticlePositionAddEvent &event = dynamic_cast<const ParticlePositionAddEvent &>(e);
@@ -200,7 +199,7 @@ public:
         this->SetValues(ps, idx, d);
     }
 
-    virtual void PositionSetEventCallback(Object *o, const EventObject &e)
+    virtual void PositionSetEventCallback(Object *o, const itk::EventObject &e)
     {
         // update xyz, normals and number of attributes being used
         const ParticlePositionSetEvent &event = dynamic_cast<const ParticlePositionSetEvent &>(e);
@@ -211,7 +210,7 @@ public:
         this->SetValues(ps, idx, d);
     }
 
-    virtual void PositionRemoveEventCallback(Object *, const EventObject &)
+    virtual void PositionRemoveEventCallback(Object *, const itk::EventObject &)
     {
         // NEED TO IMPLEMENT THIS
     }
@@ -258,7 +257,7 @@ protected:
     }
     virtual ~ParticleGeneralShapeMatrix() {}
 
-    void PrintSelf(std::ostream& os, Indent indent) const
+    void PrintSelf(std::ostream& os, itk::Indent indent) const
     {  Superclass::PrintSelf(os,indent);  }
 
     int m_DomainsPerShape;
@@ -274,6 +273,6 @@ private:
 
 }; // end class
 
-} // end namespace
+
 
 #endif // ITKPARTICLEGENERALSHAPEMATRIX_H

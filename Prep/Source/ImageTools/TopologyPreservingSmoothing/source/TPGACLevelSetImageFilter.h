@@ -1,19 +1,19 @@
-#ifndef __itkTPGACLevelSetImageFilter_h
-#define __itkTPGACLevelSetImageFilter_h
+#ifndef _TPGACLevelSetImageFilter_h
+#define _TPGACLevelSetImageFilter_h
 
-#include "itkGeodesicActiveContourLevelSetImageFilter.h"
+#include <itkGeodesicActiveContourLevelSetImageFilter.h>
 
-namespace itk {
+//using namespace itk;
 
 template <class TInputImage, class TFeatureImage, class TOutputPixelType = float >
-class ITK_EXPORT TPGACLevelSetImageFilter : public GeodesicActiveContourLevelSetImageFilter< TInputImage, TFeatureImage, TOutputPixelType>
+class TPGACLevelSetImageFilter : public itk::GeodesicActiveContourLevelSetImageFilter< TInputImage, TFeatureImage, TOutputPixelType>
 {
 public:
     /** Standard class typedefs */
     typedef TPGACLevelSetImageFilter                                                                       Self;
-    typedef GeodesicActiveContourLevelSetImageFilter<TInputImage, TFeatureImage, TOutputPixelType>         Superclass;
-    typedef SmartPointer<Self>                                                                             Pointer;
-    typedef SmartPointer<const Self>                                                                       ConstPointer;
+    typedef itk::GeodesicActiveContourLevelSetImageFilter<TInputImage, TFeatureImage, TOutputPixelType>         Superclass;
+    typedef itk::SmartPointer<Self>                                                                             Pointer;
+    typedef itk::SmartPointer<const Self>                                                                       ConstPointer;
 
     typedef TInputImage                                                           ImageType;
     typedef typename ImageType::IndexType                                         IndexType;
@@ -34,7 +34,7 @@ protected:
     ~TPGACLevelSetImageFilter() {}
     TPGACLevelSetImageFilter();
 
-    virtual void PrintSelf(std::ostream &os, Indent indent) const;
+    virtual void PrintSelf(std::ostream &os, itk::Indent indent) const;
 
     TPGACLevelSetImageFilter(const Self &); // purposely not implemented
     void operator=(const Self&); //purposely not implemented
@@ -47,14 +47,14 @@ protected:
 template <class TInputImage, class TFeatureImage, class TOutputType>
 TPGACLevelSetImageFilter< TInputImage, TFeatureImage, TOutputType>
 ::TPGACLevelSetImageFilter()
-    : GeodesicActiveContourLevelSetImageFilter<TInputImage, TFeatureImage, TOutputType>()
+    : itk::GeodesicActiveContourLevelSetImageFilter<TInputImage, TFeatureImage, TOutputType>()
 {
     // call parent constructor
 }
 
 template <class TInputImage, class TFeatureImage, class TOutputType>
 void TPGACLevelSetImageFilter<TInputImage, TFeatureImage, TOutputType>
-::PrintSelf(std::ostream &os, Indent indent) const
+::PrintSelf(std::ostream &os, itk::Indent indent) const
 {
     Superclass::PrintSelf(os, indent);
 }
@@ -288,8 +288,8 @@ TPGACLevelSetImageFilter<TInputImage, TFeatureImage, TOutputType>
     }
 
     // create a 3x3x3 nbh iterator over the output image
-    Size<3> radius = {1,1,1};
-    NeighborhoodIterator<OutputImageType>
+    itk::Size<3> radius = {1,1,1};
+    itk::NeighborhoodIterator<OutputImageType>
             nbhIterator(radius, this->GetOutput(),
                         this->GetOutput()->GetRequestedRegion());
 
@@ -404,10 +404,8 @@ TPGACLevelSetImageFilter<TInputImage, TFeatureImage, TOutputType>
     return temp_value;
 }
 
-} // end namespace itk
-
 //#if ITK_MANUAL_INSTANTIATION
-//#include "itkTPGACLevelSetImageFilter.txx"
+//#include "TPGACLevelSetImageFilter.txx"
 //#endif
 
 #endif

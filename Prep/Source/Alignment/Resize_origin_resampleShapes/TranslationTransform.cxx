@@ -1,9 +1,9 @@
-#include "itkImage.h"
-#include "itkTranslationTransform.h"
-#include "itkImageFileReader.h"
-#include "itkNormalizeImageFilter.h"
-#include "itkResampleImageFilter.h"
-#include "itkImageFileWriter.h"
+#include <itkImage.h>
+#include <itkTranslationTransform.h>
+#include <itkImageFileReader.h>
+#include <itkNormalizeImageFilter.h>
+#include <itkResampleImageFilter.h>
+#include <itkImageFileWriter.h>
 
 #include "QuickView.h"
 

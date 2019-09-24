@@ -6,9 +6,9 @@
 #include <vector>
 #include <array>
 #include <Groom/ShapeWorksGroom.h>
-#include "itkImage.h"
+#include <itkImage.h>
 #include <ParticleShapeworks/include/itkPSMProcrustesRegistration.h>
-#include "itkImageFileReader.h"
+#include <itkImageFileReader.h>
 #include <ParticleShapeworks/include/itkPSMEntropyModelFilter.h>
 #include <ParticleShapeworks/include/itkPSMProject.h>
 #include <ParticleShapeworks/include/itkPSMProjectReader.h>

@@ -12,32 +12,33 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkMaximumEntropySurfaceSampler_h
-#define __itkMaximumEntropySurfaceSampler_h
+#ifndef _MaximumEntropySurfaceSampler_h
+#define _MaximumEntropySurfaceSampler_h
 
-#include "itkParticleSystem.h"
-#include "itkParticleGradientDescentPositionOptimizer.h"
-#include "itkParticleEntropyGradientFunction.h"
-#include "itkParticleQualifierEntropyGradientFunction.h"
-#include "itkParticleImplicitSurfaceDomain.h"
-#include "itkInPlaceImageFilter.h"
-#include "itkParticleContainerArrayAttribute.h"
-#include "itkParticleCurvatureEntropyGradientFunction.h"
-#include "itkParticleMeanCurvatureAttribute.h"
-#include "itkParticleSurfaceNeighborhood.h"
-#include "itkParticleOmegaGradientFunction.h"
+#include "ParticleSystem.h"
+#include "ParticleGradientDescentPositionOptimizer.h"
+#include "ParticleEntropyGradientFunction.h"
+#include "ParticleQualifierEntropyGradientFunction.h"
+#include "ParticleImplicitSurfaceDomain.h"
+#include <itkInPlaceImageFilter.h>
+#include "ParticleContainerArrayAttribute.h"
+#include "ParticleCurvatureEntropyGradientFunction.h"
+#include "ParticleMeanCurvatureAttribute.h"
+#include "ParticleSurfaceNeighborhood.h"
+#include "ParticleOmegaGradientFunction.h"
 
-#include "itkParticleModifiedCotangentEntropyGradientFunction.h"
-#include "itkParticleConstrainedModifiedCotangentEntropyGradientFunction.h"
-#include "vnl/vnl_matrix_fixed.h"
+#include "ParticleModifiedCotangentEntropyGradientFunction.h"
+#include "ParticleConstrainedModifiedCotangentEntropyGradientFunction.h"
+#include <vnl/vnl_matrix_fixed.h>
 
 
 #if defined(SW_USE_MESH) || defined(SW_USE_FEAMESH)
 #include "TriMesh.h"
 #endif
 
-namespace itk
-{
+
+//using namespace itk;
+
 
 /** \class MaximumEntropySurfaceSampler
  *
@@ -45,15 +46,15 @@ namespace itk
  *
  */
 template <class TImage>
-class ITK_EXPORT MaximumEntropySurfaceSampler
-        : public InPlaceImageFilter<TImage,TImage>
+class MaximumEntropySurfaceSampler
+        : public itk::InPlaceImageFilter<TImage,TImage>
 {
 public:
     /** Standard class typedefs. */
     typedef MaximumEntropySurfaceSampler  Self;
-    typedef InPlaceImageFilter<TImage,TImage>  Superclass;
-    typedef SmartPointer<Self>   Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
+    typedef itk::InPlaceImageFilter<TImage,TImage>  Superclass;
+    typedef itk::SmartPointer<Self>   Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
 
     /** Method for creation through the object factory. */
     itkNewMacro(Self);
@@ -368,7 +369,7 @@ protected:
     MaximumEntropySurfaceSampler();
     virtual ~MaximumEntropySurfaceSampler() {};
 
-    void PrintSelf(std::ostream& os, Indent indent) const
+    void PrintSelf(std::ostream& os, itk::Indent indent) const
     {
         Superclass::PrintSelf(os, indent);
     }
@@ -439,17 +440,17 @@ private:
 
 };
 
-} // end namespace itk
+
 
 #if ITK_TEMPLATE_EXPLICIT
-#include "Templates/itkMaximumEntropySurfaceSampler+-.h"
+#include "Templates/MaximumEntropySurfaceSampler+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-#include "itkMaximumEntropySurfaceSampler.txx"
+#include <MaximumEntropySurfaceSampler.txx>
 #endif
 
-#include "itkMaximumEntropySurfaceSampler.txx"
+#include <MaximumEntropySurfaceSampler.txx>
 
 #endif
 

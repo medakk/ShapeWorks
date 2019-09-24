@@ -12,15 +12,15 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleSurfaceNeighborhood_h
-#define __itkParticleSurfaceNeighborhood_h
+#ifndef _ParticleSurfaceNeighborhood_h
+#define _ParticleSurfaceNeighborhood_h
 
-#include "itkParticleRegionNeighborhood.h"
-#include "itkParticleImplicitSurfaceDomain.h"
-#include "vnl/vnl_vector_fixed.h"
+#include "ParticleRegionNeighborhood.h"
+#include "ParticleImplicitSurfaceDomain.h"
+#include <vnl/vnl_vector_fixed.h>
 
-namespace itk
-{
+//using namespace itk;
+
 /** \class ParticleSurfaceNeighborhood
  *
  * ParticleSurfaceNeighborhood is a general purpose neighborhood object that
@@ -30,16 +30,16 @@ namespace itk
  * FindNeighborhoodPoints is somewhat optimized. 
  */
 template <class TImage>
-class ITK_EXPORT ParticleSurfaceNeighborhood : public ParticleRegionNeighborhood<TImage::ImageDimension>
+class ParticleSurfaceNeighborhood : public ParticleRegionNeighborhood<TImage::ImageDimension>
 {
 public:
   /** Standard class typedefs */
   typedef TImage ImageType;
   typedef ParticleSurfaceNeighborhood Self;
   typedef ParticleRegionNeighborhood<TImage::ImageDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   typedef typename ImageType::PixelType NumericType;
   typedef typename Superclass::PointTreeType PointTreeType;
 
@@ -66,7 +66,7 @@ public:
   virtual PointVectorType FindNeighborhoodPoints(const PointType &, std::vector<double> &, double) const;
   //  virtual unsigned int  FindNeighborhoodPoints(const PointType &, double, PointVectorType &) const;
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
   }
@@ -82,7 +82,7 @@ private:
 
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -90,9 +90,9 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleSurfaceNeighborhood.txx"
+# include "ParticleSurfaceNeighborhood.txx"
 #endif
 
-#include "itkParticleSurfaceNeighborhood.txx"
+#include "ParticleSurfaceNeighborhood.txx"
 
 #endif

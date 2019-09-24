@@ -5,7 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
-#include "vnl/vnl_vector.h"
+#include <vnl/vnl_vector.h>
 
 #include <vtkVersion.h>
 #include <vtkPoints.h>

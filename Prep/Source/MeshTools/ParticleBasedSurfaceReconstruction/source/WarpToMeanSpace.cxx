@@ -53,14 +53,14 @@
 #include <itkAddImageFilter.h>
 #include <itkImageDuplicator.h>
 #include <itkTransform.h>
-#include "itkMultiplyByConstantImageFilter.h"
-#include "itkNrrdImageIOFactory.h"
-#include "itkMetaImageIOFactory.h"
+#include "MultiplyByConstantImageFilter.h"
+#include <itkNrrdImageIOFactory.h>
+#include <itkMetaImageIOFactory.h>
 
 //-------------- adapted ITK filters --------------------------
 #include "Transforms/itkThinPlateSplineKernelTransform2.h"
 #include "Transforms/itkCompactlySupportedRBFSparseKernelTransform.h"
-#include "itkResampleImageFilter.h"
+#include <itkResampleImageFilter.h>
 
 //------------- VTK ---------------------
 #include <vtkVersion.h>
@@ -91,8 +91,8 @@
 #include <vtkProbeFilter.h>
 
 //--------- ITK <-> VTK ---------------
-#include "itkImageToVTKImageFilter.h"
-#include "itkVTKImageToImageFilter.h"
+#include <itkImageToVTKImageFilter.h>
+#include <itkVTKImageToImageFilter.h>
 
 //--------- our stuff ----------------
 #include "Params/InputParams.h"
@@ -140,8 +140,8 @@ typedef itk::ResampleImageFilter<InputImageType, OutputImageType > ResampleFilte
 // warping ----------
 typedef itk::AffineTransform< double, Dimension > TransformType;
 typedef   double CoordinateRepType;
-typedef   itk::CompactlySupportedRBFSparseKernelTransform < CoordinateRepType,Dimension>     RBFTransformType;
-typedef   itk::ThinPlateSplineKernelTransform2< CoordinateRepType,Dimension>  ThinPlateSplineType;
+typedef   CompactlySupportedRBFSparseKernelTransform < CoordinateRepType,Dimension>     RBFTransformType;
+typedef   ThinPlateSplineKernelTransform2< CoordinateRepType,Dimension>  ThinPlateSplineType;
 typedef   itk::Point< CoordinateRepType,Dimension >  PointType;
 typedef   std::vector< PointType >                   PointArrayType;
 #ifdef USE_TPS

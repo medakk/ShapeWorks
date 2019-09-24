@@ -22,7 +22,7 @@
 
 // Etc
 #include "tinyxml.h"
-#include "vnl/vnl_vector.h"
+#include <vnl/vnl_vector.h>
 
 
 int main(int argc, char *argv[])

@@ -1,8 +1,8 @@
 
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkBinaryThresholdImageFilter.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include <itkBinaryThresholdImageFilter.h>
 #include "TriMesh.h"
 #include "meshFIM.h"
 #include "math.h"
@@ -15,42 +15,42 @@
 #include <climits>
 
 #include "itksys/SystemTools.hxx"
-#include "itkAntiAliasBinaryImageFilter.h"
-#include "itkReinitializeLevelSetImageFilter.h" // for distance transform computation
+#include <itkAntiAliasBinaryImageFilter.h>
+#include <itkReinitializeLevelSetImageFilter.h> // for distance transform computation
 
 
 // VTK
-#include "vtkPolyData.h"
-#include "vtkMetaImageReader.h"
-#include "vtkMetaImageWriter.h"
-#include "vtkSmartPointer.h"
-#include "vtkContourFilter.h"
-#include "vtkDecimatePro.h"
-#include "vtkSmoothPolyDataFilter.h"
-#include "vtkPLYWriter.h"
-#include "vtkRenderer.h"
-#include "vtkRenderWindow.h"
-#include "vtkCamera.h"
-#include "vtkRenderWindowInteractor.h"
-#include "vtkPolyDataMapper.h"
-#include "vtkVertexGlyphFilter.h"
-#include "vtkPLYReader.h"
-#include "vtkTriangleFilter.h"
-#include "vtkProperty.h"
-#include "vtkImageCast.h"
-#include "vtkExtractSelection.h"
-#include "vtkIdTypeArray.h"
-#include "vtkInformation.h"
-#include "vtkSelection.h"
-#include "vtkSelectionNode.h"
-#include "vtkUnstructuredGrid.h"
-#include "vtkDataSetMapper.h"
-#include "vtkPolyDataToImageStencil.h"
-#include "vtkImageStencil.h"
-#include "vtkImageData.h"
+#include <vtkPolyData.h>
+#include <vtkMetaImageReader.h>
+#include <vtkMetaImageWriter.h>
+#include <vtkSmartPointer.h>
+#include <vtkContourFilter.h>
+#include <vtkDecimatePro.h>
+#include <vtkSmoothPolyDataFilter.h>
+#include <vtkPLYWriter.h>
+#include <vtkRenderer.h>
+#include <vtkRenderWindow.h>
+#include <vtkCamera.h>
+#include <vtkRenderWindowInteractor.h>
+#include <vtkPolyDataMapper.h>
+#include <vtkVertexGlyphFilter.h>
+#include <vtkPLYReader.h>
+#include <vtkTriangleFilter.h>
+#include <vtkProperty.h>
+#include <vtkImageCast.h>
+#include <vtkExtractSelection.h>
+#include <vtkIdTypeArray.h>
+#include <vtkInformation.h>
+#include <vtkSelection.h>
+#include <vtkSelectionNode.h>
+#include <vtkUnstructuredGrid.h>
+#include <vtkDataSetMapper.h>
+#include <vtkPolyDataToImageStencil.h>
+#include <vtkImageStencil.h>
+#include <vtkImageData.h>
 #include <vtkPointData.h>
-#include "vtkTriangle.h"
-#include "vtkCellArray.h"
+#include <vtkTriangle.h>
+#include <vtkCellArray.h>
 
 // C++/STL
 #include <iostream>
@@ -65,10 +65,10 @@
 
 // Etc
 #include "tinyxml.h"
-#include "vnl/vnl_vector.h"
+#include <vnl/vnl_vector.h>
 
 // debug -- prateep
-//#include "itkParticlePositionReader.h"
+//#include "ParticlePositionReader.h"
 // debug -- prateep
 
 #define _USE_MATH_DEFINES

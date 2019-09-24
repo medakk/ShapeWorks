@@ -13,7 +13,7 @@
 #ifndef MESH_GENERATOR_H
 #define MESH_GENERATOR_H
 
-#include "vnl/vnl_vector.h"
+#include <vnl/vnl_vector.h>
 #include <Surfworks/Reconstruction.h>
 #include <Data/Preferences.h>
 

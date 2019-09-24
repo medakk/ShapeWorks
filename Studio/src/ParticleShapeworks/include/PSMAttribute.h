@@ -1,52 +1,34 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMAttribute_h
-#define __itkPSMAttribute_h
+#ifndef __PSMAttribute_h
+#define __PSMAttribute_h
 
-#include "itkDataObject.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
-#include "itkCommand.h"
-#include "itkPSMEvents.h"
+#include <itkDataObject.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
+#include <itkCommand.h>
+#include "PSMEvents.h"
 
-namespace itk
-{
+//using namespace itk;
 
 /** \class PSMAttribute
  *  \brief Base class for PSMParticleSystem attribute classes.
  * \ingroup ParticleShapeModeling
  */
 template< unsigned int VDimension>
-class ITK_EXPORT PSMAttribute : public DataObject
+class PSMAttribute : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef PSMAttribute Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(PSMAttribute, DataObject);
+  itkTypeMacro(PSMAttribute, itk::DataObject);
 
   /** Data structure indicating which callback functions are defined by a
       subclass.  The PSMParticleSystem class will reference this structure to
@@ -80,28 +62,26 @@ public:
       of these callback methods, the corresponding flag in m_DefinedCallbacks
       should be set to true so that the PSMParticleSystem will know to register
       the appropriate event with this method. */
-  virtual void EventCallback(Object *, const EventObject &) {}
-  virtual void EventWithIndexCallback(Object *, const EventObject &) {}
-  virtual void DomainAddEventCallback(Object *, const EventObject &) {}
-  virtual void TransformSetEventCallback(Object *, const EventObject &) {}
-  virtual void PrefixTransformSetEventCallback(Object *, const EventObject &) {}
-  virtual void NeighborhoodSetEventCallback(Object *, const EventObject &) {}
-  virtual void PositionSetEventCallback(Object *, const EventObject &) {}
-  virtual void PositionAddEventCallback(Object *, const EventObject &) {}
-  virtual void PositionRemoveEventCallback(Object *, const EventObject &) {}
+  virtual void EventCallback(Object *, const itk::EventObject &) {}
+  virtual void EventWithIndexCallback(Object *, const itk::EventObject &) {}
+  virtual void DomainAddEventCallback(Object *, const itk::EventObject &) {}
+  virtual void TransformSetEventCallback(Object *, const itk::EventObject &) {}
+  virtual void PrefixTransformSetEventCallback(Object *, const itk::EventObject &) {}
+  virtual void NeighborhoodSetEventCallback(Object *, const itk::EventObject &) {}
+  virtual void PositionSetEventCallback(Object *, const itk::EventObject &) {}
+  virtual void PositionAddEventCallback(Object *, const itk::EventObject &) {}
+  virtual void PositionRemoveEventCallback(Object *, const itk::EventObject &) {}
 
 protected:
   PSMAttribute() {}
   virtual ~PSMAttribute() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {  Superclass::PrintSelf(os,indent);  }
 
 private:
   PSMAttribute(const Self&); //purposely not implemented
   void operator=(const Self&); //purposely not implemented
 };
-
-} // end namespace itk
 
 #endif

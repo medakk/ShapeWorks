@@ -12,11 +12,10 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleRegionNeighborhood_txx
-#define __itkParticleRegionNeighborhood_txx
+#ifndef _ParticleRegionNeighborhood_txx
+#define _ParticleRegionNeighborhood_txx
 
-namespace itk
-{
+
 template<unsigned int VDimension>
 void ParticleRegionNeighborhood<VDimension>::SetDomain(DomainType *d)
 {
@@ -157,8 +156,5 @@ void ParticleRegionNeighborhood<VDimension>
   pr.NodePointer->GetList().erase(pr.Iterator); 
 }
 
-
-
-}
 
 #endif

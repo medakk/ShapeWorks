@@ -12,17 +12,19 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleDualVectorFunction_h
-#define __itkParticleDualVectorFunction_h
+#ifndef _ParticleDualVectorFunction_h
+#define _ParticleDualVectorFunction_h
 
-#include "itkLightObject.h"
-#include "itkObjectFactory.h"
-#include "itkWeakPointer.h"
-#include "itkParticleSystem.h"
-#include "vnl/vnl_vector_fixed.h"
+#include <itkLightObject.h>
+#include <itkObjectFactory.h>
+#include <itkWeakPointer.h>
+#include "ParticleSystem.h"
+#include <vnl/vnl_vector_fixed.h>
 
-namespace itk
-{
+
+
+//using namespace itk;
+
 
 /**
  * \class ParticleDualVectorFunction
@@ -38,8 +40,8 @@ class ParticleDualVectorFunction : public ParticleVectorFunction<VDimension>
 public:
     /** Standard class typedefs. */
     typedef ParticleDualVectorFunction Self;
-    typedef SmartPointer<Self>  Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
+    typedef itk::SmartPointer<Self>  Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
     typedef ParticleVectorFunction<VDimension> Superclass;
     itkTypeMacro( ParticleDualVectorFunction, ParticleVectorFunction);
 
@@ -466,14 +468,14 @@ protected:
 };
 
 
-} //end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 //# include "Templates/itkParticleDualVectorFunction+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-//# include "itkParticleDualVectorFunction.txx"
+//# include "ParticleDualVectorFunction.txx"
 #endif
 
 #endif

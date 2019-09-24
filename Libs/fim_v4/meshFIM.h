@@ -6,11 +6,11 @@
 #include "TriMesh_algo.h"
 
 
-//#include "itkImageToImageFilter.h"
-//#include "itkLevelSet.h"
-//#include "itkIndex.h"
-//#include "vnl/vnl_math.h"
-//#include "itkDiffusionTensor3D.h"
+//#include <itkImageToImageFilter.h>
+//#include <itkLevelSet.h>
+//#include <itkIndex.h>
+//#include <vnl/vnl_math.h>
+//#include <itkDiffusionTensor3D.h>
 #include <iostream>
 #include <typeinfo>
 #include <functional>

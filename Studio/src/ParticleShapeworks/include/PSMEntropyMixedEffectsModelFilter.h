@@ -1,28 +1,12 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMEntropyMixedEffectsModelFilter_h
-#define __itkPSMEntropyMixedEffectsModelFilter_h
+#ifndef __PSMEntropyMixedEffectsModelFilter_h
+#define __PSMEntropyMixedEffectsModelFilter_h
 
-#include "itkPSMEntropyModelFilter.h"
-#include "itkPSMMixedEffectsShapeMatrixAttribute.h"
+#include "PSMEntropyModelFilter.h"
+#include "PSMMixedEffectsShapeMatrixAttribute.h"
 
-namespace itk
-{
+//using namespace itk;
+
+
   
 /** \class PSMEntropyMixedEffectsModelFilter
  *
@@ -37,15 +21,15 @@ namespace itk
  * \author Josh Cates
  */
 template <class TImage, class TShapeMatrix = PSMMixedEffectsShapeMatrixAttribute<double, TImage::ImageDimension> >
-class ITK_EXPORT PSMEntropyMixedEffectsModelFilter
+class PSMEntropyMixedEffectsModelFilter
   : public PSMEntropyModelFilter<TImage,TShapeMatrix>
 {
  public:
  /** Standard class typedefs. */
  typedef PSMEntropyMixedEffectsModelFilter  Self;
  typedef PSMEntropyModelFilter<TImage, TShapeMatrix> Superclass;
- typedef SmartPointer<Self>   Pointer;
- typedef SmartPointer<const Self>  ConstPointer;
+ typedef itk::SmartPointer<Self>   Pointer;
+ typedef itk::SmartPointer<const Self>  ConstPointer;
  
  /** Dimensionality of the domain of the particle system. */
  itkStaticConstMacro(Dimension, unsigned int, TImage::ImageDimension);
@@ -105,7 +89,7 @@ class ITK_EXPORT PSMEntropyMixedEffectsModelFilter
  PSMEntropyMixedEffectsModelFilter() {}
  virtual ~PSMEntropyMixedEffectsModelFilter() {}
  
- void PrintSelf(std::ostream& os, Indent indent) const
+ void PrintSelf(std::ostream& os, itk::Indent indent) const
  {
    Superclass::PrintSelf(os, indent);
   }
@@ -115,6 +99,6 @@ private:
   void operator=(const Self&);        //purposely not implemented
 };
 
-} // end namespace itk
+
 
 #endif

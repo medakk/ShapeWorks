@@ -1,37 +1,21 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMMeanCurvatureAttribute_h
-#define __itkPSMMeanCurvatureAttribute_h
+#ifndef __PSMMeanCurvatureAttribute_h
+#define __PSMMeanCurvatureAttribute_h
 
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "itkPSMContainer.h"
-#include "itkPSMContainerArrayAttribute.h"
-#include "itkPSMImageDomainWithCurvature.h"
-#include "itkPSMParticleSystem.h"
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include "PSMContainer.h"
+#include "PSMContainerArrayAttribute.h"
+#include "PSMImageDomainWithCurvature.h"
+#include "PSMParticleSystem.h"
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMMeanCurvatureAttribute
  *  \brief
  */
 template <class TNumericType, unsigned int VDimension>
-class ITK_EXPORT PSMMeanCurvatureAttribute
+class PSMMeanCurvatureAttribute
   : public PSMContainerArrayAttribute<TNumericType,VDimension>
 {
 public:
@@ -39,9 +23,9 @@ public:
   typedef TNumericType NumericType;
   typedef PSMMeanCurvatureAttribute Self;
   typedef PSMContainerArrayAttribute<TNumericType,VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   
   /** Numeric types. */
   typedef PSMParticleSystem<VDimension> ParticleSystemType; 
@@ -54,7 +38,7 @@ public:
   /** Run-time type information (and related methods). */
   itkTypeMacro(PSMMeanCurvatureAttribute, PSMContainerArrayAttribute);
 
-  virtual void PositionAddEventCallback(Object *o, const EventObject &e) 
+  virtual void PositionAddEventCallback(Object *o, const itk::EventObject &e) 
   {
     Superclass::PositionAddEventCallback(o, e);
     const ParticlePositionAddEvent &event = dynamic_cast<const ParticlePositionAddEvent &>(e);
@@ -62,14 +46,14 @@ public:
     this->ComputeMeanCurvature(ps, event.GetPositionIndex(), event.GetDomainIndex());
   }
 
-  virtual void PositionSetEventCallback(Object *o, const EventObject &e)
+  virtual void PositionSetEventCallback(Object *o, const itk::EventObject &e)
   {
     const ParticlePositionSetEvent &event = dynamic_cast<const ParticlePositionSetEvent &>(e);
     const ParticleSystemType *ps= dynamic_cast<const ParticleSystemType *>(o);
     this->ComputeMeanCurvature(ps, event.GetPositionIndex(), event.GetDomainIndex());
   }
   
-  virtual void DomainAddEventCallback(Object *o, const EventObject &e)
+  virtual void DomainAddEventCallback(Object *o, const itk::EventObject &e)
   {
     Superclass::DomainAddEventCallback(o, e);
     m_MeanCurvatureList.push_back(0.0);
@@ -110,7 +94,7 @@ protected:
   }
   virtual ~PSMMeanCurvatureAttribute() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {  Superclass::PrintSelf(os,indent);  }
 
 private:
@@ -122,10 +106,9 @@ private:
   
 };
 
-} // end namespace
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMMeanCurvatureAttribute.hxx"
+#include "PSMMeanCurvatureAttribute.hxx"
 #endif
 
 #endif

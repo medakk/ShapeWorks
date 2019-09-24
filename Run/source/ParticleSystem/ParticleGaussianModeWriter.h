@@ -12,31 +12,33 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleGaussianModeWriter_h
-#define __itkParticleGaussianModeWriter_h
+#ifndef _ParticleGaussianModeWriter_h
+#define _ParticleGaussianModeWriter_h
 
-#include "itkParticleShapeMatrixAttribute.h"
-#include "itkDataObject.h"
+#include "ParticleShapeMatrixAttribute.h"
+#include <itkDataObject.h>
 #include <vector>
 #include <string>
 
-namespace itk
-{
+
+
+//using namespace itk;
+
 
 /**
  * \class ParticleGaussianModeWriter
  *
  */
 template <unsigned int VDimension>
-class ParticleGaussianModeWriter : public DataObject
+class ParticleGaussianModeWriter : public itk::DataObject
 {
 public:
  /** Standard class typedefs. */
   typedef ParticleGaussianModeWriter Self;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef DataObject Superclass;
-  itkTypeMacro( ParticleGaussianModeWriter, DataObject);
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::DataObject Superclass;
+  itkTypeMacro( ParticleGaussianModeWriter, itk::DataObject);
 
   /** Type of particle system and associated classes. */
   typedef ParticleSystem<VDimension> ParticleSystemType;
@@ -92,17 +94,17 @@ protected:
 };
 
 
-} //end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 #include "Templates/itkParticleGaussianModeWriter+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-#include "itkParticleGaussianModeWriter.txx"
+#include "ParticleGaussianModeWriter.txx"
 #endif
 
-#include "itkParticleGaussianModeWriter.txx"
+#include "ParticleGaussianModeWriter.txx"
 
 #endif
 

@@ -12,17 +12,19 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleVectorFunction_h
-#define __itkParticleVectorFunction_h
+#ifndef _ParticleVectorFunction_h
+#define _ParticleVectorFunction_h
 
-#include "itkLightObject.h"
-#include "itkObjectFactory.h"
-#include "itkWeakPointer.h"
-#include "itkParticleSystem.h"
-#include "vnl/vnl_vector_fixed.h"
+#include <itkLightObject.h>
+#include <itkObjectFactory.h>
+#include <itkWeakPointer.h>
+#include "ParticleSystem.h"
+#include <vnl/vnl_vector_fixed.h>
 
-namespace itk
-{
+
+
+//using namespace itk;
+
 
 /**
  * \class ParticleVectorFunction
@@ -38,8 +40,8 @@ class ParticleVectorFunction : public LightObject
 public:
  /** Standard class typedefs. */
   typedef ParticleVectorFunction Self;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
   typedef LightObject Superclass;
   itkTypeMacro( ParticleVectorFunction, LightObject);
 
@@ -113,14 +115,14 @@ protected:
 };
 
 
-} //end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 //# include "Templates/itkParticleVectorFunction+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-//# include "itkParticleVectorFunction.txx"
+//# include "ParticleVectorFunction.txx"
 #endif
 
 #endif

@@ -1,15 +1,15 @@
 #include <iostream>
 #include <string>
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkVectorLinearInterpolateImageFunction.h"
-#include "itkGradientImageFilter.h"
-#include "itkPoint.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkVectorLinearInterpolateImageFunction.h>
+#include <itkGradientImageFilter.h>
+#include <itkPoint.h>
 #include <sstream>
 #include <fstream>
-#include "itkFixedArray.h"
+#include <itkFixedArray.h>
 #include "Utils.h"
-#include "vnl/vnl_vector_fixed.h"
+#include <vnl/vnl_vector_fixed.h>
 #include "tinyxml.h"
 #include <vector>
 

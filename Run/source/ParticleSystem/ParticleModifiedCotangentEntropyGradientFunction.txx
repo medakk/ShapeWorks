@@ -12,13 +12,13 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleModifiedCotangentEntropyGradientFunction_txx
-#define __itkParticleModifiedCotangentEntropyGradientFunction_txx
-#include "vnl/vnl_matrix_fixed.h"
-#include "vnl/vnl_vector_fixed.h"
-#include "vnl/vnl_matrix.h"
+#ifndef _ParticleModifiedCotangentEntropyGradientFunction_txx
+#define _ParticleModifiedCotangentEntropyGradientFunction_txx
+#include <vnl/vnl_matrix_fixed.h>
+#include <vnl/vnl_vector_fixed.h>
+#include <vnl/vnl_matrix.h>
 
-namespace itk {
+
 
 template <class TGradientNumericType, unsigned int VDimension>
 typename ParticleModifiedCotangentEntropyGradientFunction<TGradientNumericType, VDimension>::VectorType
@@ -96,5 +96,5 @@ ParticleModifiedCotangentEntropyGradientFunction<TGradientNumericType, VDimensio
     return gradE ;
 }
 
-}// end namespace
+
 #endif

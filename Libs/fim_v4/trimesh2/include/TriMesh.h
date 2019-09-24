@@ -61,15 +61,15 @@ Class for triangle meshes.
 
 
 // itk files to generate Face Index -- PM
-#include "itkImage.h"
-#include "itkImageRegionConstIteratorWithIndex.h"
-#include "itkImageRegionIteratorWithIndex.h"
-#include "itkImageFileWriter.h"
-#include "itkTimeProbe.h"
-#include "itkResampleImageFilter.h"
-#include "itkIdentityTransform.h"
-#include "itkLinearInterpolateImageFunction.h"
-#include "itkBSplineInterpolateImageFunction.h"
+#include <itkImage.h>
+#include <itkImageRegionConstIteratorWithIndex.h>
+#include <itkImageRegionIteratorWithIndex.h>
+#include <itkImageFileWriter.h>
+#include <itkTimeProbe.h>
+#include <itkResampleImageFilter.h>
+#include <itkIdentityTransform.h>
+#include <itkLinearInterpolateImageFunction.h>
+#include <itkBSplineInterpolateImageFunction.h>
 // sets for the face index set
 #include <set>
 

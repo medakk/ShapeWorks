@@ -19,18 +19,18 @@
 #include <vector>
 #include <string>
 #include <sstream>
-#include "itkPSMProcrustesRegistration.h"
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkPSMEntropyModelFilter.h"
-#include "itkPSMProjectReader.h"
-#include "itkPSMParticleSystem.h"
-#include "itkPSMRegionDomain.h"
-#include "vnl/vnl_matrix_fixed.h"
-#include "vnl/vnl_vector_fixed.h"
-#include "itkCommand.h"
+#include "PSMProcrustesRegistration.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include "PSMEntropyModelFilter.h"
+#include "PSMProjectReader.h"
+#include "PSMParticleSystem.h"
+#include "PSMRegionDomain.h"
+#include <vnl/vnl_matrix_fixed.h>
+#include <vnl/vnl_vector_fixed.h>
+#include <itkCommand.h>
 
-namespace itk{
+
 
 class MyPSMProcrustesIterationCommand : public itk::Command
 {
@@ -38,10 +38,10 @@ public:
   /** Standard class typedefs. */
   typedef MyPSMProcrustesIterationCommand         Self;
   typedef Command                                 Superclass;
-  typedef SmartPointer< Self >                    Pointer;
-  typedef SmartPointer< const Self >              ConstPointer;
+  typedef itk::SmartPointer< Self >                    Pointer;
+  typedef itk::SmartPointer< const Self >              ConstPointer;
   
-  typedef Image<float, 3> ImageType;
+  typedef itk::Image<float, 3> ImageType;
   
   PSMProcrustesRegistration<3> *procrustesRegistration;
   /** Run-time type information (and related methods). */
@@ -51,7 +51,7 @@ public:
   itkNewMacro(Self);
   
   /** This method will be passed a PSMProcrustesRegistration */
-  virtual void Execute(Object *caller, const EventObject &)
+  virtual void Execute(Object *caller, const itk::EventObject &)
   {
     PSMEntropyModelFilter<ImageType> *o
       = static_cast<PSMEntropyModelFilter<ImageType> *>(caller);
@@ -81,7 +81,7 @@ public:
     std::cout << std::endl;
     std::cout << " Regularization = " << o->GetRegularizationConstant() << std::endl;
   }
-  virtual void Execute(const Object *, const EventObject &)
+  virtual void Execute(const Object *, const itk::EventObject &)
   {
     std::cout << "SHOULDN'T BE HERE" << std::endl;
   }
@@ -100,7 +100,7 @@ private:
   void operator=(const Self &); //purposely not implemented
 };
 
-} // end namespace itk
+
 
 /** \class object_reader
  * Reads a std::vector of c++ objects.  The first integer in the file is assumed to
@@ -185,7 +185,7 @@ int itkPSMProcrustesRegistrationTest(int argc, char* argv[] )
   if (argc < 3)
     {
     std::cout << "Wrong number of arguments. \nUse: "
-              << "itkPSMProcrustesRegistrationTest parameter_file transforms_file [output_path] [input_path]\n"
+              << "PSMProcrustesRegistrationTest parameter_file transforms_file [output_path] [input_path]\n"
               << "See itk::PSMParameterFileReader for documentation on the parameter file format.\n"
               <<" Note that input_path will be prefixed to any file names and paths in the xml parameter file.\n"
               << std::endl;
@@ -425,7 +425,7 @@ int itkPSMProcrustesRegistrationTest(int argc, char* argv[] )
     }
   catch(itk::ExceptionObject &e)
     {
-    errstring = "ITK exception with description: " + std::string(e.GetDescription())
+    errstring = " exception with description: " + std::string(e.GetDescription())
       + std::string("\n at location:") + std::string(e.GetLocation())
       + std::string("\n in file:") + std::string(e.GetFile());
     passed = false;

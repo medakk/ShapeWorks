@@ -12,13 +12,13 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleCurvatureEntropyGradientFunction_txx
-#define __itkParticleCurvatureEntropyGradientFunction_txx
-#include "vnl/vnl_matrix_fixed.h"
-#include "vnl/vnl_vector_fixed.h"
-#include "vnl/vnl_matrix.h"
+#ifndef _ParticleCurvatureEntropyGradientFunction_txx
+#define _ParticleCurvatureEntropyGradientFunction_txx
+#include <vnl/vnl_matrix_fixed.h>
+#include <vnl/vnl_vector_fixed.h>
+#include <vnl/vnl_matrix.h>
 
-namespace itk {
+
 
 template <class TGradientNumericType, unsigned int VDimension>
 double
@@ -304,6 +304,6 @@ ParticleCurvatureEntropyGradientFunction<TGradientNumericType, VDimension>
   return gradE / m_avgKappa;
 }
 
-}// end namespace
+
 #endif
 

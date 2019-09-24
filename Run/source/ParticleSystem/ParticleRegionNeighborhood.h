@@ -12,14 +12,13 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleRegionNeighborhood_h
-#define __itkParticleRegionNeighborhood_h
+#ifndef _ParticleRegionNeighborhood_h
+#define _ParticleRegionNeighborhood_h
 
-#include "itkParticleNeighborhood.h"
-#include "itkPowerOfTwoPointTree.h"
+#include "ParticleNeighborhood.h"
+#include "PowerOfTwoPointTree.h"
 
-namespace itk
-{
+
 /** \class ParticleRegionNeighborhood
  *
  * ParticleRegionNeighborhood is a general purpose neighborhood object that
@@ -29,15 +28,15 @@ namespace itk
  * FindNeighborhoodPoints is somewhat optimized. 
  */
 template <unsigned int VDimension=3>
-class ITK_EXPORT ParticleRegionNeighborhood : public ParticleNeighborhood<VDimension>
+class ParticleRegionNeighborhood : public ParticleNeighborhood<VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef ParticleRegionNeighborhood Self;
   typedef ParticleNeighborhood<VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -71,7 +70,7 @@ public:
   itkSetMacro(TreeLevels, unsigned int);
   itkGetMacro(TreeLevels, unsigned int);
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     os << indent << "m_TreeLevels = " << m_TreeLevels << std::endl;
     m_Tree->PrintSelf(os, indent);
@@ -138,7 +137,7 @@ private:
 
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -146,9 +145,9 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleRegionNeighborhood.txx"
+# include "ParticleRegionNeighborhood.txx"
 #endif
 
-#include "itkParticleRegionNeighborhood.txx"
+#include "ParticleRegionNeighborhood.txx"
 
 #endif

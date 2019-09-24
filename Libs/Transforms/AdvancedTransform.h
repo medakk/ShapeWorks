@@ -1,45 +1,11 @@
-/*=========================================================================
- *
- *  Copyright UMC Utrecht and contributors
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-/*=========================================================================
+#ifndef __AdvancedTransform_h
+#define __AdvancedTransform_h
 
-  Program:   Insight Segmentation & Registration Toolkit
-  Module:    $RCSfile: itkTransform.h,v $
-  Language:  C++
-  Date:      $Date: 2008-06-29 12:58:58 $
-  Version:   $Revision: 1.64 $
+#include <itkTransform.h>
+#include <itkMatrix.h>
+#include <itkFixedArray.h>
 
-  Copyright (c) Insight Software Consortium. All rights reserved.
-  See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
-
-     This software is distributed WITHOUT ANY WARRANTY; without even
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-     PURPOSE.  See the above copyright notices for more information.
-
-=========================================================================*/
-#ifndef __itkAdvancedTransform_h
-#define __itkAdvancedTransform_h
-
-#include "itkTransform.h"
-#include "itkMatrix.h"
-#include "itkFixedArray.h"
-
-namespace itk
-{
+//using namespace itk;
 
 /** \class AdvancedTransform
  * \brief Transform maps points, vectors and covariant vectors from an input
@@ -83,23 +49,23 @@ template< class TScalarType,
 unsigned int NInputDimensions  = 3,
 unsigned int NOutputDimensions = 3 >
 class AdvancedTransform :
-  public Transform< TScalarType, NInputDimensions, NOutputDimensions >
+  public itk::Transform< TScalarType, NInputDimensions, NOutputDimensions >
 {
 public:
 
   /** Standard class typedefs. */
   typedef AdvancedTransform Self;
-  typedef Transform< TScalarType,
+  typedef itk::Transform< TScalarType,
     NInputDimensions,
     NOutputDimensions >               Superclass;
-  typedef SmartPointer< Self >       Pointer;
-  typedef SmartPointer< const Self > ConstPointer;
+  typedef itk::SmartPointer< Self >       Pointer;
+  typedef itk::SmartPointer< const Self > ConstPointer;
 
   /** New method for creating an object using a factory. */
   //itkNewMacro( Self );
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro( AdvancedTransform, Transform );
+  itkTypeMacro( AdvancedTransform, itk::Transform );
 
   /** Dimension of the domain space. */
   itkStaticConstMacro( InputSpaceDimension, unsigned int, NInputDimensions );
@@ -127,7 +93,7 @@ public:
   typedef typename Superclass::InverseTransformBasePointer InverseTransformBasePointer;
 
   /** Transform typedefs for the from Superclass. */
-  typedef Transform< TScalarType,
+  typedef itk::Transform< TScalarType,
     NInputDimensions,
     NOutputDimensions >                             TransformType;
   typedef typename TransformType::Pointer      TransformTypePointer;
@@ -138,12 +104,12 @@ public:
    * gain for the SpatialHessianType.
    */
   typedef std::vector< unsigned long > NonZeroJacobianIndicesType;
-  typedef Matrix< ScalarType,
+  typedef itk::Matrix< ScalarType,
     OutputSpaceDimension, InputSpaceDimension >     SpatialJacobianType;
   typedef std::vector< SpatialJacobianType > JacobianOfSpatialJacobianType;
   // \todo: think about the SpatialHessian type, should be a 3D native type
-  typedef FixedArray<
-    Matrix< ScalarType,
+  typedef itk::FixedArray<
+    itk::Matrix< ScalarType,
     InputSpaceDimension, InputSpaceDimension >,
     OutputSpaceDimension >                          SpatialHessianType;
   typedef std::vector< SpatialHessianType >                JacobianOfSpatialHessianType;
@@ -325,8 +291,6 @@ private:
 
 };
 
-} // end namespace itk
-
-#include "itkAdvancedTransform.cpp"
+#include "AdvancedTransform.cpp"
 
 #endif

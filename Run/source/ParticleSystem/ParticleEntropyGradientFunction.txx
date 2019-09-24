@@ -12,11 +12,11 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleEntropyGradientFunction_txx
-#define __itkParticleEntropyGradientFunction_txx
+#ifndef _ParticleEntropyGradientFunction_txx
+#define _ParticleEntropyGradientFunction_txx
 
-#include "itkParticleImageDomainWithGradients.h"
-namespace itk {
+#include "ParticleImageDomainWithGradients.h"
+
 
 template <class TGradientNumericType, unsigned int VDimension>
 TGradientNumericType
@@ -295,5 +295,5 @@ ParticleEntropyGradientFunction<TGradientNumericType, VDimension>
 }
 
 
-}// end namespace
+
 #endif

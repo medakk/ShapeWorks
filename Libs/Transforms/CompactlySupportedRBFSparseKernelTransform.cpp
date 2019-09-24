@@ -1,25 +1,7 @@
-/*=========================================================================
+#ifndef _CompactlySupportedRBFSparseKernelTransform_txx
+#define _CompactlySupportedRBFSparseKernelTransform_txx
+#include "CompactlySupportedRBFSparseKernelTransform.h"
 
-  Program:   Insight Segmentation & Registration Toolkit
-  Module:    $RCSfile: itkCompactlySupportedRBFSparseKernelTransform.txx,v $
-  Language:  C++
-  Date:      $Date: 2014-1-28 14:22:18 $
-  Version:   $Revision: 1.1 $
-
-  Copyright (c) Insight Software Consortium. All rights reserved.
-  See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
-
-     This software is distributed WITHOUT ANY WARRANTY; without even
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-     PURPOSE.  See the above copyright notices for more information.
-
-=========================================================================*/
-#ifndef _itkCompactlySupportedRBFSparseKernelTransform_txx
-#define _itkCompactlySupportedRBFSparseKernelTransform_txx
-#include "itkCompactlySupportedRBFSparseKernelTransform.h"
-
-namespace itk
-{
   template<class TScalarType, unsigned int NDimensions>
   void CompactlySupportedRBFSparseKernelTransform<
     TScalarType, NDimensions>::ComputeJacobianWithRespectToParameters(
@@ -37,7 +19,7 @@ ComputeG(const InputVectorType & x) const
 
     if (r <= 1)
     {
-        //this->m_GMatrix.fill( NumericTraits< TScalarType >::Zero );
+        //this->m_GMatrix.fill( itk::NumericTraits< TScalarType >::Zero );
 
         TScalarType val = pow(1-r, 4.0) * (4.0*r + 1);
         for(unsigned int i=0; i<NDimensions; i++)
@@ -83,5 +65,4 @@ ComputeDeformationContribution( const InputPointType  & thisPoint,
 }
 
 
-} // namespace itk
 #endif

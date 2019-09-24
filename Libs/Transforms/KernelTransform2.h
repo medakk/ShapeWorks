@@ -1,56 +1,22 @@
-/*=========================================================================
- *
- *  Copyright UMC Utrecht and contributors
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-/*=========================================================================
+#ifndef __KernelTransform2_h
+#define __KernelTransform2_h
 
-Program:   Insight Segmentation & Registration Toolkit
-Module:    $RCSfile: itkKernelTransform2.h,v $
-Language:  C++
-Date:      $Date: 2006-11-28 14:22:18 $
-Version:   $Revision: 1.1 $
-
-Copyright (c) Insight Software Consortium. All rights reserved.
-See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
-
-This software is distributed WITHOUT ANY WARRANTY; without even
-the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-PURPOSE.  See the above copyright notices for more information.
-
-=========================================================================*/
-#ifndef __itkKernelTransform2_h
-#define __itkKernelTransform2_h
-
-#include "itkAdvancedTransform.h"
-#include "itkPoint.h"
-#include "itkVector.h"
-#include "itkMatrix.h"
-#include "itkPointSet.h"
+#include "AdvancedTransform.h"
+#include <itkPoint.h>
+#include <itkVector.h>
+#include <itkMatrix.h>
+#include <itkPointSet.h>
 #include <deque>
 #include <math.h>
-#include "vnl/vnl_matrix_fixed.h"
-#include "vnl/vnl_matrix.h"
-#include "vnl/vnl_vector.h"
-#include "vnl/vnl_vector_fixed.h"
-#include "vnl/vnl_sample.h"
-#include "vnl/algo/vnl_svd.h"
-#include "vnl/algo/vnl_qr.h"
+#include <vnl/vnl_matrix_fixed.h>
+#include <vnl/vnl_matrix.h>
+#include <vnl/vnl_vector.h>
+#include <vnl/vnl_vector_fixed.h>
+#include <vnl/vnl_sample.h>
+#include <vnl/algo/vnl_svd.h>
+#include <vnl/algo/vnl_qr.h>
 
-namespace itk
-{
+//using namespace itk;
 
 /** \class KernelTransform2
  * Intended to be a base class for elastic body spline and thin plate spline.
@@ -103,8 +69,8 @@ public:
   typedef KernelTransform2 Self;
   typedef AdvancedTransform<
     TScalarType, NDimensions, NDimensions > Superclass;
-  typedef SmartPointer< Self >       Pointer;
-  typedef SmartPointer< const Self > ConstPointer;
+  typedef itk::SmartPointer< Self >       Pointer;
+  typedef itk::SmartPointer< const Self > ConstPointer;
 
   /** Run-time type information (and related methods). */
   itkTypeMacro( KernelTransform2, AdvancedTransform );
@@ -143,9 +109,9 @@ public:
   /** PointList typedef. This type is used for maintaining lists of points,
    * specifically, the source and target landmark lists.
    */
-  typedef DefaultStaticMeshTraits< TScalarType,
+  typedef itk::DefaultStaticMeshTraits< TScalarType,
     NDimensions, NDimensions, TScalarType, TScalarType >       PointSetTraitsType;
-  typedef PointSet< InputPointType, NDimensions,
+  typedef itk::PointSet< InputPointType, NDimensions,
     PointSetTraitsType >                                       PointSetType;
   typedef typename PointSetType::Pointer                      PointSetPointer;
   typedef typename PointSetType::PointsContainer              PointsContainer;
@@ -153,7 +119,7 @@ public:
   typedef typename PointSetType::PointsContainerConstIterator PointsConstIterator;
 
   /** VectorSet typedef. */
-  typedef VectorContainer< unsigned long, InputVectorType > VectorSetType;
+  typedef itk::VectorContainer< unsigned long, InputVectorType > VectorSetType;
   typedef typename VectorSetType::Pointer                   VectorSetPointer;
 
   /** 'I' (identity) matrix typedef. */
@@ -349,7 +315,7 @@ protected:
 
   KernelTransform2();
   virtual ~KernelTransform2();
-  void PrintSelf( std::ostream & os, Indent indent ) const;
+  void PrintSelf( std::ostream & os, itk::Indent indent ) const;
 
 public:
 
@@ -534,9 +500,7 @@ private:
 
 };
 
-} // end namespace itk
 
+#include "KernelTransform2.cpp"
 
-#include "itkKernelTransform2.cpp"
-
-#endif // __itkKernelTransform2_h
+#endif // __KernelTransform2_h

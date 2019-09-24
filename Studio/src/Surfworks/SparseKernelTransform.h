@@ -14,8 +14,8 @@
      PURPOSE.  See the above copyright notices for more information.
 
 =========================================================================*/
-#ifndef __itkSparseKernelTransform_h
-#define __itkSparseKernelTransform_h
+#ifndef _SparseKernelTransform_h
+#define _SparseKernelTransform_h
 
 #include <itkeigen/Eigen/Dense>
 #include <itkeigen/Eigen/Sparse>
@@ -39,8 +39,7 @@
 #include <iostream>
 
 
-namespace itk
-{
+
 
 /** \class SparseKernelTransform
  * Intended to be a base class for elastic body spline and thin plate spline.
@@ -74,15 +73,15 @@ namespace itk
  */
 template <class TScalarType, // probably only float and double make sense here
           unsigned int NDimensions>   // Number of dimensions
-class ITK_EXPORT SparseKernelTransform :
+class SparseKernelTransform :
         public Transform<TScalarType, NDimensions,NDimensions>
 {
 public:
     /** Standard class typedefs. */
     typedef SparseKernelTransform Self;
     typedef Transform<TScalarType, NDimensions, NDimensions >   Superclass;
-    typedef SmartPointer<Self>        Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
+    typedef itk::SmartPointer<Self>        Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
 
     /** Run-time type information (and related methods). */
     itkTypeMacro( SparseKernelTransform, Transform );
@@ -112,12 +111,12 @@ public:
 
     /** PointList typedef. This type is used for maintaining lists of points,
    * specifically, the source and target landmark lists. */
-    typedef DefaultStaticMeshTraits<TScalarType,
+    typedef itk::DefaultStaticMeshTraits<TScalarType,
     NDimensions,
     NDimensions,
     TScalarType,
     TScalarType> PointSetTraitsType;
-    typedef PointSet<InputPointType, NDimensions, PointSetTraitsType> PointSetType;
+    typedef itk::PointSet<InputPointType, NDimensions, PointSetTraitsType> PointSetType;
     typedef typename PointSetType::Pointer                        PointSetPointer;
     typedef typename PointSetType::PointsContainer                PointsContainer;
     typedef typename PointSetType::PointsContainerIterator        PointsIterator;
@@ -203,7 +202,7 @@ public:
         m_LInverseComputed=false;
         m_WMatrixComputed=false;
     }
-    //itkSetClampMacro(Stiffness, double, 0.0, NumericTraits<double>::max());
+    //itkSetClampMacro(Stiffness, double, 0.0, itk::NumericTraits<double>::max());
     // Cant use the macro because the matrices must be recomputed
     itkGetMacro(Stiffness, double);
 
@@ -211,7 +210,7 @@ public:
 protected:
     SparseKernelTransform();
     virtual ~SparseKernelTransform();
-    void PrintSelf(std::ostream& os, Indent indent) const;
+    void PrintSelf(std::ostream& os, itk::Indent indent) const;
 
 public:
     /** triplets used to fill sparse matrices. */
@@ -372,10 +371,10 @@ private:
 
 };
 
-} // end namespace itk
+
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkSparseKernelTransform.hxx"
+#include "SparseKernelTransform.hxx"
 #endif
 
-#endif // __itkSparseKernelTransform_h
+#endif // _SparseKernelTransform_h

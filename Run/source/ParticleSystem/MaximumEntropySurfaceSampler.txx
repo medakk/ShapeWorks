@@ -12,18 +12,19 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkMaximumEntropySurfaceSampler_txx
-#define __itkMaximumEntropySurfaceSampler_txx
+#ifndef _MaximumEntropySurfaceSampler_txx
+#define _MaximumEntropySurfaceSampler_txx
 
-#include "itkParticlePositionReader.h"
-#include "itkImageRegionIterator.h"
-#include "itkZeroCrossingImageFilter.h"
+#include "ParticlePositionReader.h"
+#include <itkImageRegionIterator.h>
+#include <itkZeroCrossingImageFilter.h>
 #include "object_reader.h"
-#include "itkImageFileReader.h"
-#include "itkParticleImageDomain.h"
+#include <itkImageFileReader.h>
+#include "ParticleImageDomain.h"
 
-namespace itk
-{
+
+//using namespace itk;
+
 
 template <class TImage>
 MaximumEntropySurfaceSampler<TImage>::MaximumEntropySurfaceSampler()
@@ -259,8 +260,8 @@ MaximumEntropySurfaceSampler<TImage>::ReadPointsFiles()
     {
         if (m_PointsFiles[i] != "")
         {
-            itk::ParticlePositionReader<3>::Pointer reader
-                    = itk::ParticlePositionReader<3>::New();
+            ParticlePositionReader<3>::Pointer reader
+                    = ParticlePositionReader<3>::New();
             reader->SetFileName(m_PointsFiles[i].c_str());
             reader->Update();
             this->GetParticleSystem()->AddPositionList(reader->GetOutput(), i);
@@ -355,7 +356,7 @@ MaximumEntropySurfaceSampler<TImage>::ReadTransforms()
 {
     if (m_TransformFile != "")
     {
-        object_reader< itk::ParticleSystem<3>::TransformType > reader;
+        object_reader< ParticleSystem<3>::TransformType > reader;
         reader.SetFileName(m_TransformFile.c_str());
         reader.Update();
 
@@ -365,7 +366,7 @@ MaximumEntropySurfaceSampler<TImage>::ReadTransforms()
 
     if (m_PrefixTransformFile != "")
     {
-        object_reader< itk::ParticleSystem<3>::TransformType > reader;
+        object_reader< ParticleSystem<3>::TransformType > reader;
         reader.SetFileName(m_PrefixTransformFile.c_str());
         reader.Update();
 
@@ -376,6 +377,6 @@ MaximumEntropySurfaceSampler<TImage>::ReadTransforms()
 }
 
 
-} // end namespace
+
 
 #endif

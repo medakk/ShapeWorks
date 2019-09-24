@@ -1,43 +1,7 @@
-/*=========================================================================
- *
- *  Copyright UMC Utrecht and contributors
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-/*=========================================================================
+#ifndef _KernelTransform2_hxx
+#define _KernelTransform2_hxx
 
-Program:   Insight Segmentation & Registration Toolkit
-Module:    $RCSfile: itkKernelTransform2.txx,v $
-Language:  C++
-Date:      $Date: 2006-11-28 14:22:18 $
-Version:   $Revision: 1.1 $
-
-Copyright (c) Insight Software Consortium. All rights reserved.
-See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
-
-This software is distributed WITHOUT ANY WARRANTY; without even
-the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-PURPOSE.  See the above copyright notices for more information.
-
-=========================================================================*/
-#ifndef _itkKernelTransform2_hxx
-#define _itkKernelTransform2_hxx
-
-#include "itkKernelTransform2.h"
-
-namespace itk
-{
+#include "KernelTransform2.h"
 
 /**
  * ******************* Constructor *******************
@@ -174,7 +138,7 @@ void
 KernelTransform2< TScalarType, NDimensions >
 ::ComputeReflexiveG( PointsIterator, GMatrixType & GMatrix ) const
 {
-  GMatrix.fill( NumericTraits< TScalarType >::Zero );
+  GMatrix.fill( itk::NumericTraits< TScalarType >::Zero );
   GMatrix.fill_diagonal( this->m_Stiffness );
 
 } // end ComputeReflexiveG()
@@ -537,7 +501,7 @@ KernelTransform2< TScalarType, NDimensions >
 ::TransformPoint( const InputPointType & thisPoint ) const
 {
   OutputPointType opp;
-  opp.Fill( NumericTraits< typename OutputPointType::ValueType >::Zero );
+  opp.Fill( itk::NumericTraits< typename OutputPointType::ValueType >::Zero );
   this->ComputeDeformationContribution( thisPoint, opp );
 
   // Add the rotational part of the Affine component
@@ -895,7 +859,7 @@ KernelTransform2< TScalarType, NDimensions >
 template< class TScalarType, unsigned int NDimensions >
 void
 KernelTransform2< TScalarType, NDimensions >
-::PrintSelf( std::ostream & os, Indent indent ) const
+::PrintSelf( std::ostream & os, itk::Indent indent ) const
 {
   Superclass::PrintSelf( os, indent );
 
@@ -954,6 +918,4 @@ KernelTransform2< TScalarType, NDimensions >
 } // end PrintSelf()
 
 
-} // namespace itk
-
-#endif // end #ifndef _itkKernelTransform2_hxx
+#endif // end #ifndef _KernelTransform2_hxx

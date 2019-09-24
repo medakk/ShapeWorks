@@ -1,30 +1,14 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMDomain_h
-#define __itkPSMDomain_h
+#ifndef __PSMDomain_h
+#define __PSMDomain_h
 
-#include "itkDataObject.h"
-#include "itkObjectFactory.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
+#include <itkDataObject.h>
+#include <itkObjectFactory.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMDomain 
  * 
  *  \brief Base class for defining the domain in which a particle
@@ -45,27 +29,27 @@ namespace itk
  *  \ingroup ParticleShapeModeling
  */
 template <unsigned int VDimension>
-class ITK_EXPORT PSMDomain : public DataObject
+class PSMDomain : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef PSMDomain Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(PSMDomain, DataObject);
+  itkTypeMacro(PSMDomain, itk::DataObject);
 
   /** Dimensionality of the domain of the particle system. */
   itkStaticConstMacro(Dimension, unsigned int, VDimension);
 
   /** Point type used to store particle locations. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
 
   /** Apply any constraints to the given point location.  This method may, for
       example, implement boundary conditions or restrict points to lie on a
@@ -110,7 +94,7 @@ public:
   
 protected:
   PSMDomain();
-  void PrintSelf(std::ostream& os, Indent indent) const;
+  void PrintSelf(std::ostream& os, itk::Indent indent) const;
   virtual ~PSMDomain() {}
 
   bool m_ConstraintsEnabled;
@@ -121,10 +105,10 @@ private:
 
 };
 
-} // end namespace itk
+
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMDomain.hxx"
+#include "PSMDomain.hxx"
 #endif
 
 #endif

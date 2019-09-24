@@ -12,40 +12,40 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleDomain_h
-#define __itkParticleDomain_h
+#ifndef _ParticleDomain_h
+#define _ParticleDomain_h
 
-#include "itkDataObject.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
+#include <itkDataObject.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
 
-namespace itk
-{
+//using namespace itk;
+
 /** \class ParticleDomain
  *  \brief 
  */
 template <unsigned int VDimension=3>
-class ITK_EXPORT ParticleDomain : public DataObject
+class ParticleDomain : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef ParticleDomain Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ParticleDomain, DataObject);
+  itkTypeMacro(ParticleDomain, itk::DataObject);
 
   /** Dimensionality of the domain of the particle system. */
   itkStaticConstMacro(Dimension, unsigned int, VDimension);
 
   /** Point type used to store particle locations. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
 
   /** Apply any constraints to the given point location.  This method may, for
       example, implement boundary conditions or restrict points to lie on a
@@ -88,7 +88,7 @@ public:
   
 protected:
   ParticleDomain();
-  void PrintSelf(std::ostream& os, Indent indent) const;
+  void PrintSelf(std::ostream& os, itk::Indent indent) const;
   virtual ~ParticleDomain() {}
 
   bool m_ConstraintsEnabled;
@@ -99,7 +99,7 @@ private:
 
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -107,9 +107,9 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-#include "itkParticleDomain.txx"
+#include "ParticleDomain.txx"
 #endif
 
-#include "itkParticleDomain.txx"
+#include "ParticleDomain.txx"
 
 #endif

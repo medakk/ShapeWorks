@@ -107,12 +107,12 @@
 // \doxygen{ResampleImageFilter}, and the Gaussian smoothing filter.
 //
 // Software Guide : EndLatex
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
 // Software Guide : BeginCodeSnippet
-#include "itkResampleImageFilter.h"
-#include "itkRecursiveGaussianImageFilter.h"
+#include <itkResampleImageFilter.h>
+#include <itkRecursiveGaussianImageFilter.h>
 // Software Guide : EndCodeSnippet
 // Software Guide : BeginLatex
 //
@@ -130,7 +130,7 @@
 //
 // Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
-#include "itkIdentityTransform.h"
+#include <itkIdentityTransform.h>
 // Software Guide : EndCodeSnippet
 // Software Guide : BeginLatex
 //
@@ -144,7 +144,7 @@
 //
 // Software Guide : EndLatex
 // Software Guide : BeginCodeSnippet
-#include "itkIntensityWindowingImageFilter.h"
+#include <itkIntensityWindowingImageFilter.h>
 // Software Guide : EndCodeSnippet
 int main( int argc, char * argv[] )
 {

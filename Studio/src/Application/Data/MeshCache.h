@@ -24,7 +24,7 @@
 
 #include "Data/Preferences.h"
 
-//#include "itkParticleShapeStatistics.h"
+//#include "ParticleShapeStatistics.h"
 
 class vtkPolyData;
 

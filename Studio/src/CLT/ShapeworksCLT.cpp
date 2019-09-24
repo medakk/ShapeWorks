@@ -5,8 +5,8 @@
 #include <map>
 #include <Groom/ShapeWorksGroom.h>
 #include <Optimize/ShapeWorksOptimize.h>
-#include "itkNrrdImageIOFactory.h"
-#include "itkMetaImageIOFactory.h"
+#include <itkNrrdImageIOFactory.h>
+#include <itkMetaImageIOFactory.h>
 
 int main(int argc, char ** argv) {
   try {

@@ -1,32 +1,15 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMContainer_h
-#define __itkPSMContainer_h
+#ifndef __PSMContainer_h
+#define __PSMContainer_h
 
-#include "itkDataObject.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
-#include "itkCommand.h"
-#include "itkPSMAttribute.h"
+#include <itkDataObject.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
+#include <itkCommand.h>
+#include "PSMAttribute.h"
 #include <map>
 
-namespace itk
-{
+//using namespace itk;
+
 /** \class PSMContainer
  *
  *  \brief A container class that holds particle position information
@@ -39,22 +22,22 @@ namespace itk
  *  \ingroup ParticleShapeModeling
  */
 template <class T>
-class ITK_EXPORT PSMContainer : public DataObject
+class PSMContainer : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef T DataType;
   typedef PSMContainer Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(PSMContainer, DataObject);
+  itkTypeMacro(PSMContainer, itk::DataObject);
   
   /** Define a map container type.  A map is used because elements will be
       frequently deleted and added.  Map has the property that addition and
@@ -137,7 +120,7 @@ public:
   
 protected:
   PSMContainer() { }
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os,indent);
   
@@ -155,7 +138,5 @@ protected:
   /** The actual map data container. */
   MapType m_Map;
 };
-
-} // end namespace itk
 
 #endif

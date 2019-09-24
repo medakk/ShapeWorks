@@ -16,11 +16,11 @@
  *
  *=========================================================================*/
 #include <iostream>
-#include "itkMacro.h"
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkPSMCleanAndCenterLabelMapImageFilter.h"
+#include <itkMacro.h>
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include "PSMCleanAndCenterLabelMapImageFilter.h"
 
 /** This test exercises functionality of the base itkPSMCleanAndCenterLabelMapImageFilter class */
 int itkPSMCleanAndCenterLabelMapImageFilterTest(int argc, char* argv[] )
@@ -32,7 +32,7 @@ int itkPSMCleanAndCenterLabelMapImageFilterTest(int argc, char* argv[] )
   if (argc < 3)
     {
       std::cout << "Wrong number of arguments.  You need at least two image segmentation files. \nUse: " 
-                << "itkPSMCleanAndCenterLabelMapImageFilterTest InputImage OutputImage " << std::endl;
+                << "PSMCleanAndCenterLabelMapImageFilterTest InputImage OutputImage " << std::endl;
       return EXIT_FAILURE;
     }
 
@@ -75,7 +75,7 @@ int itkPSMCleanAndCenterLabelMapImageFilterTest(int argc, char* argv[] )
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

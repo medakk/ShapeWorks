@@ -1,29 +1,12 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMEntropyModelFilter_hxx
-#define __itkPSMEntropyModelFilter_hxx
-#include "itkPSMEntropyModelFilter.h"
+#ifndef __PSMEntropyModelFilter_hxx
+#define __PSMEntropyModelFilter_hxx
+#include "PSMEntropyModelFilter.h"
 
-#include "itkZeroCrossingImageFilter.h"
-#include "itkImageRegionConstIteratorWithIndex.h"
+#include <ZeroCrossingImageFilter.h>
+#include <ImageRegionConstIteratorWithIndex.h>
 
-namespace itk
-{
+//using namespace itk;
+
 
 template <class TImage, class TShapeMatrix>
 PSMEntropyModelFilter<TImage, TShapeMatrix>::PSMEntropyModelFilter()
@@ -389,6 +372,5 @@ PSMEntropyModelFilter<TImage, TShapeMatrix>
   return ok;
 }
   
-} // end namespace
 
 #endif

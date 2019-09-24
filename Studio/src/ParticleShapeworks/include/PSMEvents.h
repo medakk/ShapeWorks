@@ -1,31 +1,15 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMEvents_h
-#define __itkPSMEvents_h
+#ifndef __PSMEvents_h
+#define __PSMEvents_h
 
-#include "itkEventObject.h"
+#include <itkEventObject.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /**
  * \class ParticleEvent.
  *
- * \brief An event class that specializes EventObject for the
+ * \brief An event class that specializes itk::EventObject for the
  * PSMParticleSystem class.
  *
  * This is a parent class for all itk::EventObject-derived Particle
@@ -39,7 +23,7 @@ namespace itk
  * \ingroup ParticleShapeModeling
  *
 */
-class ITK_EXPORT ParticleEvent : public EventObject
+class ParticleEvent : public itk::EventObject
 {
 public:
   typedef ParticleEvent Self;
@@ -54,7 +38,7 @@ public:
   { m_ThreadID = i; }
 
   /** Copy constructor and operator= */
-  ParticleEvent(const ParticleEvent &v) : EventObject(v)
+  ParticleEvent(const ParticleEvent &v) : itk::EventObject(v)
   {
     m_ThreadID = v.m_ThreadID;
   }
@@ -81,7 +65,7 @@ private:
  *  This is used, for example to indicate which position has changed
  *  in the particle system on InvokeEvent.
  */
-class ITK_EXPORT ParticleEventWithIndex : public ParticleEvent
+class ParticleEventWithIndex : public ParticleEvent
 {
 public:
   ParticleEventWithIndex() {}
@@ -127,7 +111,7 @@ itkEventMacro( ParticlePositionSetEvent, ParticleEventWithIndex );
 itkEventMacro( ParticlePositionAddEvent, ParticleEventWithIndex );
 itkEventMacro( ParticlePositionRemoveEvent, ParticleEventWithIndex );
 
-} // end namespace itk
+
 
 
 #endif

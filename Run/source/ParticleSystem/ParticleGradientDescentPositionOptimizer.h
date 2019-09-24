@@ -12,22 +12,21 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleGradientDescentPositionOptimizer_h
-#define __itkParticleGradientDescentPositionOptimizer_h
+#ifndef _ParticleGradientDescentPositionOptimizer_h
+#define _ParticleGradientDescentPositionOptimizer_h
 
-#include "itkObject.h"
-#include "itkObjectFactory.h"
-#include "itkObject.h"
-#include "itkWeakPointer.h"
-#include "itkParticleSystem.h"
+#include <itkObject.h>
+#include <itkObjectFactory.h>
+#include <itkObject.h>
+#include <itkWeakPointer.h>
+#include "ParticleSystem.h"
 #include <vector>
-#include "vnl/vnl_vector_fixed.h"
-#include "itkParticleVectorFunction.h"
-#include "itkParticleImageDomainWithGradients.h"
+#include <vnl/vnl_vector_fixed.h>
+#include "ParticleVectorFunction.h"
+#include "ParticleImageDomainWithGradients.h"
 #include <algorithm>
 
-namespace itk
-{
+//using namespace itk;
 
 /**
  * \class ParticleGradientDescentPositionOptimizer
@@ -47,9 +46,9 @@ public:
   /** Standard class typedefs */
   typedef ParticleGradientDescentPositionOptimizer Self;
   typedef Object Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -134,7 +133,7 @@ protected:
   ParticleGradientDescentPositionOptimizer();
   ParticleGradientDescentPositionOptimizer(const ParticleGradientDescentPositionOptimizer &);
   const ParticleGradientDescentPositionOptimizer &operator=(const ParticleGradientDescentPositionOptimizer &);
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
   }
@@ -154,17 +153,17 @@ private:
 };
 
 
-} // end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 # include "Templates/itkParticleGradientDescentPositionOptimizer+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleGradientDescentPositionOptimizer.txx"
+# include "ParticleGradientDescentPositionOptimizer.txx"
 #endif
 
-#include "itkParticleGradientDescentPositionOptimizer.txx"
+#include "ParticleGradientDescentPositionOptimizer.txx"
 
 #endif
 

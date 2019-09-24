@@ -25,7 +25,7 @@
 #ifndef __RotationGeometry_hxx
 #define __RotationGeometry_hxx
 
-#include "vnl/vnl_quaternion.h"
+#include <vnl/vnl_quaternion.h>
 #include "RiemannianGeometry.hxx"
 
 template<class ScalarType>

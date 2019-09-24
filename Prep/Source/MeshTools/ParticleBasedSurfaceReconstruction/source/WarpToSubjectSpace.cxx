@@ -62,8 +62,8 @@ const unsigned int Dimension = 3;
 
 // warping ----------
 typedef   double CoordinateRepType;
-typedef   itk::CompactlySupportedRBFSparseKernelTransform < CoordinateRepType,Dimension>     RBFTransformType;
-typedef   itk::ThinPlateSplineKernelTransform2< CoordinateRepType,Dimension>  ThinPlateSplineType;
+typedef   CompactlySupportedRBFSparseKernelTransform < CoordinateRepType,Dimension>     RBFTransformType;
+typedef   ThinPlateSplineKernelTransform2< CoordinateRepType,Dimension>  ThinPlateSplineType;
 typedef   itk::Point< CoordinateRepType,Dimension >  PointType;
 typedef   std::vector< PointType >                   PointArrayType;
 #ifdef USE_TPS

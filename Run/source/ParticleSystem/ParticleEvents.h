@@ -12,18 +12,18 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleEvents_h
-#define __itkParticleEvents_h
+#ifndef _ParticleEvents_h
+#define _ParticleEvents_h
 
-#include "itkEventObject.h"
+#include <itkEventObject.h>
 
-namespace itk
-{
+//using namespace itk;
+
 /**
  * \class ParticleEvent.
  *  Parent class for all Particle events.   Carries thread id information.
 */
-class ITK_EXPORT ParticleEvent : public EventObject
+class ParticleEvent : public itk::EventObject
 {
 public:
   typedef ParticleEvent Self;
@@ -38,7 +38,7 @@ public:
   { m_ThreadID = i; }
 
   /** Copy constructor and operator= */
-  ParticleEvent(const ParticleEvent &v) : EventObject(v)
+  ParticleEvent(const ParticleEvent &v) : itk::EventObject(v)
   {
     m_ThreadID = v.m_ThreadID;
   }
@@ -65,7 +65,7 @@ private:
  *  used, for example to indicate which position has changed in the particle
  *  system on InvokeEvent.
  */
-class ITK_EXPORT ParticleEventWithIndex : public ParticleEvent
+class ParticleEventWithIndex : public ParticleEvent
 {
 public:
   ParticleEventWithIndex() {}
@@ -111,7 +111,7 @@ itkEventMacro( ParticlePositionSetEvent, ParticleEventWithIndex );
 itkEventMacro( ParticlePositionAddEvent, ParticleEventWithIndex );
 itkEventMacro( ParticlePositionRemoveEvent, ParticleEventWithIndex );
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -119,7 +119,7 @@ itkEventMacro( ParticlePositionRemoveEvent, ParticleEventWithIndex );
 #endif
 
 #if ITK_TEMPLATE_TXX
-//# include "itkParticleEvents.txx"
+//# include "ParticleEvents.txx"
 #endif
 
 #endif

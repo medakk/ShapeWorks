@@ -12,26 +12,25 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleConstrainedModifiedCotangentEntropyGradientFunction_h
-#define __itkParticleConstrainedModifiedCotangentEntropyGradientFunction_h
+#ifndef _ParticleConstrainedModifiedCotangentEntropyGradientFunction_h
+#define _ParticleConstrainedModifiedCotangentEntropyGradientFunction_h
 
-#include "itkParticleEntropyGradientFunction.h"
-#include "itkParticleImageDomainWithGradients.h"
-#include "itkParticleImageDomainWithCurvature.h"
-#include "itkParticleMeanCurvatureAttribute.h"
-#include "itkCommand.h"
+#include "ParticleEntropyGradientFunction.h"
+#include "ParticleImageDomainWithGradients.h"
+#include "ParticleImageDomainWithCurvature.h"
+#include "ParticleMeanCurvatureAttribute.h"
+#include <itkCommand.h>
 
 // SHIREEN
-#include "utils.h"
+#include "Utils.h"
 #include <fstream>
 #include <math.h>
-#include "itkMath.h"
+#include <itkMath.h>
 
 #define NBHD_SIGMA_FACTOR 1.3
 // end SHIREEN
 
-namespace itk
-{
+//using namespace itk;
 
 /**
  * \class ParticleConstrainedModifiedCotangentEntropyGradientFunction
@@ -58,8 +57,8 @@ class ParticleConstrainedModifiedCotangentEntropyGradientFunction
 public:
     /** Standard class typedefs. */
     typedef ParticleConstrainedModifiedCotangentEntropyGradientFunction Self;
-    typedef SmartPointer<Self>  Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
+    typedef itk::SmartPointer<Self>  Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
     typedef ParticleEntropyGradientFunction<TGradientNumericType, VDimension> Superclass;
     itkTypeMacro( ParticleConstrainedModifiedCotangentEntropyGradientFunction, ParticleEntropyGradientFunction);
 
@@ -230,16 +229,16 @@ protected:
 
 };
 
-} //end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 # include "Templates/itkParticleConstrainedModifiedCotangentEntropyGradientFunction+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleConstrainedModifiedCotangentEntropyGradientFunction.txx"
+# include "ParticleConstrainedModifiedCotangentEntropyGradientFunction.txx"
 #endif
 
-#include "itkParticleConstrainedModifiedCotangentEntropyGradientFunction.txx"
+#include "ParticleConstrainedModifiedCotangentEntropyGradientFunction.txx"
 
 #endif

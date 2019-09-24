@@ -17,8 +17,8 @@
  *=========================================================================*/
 #include <iostream>
 #include <fstream>
-#include "itkImage.h"
-#include "itkPSMRBFCorrespondenceInterpolator.h"
+#include <itkImage.h>
+#include "PSMRBFCorrespondenceInterpolator.h"
 
 /** This test exercises functionality of the base
     itkPSMRBFCorrespondenceInterpolator class */
@@ -33,7 +33,7 @@ int itkPSMRBFCorrespondenceInterpolatorTest(int argc, char* argv[] )
   if (argc < 4)
     {
       std::cout << "Wrong number of arguments. \nUse: " 
-	<< "itkPSMRBFCorrespondenceInterpolatorTest PointFileA PointFileB PointListToInterpolate [input_path]\n"
+	<< "PSMRBFCorrespondenceInterpolatorTest PointFileA PointFileB PointListToInterpolate [input_path]\n"
 	<< std::endl;
       return EXIT_FAILURE;
     }
@@ -125,7 +125,7 @@ int itkPSMRBFCorrespondenceInterpolatorTest(int argc, char* argv[] )
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

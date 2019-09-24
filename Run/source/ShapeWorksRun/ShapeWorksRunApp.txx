@@ -12,21 +12,21 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#include "itkImageFileReader.h"
-#include "itkMultiThreaderBase.h"
+#include <itkImageFileReader.h>
+#include <itkMultiThreaderBase.h>
 #include "tinyxml.h"
 #include <sstream>
 #include <string>
 #include <iostream>
-#include "itkMacro.h"
+#include <itkMacro.h>
 #include "filenameFactory.h"
 #include <vector>
 #include "object_reader.h"
 #include "object_writer.h"
-#include "itkZeroCrossingImageFilter.h"
-#include "itkImageRegionIteratorWithIndex.h"
+#include <itkZeroCrossingImageFilter.h>
+#include <itkImageRegionIteratorWithIndex.h>
 
-#include "itkImageToVTKImageFilter.h"
+#include <itkImageToVTKImageFilter.h>
 #include <vtkContourFilter.h>
 #include <vtkSmartPointer.h>
 #include <vtkImageData.h>
@@ -34,10 +34,10 @@
 #include <vtkMassProperties.h>
 
 #include "TriMesh.h"
-#include "itkParticleImageDomain.h"
-#include "itkParticleImageDomainWithGradients.h"
-#include "itkParticleImplicitSurfaceDomain.h"
-#include "itkParticleImageDomainWithHessians.h"
+#include "ParticleImageDomain.h"
+#include "ParticleImageDomainWithGradients.h"
+#include "ParticleImplicitSurfaceDomain.h"
+#include "ParticleImageDomainWithHessians.h"
 #include <numeric>
 
 #ifdef _WIN32
@@ -94,7 +94,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::ShapeWorksRunApp(const char *fn)
     m_Sampler->SetVerbosity(m_verbosity_level);
 
     // Set up the procrustes registration object.
-    m_Procrustes = itk::ParticleProcrustesRegistration<3>::New();
+    m_Procrustes = ParticleProcrustesRegistration<3>::New();
     m_Procrustes->SetParticleSystem(m_Sampler->GetParticleSystem());
     m_Procrustes->SetDomainsPerShape(m_domains_per_shape);
 
@@ -160,7 +160,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::ShapeWorksRunApp(const char *fn)
             if (m_use_normals[i % m_domains_per_shape])
                 continue;
 
-            itk::ParticleImageDomainWithHessians<float, 3> * domainWithHess = static_cast< itk::ParticleImageDomainWithHessians<float ,3> *>(m_Sampler->GetParticleSystem()->GetDomain(i));
+            ParticleImageDomainWithHessians<float, 3> * domainWithHess = static_cast< ParticleImageDomainWithHessians<float ,3> *>(m_Sampler->GetParticleSystem()->GetDomain(i));
             domainWithHess->DeletePartialDerivativeImages();
         }
     }
@@ -169,7 +169,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::ShapeWorksRunApp(const char *fn)
         int numShapes = m_Sampler->GetParticleSystem()->GetNumberOfDomains();
         for (int i = 0; i < numShapes; i++)
         {
-            itk::ParticleImageDomainWithHessians<float, 3> * domainWithHess = static_cast< itk::ParticleImageDomainWithHessians<float ,3> *>(m_Sampler->GetParticleSystem()->GetDomain(i));
+            ParticleImageDomainWithHessians<float, 3> * domainWithHess = static_cast< ParticleImageDomainWithHessians<float ,3> *>(m_Sampler->GetParticleSystem()->GetDomain(i));
             domainWithHess->DeletePartialDerivativeImages();
         }
     }
@@ -178,7 +178,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::ShapeWorksRunApp(const char *fn)
     {
         for (int i = 0; i < m_d_flgs.size(); i++)
         {
-            itk::ParticleImageDomainWithHessians<float, 3> * domainWithHess = static_cast< itk::ParticleImageDomainWithHessians<float ,3> *>(m_Sampler->GetParticleSystem()->GetDomain(m_d_flgs[i]));
+            ParticleImageDomainWithHessians<float, 3> * domainWithHess = static_cast< ParticleImageDomainWithHessians<float ,3> *>(m_Sampler->GetParticleSystem()->GetDomain(m_d_flgs[i]));
             if (m_use_normals.size() > 0)
             {
                 if (m_use_normals[i % m_domains_per_shape])
@@ -186,7 +186,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::ShapeWorksRunApp(const char *fn)
                 else
                     domainWithHess->DeleteImages();
             }
-//            itk::ParticleImplicitSurfaceDomain<float, 3> * particleDomain = static_cast< itk::ParticleImplicitSurfaceDomain<float ,3> *>(m_Sampler->GetParticleSystem()->GetDomain(m_d_flgs[i]));
+//            ParticleImplicitSurfaceDomain<float, 3> * particleDomain = static_cast< ParticleImplicitSurfaceDomain<float ,3> *>(m_Sampler->GetParticleSystem()->GetDomain(m_d_flgs[i]));
 //            if (particleDomain->GetMesh() != NULL)
 //                particleDomain->GetMesh()->ClearFaceIndexMap();
         }
@@ -195,7 +195,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::ShapeWorksRunApp(const char *fn)
     if (m_verbosity_level > 1)
         this->PrintParamInfo();
 
-    m_GoodBad = itk::ParticleGoodBadAssessment<float, 3>::New();
+    m_GoodBad = ParticleGoodBadAssessment<float, 3>::New();
     m_GoodBad->SetDomainsPerShape(m_domains_per_shape);
     m_GoodBad->SetCriterionAngle(m_normalAngle);
     m_GoodBad->SetPerformAssessment(m_performGoodBad);
@@ -846,16 +846,16 @@ ShapeWorksRunApp<SAMPLERTYPE>::ReadDistributionCuttingPlane(const char *fname)
                     // If initial transform provided, transform cutting plane points
                     if ( m_prefix_transform_file != "" && m_transform_file != "")
                     {
-                        itk::ParticleSystem<3>::PointType pa;
-                        itk::ParticleSystem<3>::PointType pb;
-                        itk::ParticleSystem<3>::PointType pc;
+                        ParticleSystem<3>::PointType pa;
+                        ParticleSystem<3>::PointType pb;
+                        ParticleSystem<3>::PointType pc;
 
                         pa[0] = a[0]; pa[1] = a[1]; pa[2] = a[2];
                         pb[0] = b[0]; pb[1] = b[1]; pb[2] = b[2];
                         pc[0] = c[0]; pc[1] = c[1]; pc[2] = c[2];
 
-                        itk::ParticleSystem<3>::TransformType T     = m_Sampler->GetParticleSystem()->GetTransform(shapeCount) ;
-                        itk::ParticleSystem<3>::TransformType prefT = m_Sampler->GetParticleSystem()->GetPrefixTransform(shapeCount);
+                        ParticleSystem<3>::TransformType T     = m_Sampler->GetParticleSystem()->GetTransform(shapeCount) ;
+                        ParticleSystem<3>::TransformType prefT = m_Sampler->GetParticleSystem()->GetPrefixTransform(shapeCount);
                         pa = m_Sampler->GetParticleSystem()->TransformPoint(pa, T * prefT );
                         pb = m_Sampler->GetParticleSystem()->TransformPoint(pb, T * prefT );
                         pc = m_Sampler->GetParticleSystem()->TransformPoint(pc, T * prefT );
@@ -955,16 +955,16 @@ ShapeWorksRunApp<SAMPLERTYPE>::ReadCuttingPlanes(const char *fname)
                         // If initial transform provided, transform cutting plane points
                         if ( m_prefix_transform_file != "" && m_transform_file != "")
                         {
-                            itk::ParticleSystem<3>::PointType pa;
-                            itk::ParticleSystem<3>::PointType pb;
-                            itk::ParticleSystem<3>::PointType pc;
+                            ParticleSystem<3>::PointType pa;
+                            ParticleSystem<3>::PointType pb;
+                            ParticleSystem<3>::PointType pc;
 
                             pa[0] = a[0]; pa[1] = a[1]; pa[2] = a[2];
                             pb[0] = b[0]; pb[1] = b[1]; pb[2] = b[2];
                             pc[0] = c[0]; pc[1] = c[1]; pc[2] = c[2];
 
-                            itk::ParticleSystem<3>::TransformType T     = m_Sampler->GetParticleSystem()->GetTransform(shapeCount) ;
-                            itk::ParticleSystem<3>::TransformType prefT = m_Sampler->GetParticleSystem()->GetPrefixTransform(shapeCount);
+                            ParticleSystem<3>::TransformType T     = m_Sampler->GetParticleSystem()->GetTransform(shapeCount) ;
+                            ParticleSystem<3>::TransformType prefT = m_Sampler->GetParticleSystem()->GetPrefixTransform(shapeCount);
                             pa = m_Sampler->GetParticleSystem()->TransformPoint(pa, T * prefT );
                             pb = m_Sampler->GetParticleSystem()->TransformPoint(pb, T * prefT );
                             pc = m_Sampler->GetParticleSystem()->TransformPoint(pc, T * prefT );
@@ -1115,10 +1115,10 @@ ShapeWorksRunApp<SAMPLERTYPE>::ReadExplanatoryVariables(const char *fname)
             inputsBuffer.clear();
             inputsBuffer.str("");
 
-            dynamic_cast<itk::ParticleShapeLinearRegressionMatrixAttribute<double,3> *>
+            dynamic_cast<ParticleShapeLinearRegressionMatrixAttribute<double,3> *>
                     (m_Sampler->GetEnsembleRegressionEntropyFunction()->GetShapeMatrix())->SetExplanatory(evars);
 
-            dynamic_cast<itk::ParticleShapeMixedEffectsMatrixAttribute<double,3> *>
+            dynamic_cast<ParticleShapeMixedEffectsMatrixAttribute<double,3> *>
                     (m_Sampler->GetEnsembleMixedEffectsEntropyFunction()->GetShapeMatrix())->SetExplanatory(evars);
 
             m_use_regression = true;
@@ -1206,7 +1206,7 @@ template < class SAMPLERTYPE>
 void
 ShapeWorksRunApp<SAMPLERTYPE>::ReadTransformFile()
 {
-    object_reader< itk::ParticleSystem<3>::TransformType > reader;
+    object_reader< ParticleSystem<3>::TransformType > reader;
     reader.SetFileName(m_transform_file);
     reader.Update();
     for (unsigned int i = 0; i < m_Sampler->GetParticleSystem()->GetNumberOfDomains(); i++)
@@ -1217,7 +1217,7 @@ template < class SAMPLERTYPE>
 void
 ShapeWorksRunApp<SAMPLERTYPE>::ReadPrefixTransformFile(const std::string &fn)
 {
-    object_reader< itk::ParticleSystem<3>::TransformType > reader;
+    object_reader< ParticleSystem<3>::TransformType > reader;
     reader.SetFileName(fn.c_str());
     reader.Update();
     for (unsigned int i = 0; i < m_Sampler->GetParticleSystem()->GetNumberOfDomains(); i++)
@@ -1300,7 +1300,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::GetMinNeighborhoodRadius()
     for (unsigned int i = 0; i < m_Sampler->GetParticleSystem()->GetNumberOfDomains(); i++)
     {
 
-        const itk::ParticleImageDomain<float, 3> * domain = static_cast<const itk::ParticleImageDomain<float, 3> *> (m_Sampler->GetParticleSystem()->GetDomain(i));
+        const ParticleImageDomain<float, 3> * domain = static_cast<const ParticleImageDomain<float, 3> *> (m_Sampler->GetParticleSystem()->GetDomain(i));
 
         itk2vtkConnector = itk::ImageToVTKImageFilter<ImageType>::New();
         itk2vtkConnector->SetInput(domain->GetImage());
@@ -1323,7 +1323,7 @@ template < class SAMPLERTYPE>
 void
 ShapeWorksRunApp<SAMPLERTYPE>::AddSinglePoint()
 {
-    typedef itk::ParticleSystem<3> ParticleSystemType;
+    typedef ParticleSystem<3> ParticleSystemType;
     typedef ParticleSystemType::PointType PointType;
     for (unsigned int i = 0; i < m_Sampler->GetParticleSystem()->GetNumberOfDomains();
          i++)
@@ -1333,7 +1333,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::AddSinglePoint()
 
         bool done = false;
 
-        ImageType::Pointer img = dynamic_cast<itk::ParticleImageDomain<float, 3> *>(
+        ImageType::Pointer img = dynamic_cast<ParticleImageDomain<float, 3> *>(
                     m_Sampler->GetParticleSystem()->GetDomain(i))->GetImage();
 
         itk::ZeroCrossingImageFilter<ImageType, ImageType>::Pointer zc =
@@ -1926,7 +1926,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::SetCotanSigma()
     m_Sampler->GetModifiedCotangentGradientFunction()->ClearGlobalSigma();
     for (unsigned int i = 0; i < m_Sampler->GetParticleSystem()->GetNumberOfDomains(); i++)
     {
-        const itk::ParticleImageDomain<float, 3> * domain = static_cast<const itk::ParticleImageDomain<float, 3> *> (m_Sampler->GetParticleSystem()->GetDomain(i));
+        const ParticleImageDomain<float, 3> * domain = static_cast<const ParticleImageDomain<float, 3> *> (m_Sampler->GetParticleSystem()->GetDomain(i));
 
         itk2vtkConnector = itk::ImageToVTKImageFilter<ImageType>::New();
         itk2vtkConnector->SetInput(domain->GetImage());
@@ -2156,7 +2156,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::WriteTransformFile( std::string iter_prefix ) con
 {
     std::string output_file = iter_prefix;
 
-    std::vector< itk::ParticleSystem<3>::TransformType > tlist;
+    std::vector< ParticleSystem<3>::TransformType > tlist;
 
     for (unsigned int i = 0; i < m_Sampler->GetParticleSystem()->GetNumberOfDomains();
          i++)
@@ -2166,7 +2166,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::WriteTransformFile( std::string iter_prefix ) con
 
     std::string str = "writing " + output_file + " ...";
     startMessage(str);
-    object_writer< itk::ParticleSystem<3>::TransformType > writer;
+    object_writer< ParticleSystem<3>::TransformType > writer;
     writer.SetFileName(output_file);
     writer.SetInput(tlist);
     writer.Update();
@@ -2308,11 +2308,11 @@ ShapeWorksRunApp<SAMPLERTYPE>::WritePointFilesWithFeatures( std::string iter_pre
             throw 1;
         }
 
-        const itk::ParticleImplicitSurfaceDomain<float, 3>* domain
-                = static_cast<const itk::ParticleImplicitSurfaceDomain<float ,3>*>(m_Sampler->GetParticleSystem()->GetDomain(i));
+        const ParticleImplicitSurfaceDomain<float, 3>* domain
+                = static_cast<const ParticleImplicitSurfaceDomain<float ,3>*>(m_Sampler->GetParticleSystem()->GetDomain(i));
 
-        const itk::ParticleImageDomainWithGradients<float, 3> * domainWithGrad
-                = static_cast<const itk::ParticleImageDomainWithGradients<float ,3> *>(m_Sampler->GetParticleSystem()->GetDomain(i));
+        const ParticleImageDomainWithGradients<float, 3> * domainWithGrad
+                = static_cast<const ParticleImageDomainWithGradients<float ,3> *>(m_Sampler->GetParticleSystem()->GetDomain(i));
 
         TriMesh *ptr;
         std::vector<float> fVals;
@@ -2338,7 +2338,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::WritePointFilesWithFeatures( std::string iter_pre
 //                }
 //                else
 //                {
-                    typename itk::ParticleImageDomainWithGradients<float,3>::VnlVectorType pG = domainWithGrad->SampleNormalVnl(pos);
+                    typename ParticleImageDomainWithGradients<float,3>::VnlVectorType pG = domainWithGrad->SampleNormalVnl(pos);
                     VectorType pN;
                     pN[0] = pG[0]; pN[1] = pG[1]; pN[2] = pG[2];
                     pN = m_Sampler->GetParticleSystem()->TransformVector(pN, m_Sampler->GetParticleSystem()->GetTransform(i) * m_Sampler->GetParticleSystem()->GetPrefixTransform(i));
@@ -2456,8 +2456,8 @@ ShapeWorksRunApp<SAMPLERTYPE>::WriteCuttingPlanePoints( int iter )
 
     for (unsigned int i = 0; i < m_Sampler->GetParticleSystem()->GetNumberOfDomains(); i++)
     {
-        const itk::ParticleImplicitSurfaceDomain<float, 3>* dom
-                = static_cast<const itk::ParticleImplicitSurfaceDomain<float
+        const ParticleImplicitSurfaceDomain<float, 3>* dom
+                = static_cast<const ParticleImplicitSurfaceDomain<float
                 ,3>*>(m_Sampler->GetParticleSystem()->GetDomain(i));
 
         for (unsigned int j = 0; j < dom->GetNumberOfPlanes(); j++)
@@ -2505,7 +2505,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::WriteParameters( int iter )
 
     if (m_use_mixed_effects == true)
     {
-        vnl_vector<double> slopevec = dynamic_cast<itk::ParticleShapeMixedEffectsMatrixAttribute<double,3> *>
+        vnl_vector<double> slopevec = dynamic_cast<ParticleShapeMixedEffectsMatrixAttribute<double,3> *>
                 (m_Sampler->GetEnsembleMixedEffectsEntropyFunction()->GetShapeMatrix())->GetSlope();
 
         for (unsigned int i = 0; i < slopevec.size(); i++)
@@ -2520,7 +2520,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::WriteParameters( int iter )
         }
         out.close();
 
-        vnl_vector<double> interceptvec = dynamic_cast<itk::ParticleShapeMixedEffectsMatrixAttribute<double,3> *>
+        vnl_vector<double> interceptvec = dynamic_cast<ParticleShapeMixedEffectsMatrixAttribute<double,3> *>
                 (m_Sampler->GetEnsembleMixedEffectsEntropyFunction()->GetShapeMatrix())->GetIntercept();
 
         for (unsigned int i = 0; i < slopevec.size(); i++)
@@ -2550,7 +2550,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::WriteParameters( int iter )
         std::cout << "writing " << slopename << std::endl;
         std::cout << "writing " << interceptname << std::endl;
 
-        vnl_matrix<double> sloperand_mat = dynamic_cast<itk::ParticleShapeMixedEffectsMatrixAttribute<double,3> *>
+        vnl_matrix<double> sloperand_mat = dynamic_cast<ParticleShapeMixedEffectsMatrixAttribute<double,3> *>
                 (m_Sampler->GetEnsembleMixedEffectsEntropyFunction()->GetShapeMatrix())->GetSlopeRandom();
 
         out.open(slopename.c_str());
@@ -2564,7 +2564,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::WriteParameters( int iter )
         }
         out.close();
 
-        vnl_matrix<double> interceptrand_mat = dynamic_cast<itk::ParticleShapeMixedEffectsMatrixAttribute<double,3> *>
+        vnl_matrix<double> interceptrand_mat = dynamic_cast<ParticleShapeMixedEffectsMatrixAttribute<double,3> *>
                 (m_Sampler->GetEnsembleMixedEffectsEntropyFunction()->GetShapeMatrix())->GetInterceptRandom();
 
         out.open(interceptname.c_str());
@@ -2580,7 +2580,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::WriteParameters( int iter )
     }
     else
     {
-        vnl_vector<double> slopevec = dynamic_cast<itk::ParticleShapeLinearRegressionMatrixAttribute<double,3> *>
+        vnl_vector<double> slopevec = dynamic_cast<ParticleShapeLinearRegressionMatrixAttribute<double,3> *>
                 (m_Sampler->GetEnsembleRegressionEntropyFunction()->GetShapeMatrix())->GetSlope();
 
         for (unsigned int i = 0; i < slopevec.size(); i++)
@@ -2596,7 +2596,7 @@ ShapeWorksRunApp<SAMPLERTYPE>::WriteParameters( int iter )
         out.close();
 
         std::vector< double > intercept;
-        vnl_vector<double> interceptvec = dynamic_cast<itk::ParticleShapeLinearRegressionMatrixAttribute<double,3> *>
+        vnl_vector<double> interceptvec = dynamic_cast<ParticleShapeLinearRegressionMatrixAttribute<double,3> *>
                 (m_Sampler->GetEnsembleRegressionEntropyFunction()->GetShapeMatrix())->GetIntercept();
 
         for (unsigned int i = 0; i < slopevec.size(); i++)

@@ -12,18 +12,18 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticlePositionReader_h
-#define __itkParticlePositionReader_h
+#ifndef _ParticlePositionReader_h
+#define _ParticlePositionReader_h
 
-#include "itkDataObject.h"
-#include "itkObjectFactory.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
+#include <itkDataObject.h>
+#include <itkObjectFactory.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
 #include <vector>
 #include <string>
 
-namespace itk
-{
+//using namespace itk;
+
 /** \class ParticlePositionReader
  *  This class reads a set of Points from disk and stores them in a vector.
  *  The file format is simple an ascii list of VDimension-tuples stored one per
@@ -39,18 +39,18 @@ namespace itk
  * etc..
  */
 template <unsigned int VDimension>
-class ITK_EXPORT ParticlePositionReader : public DataObject
+class ParticlePositionReader : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef ParticlePositionReader Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** The point type that this class reads. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
   
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -75,7 +75,7 @@ public:
   
 protected:
   ParticlePositionReader() { }
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os,indent);
   
@@ -91,9 +91,7 @@ protected:
   std::string m_FileName;
 };
 
-} // end namespace itk
-
-#include "itkParticlePositionReader.cpp"
+#include "ParticlePositionReader.cpp"
 
 #endif
 

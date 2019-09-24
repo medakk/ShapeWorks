@@ -1,31 +1,12 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
+#ifndef __PSMDomNodeXMLReader_h
+#define __PSMDomNodeXMLReader_h
 
-#ifndef __itkPSMDomNodeXMLReader_h
-#define __itkPSMDomNodeXMLReader_h
-
-#include "itkPSMDOMNode.h"
-#include "itkObject.h"
+#include "PSMDOMNode.h"
+#include <itkObject.h>
 
 #include <istream>
 
-namespace itk
-{
+//using namespace itk;
 
 /**
  * \class PSMDOMNodeXMLReader 
@@ -48,8 +29,8 @@ public:
   /** Standard class typedefs. */
   typedef PSMDOMNodeXMLReader         Self;
   typedef Object                      Superclass;
-  typedef SmartPointer< Self >        Pointer;
-  typedef SmartPointer< const Self >  ConstPointer;
+  typedef itk::SmartPointer< Self >        Pointer;
+  typedef itk::SmartPointer< const Self >  ConstPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -121,15 +102,14 @@ private:
   DOMNodeType* m_Context;
 };
 
-} // namespace itk
 
 /** The operator ">>" is overloaded such that a DOM object can be conveniently read from an input stream. */
-inline std::istream& operator>>( std::istream& is, itk::PSMDOMNode& object )
+inline std::istream& operator>>( std::istream& is, PSMDOMNode& object )
 {
-  itk::PSMDOMNodeXMLReader::Pointer reader = itk::PSMDOMNodeXMLReader::New();
+  PSMDOMNodeXMLReader::Pointer reader = PSMDOMNodeXMLReader::New();
   reader->SetDOMNode( &object );
   reader->Update( is );
   return is;
 }
 
-#endif // __itkPSMDOMNodeXMLReader_h
+#endif // __PSMDOMNodeXMLReader_h

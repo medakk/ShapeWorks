@@ -12,42 +12,44 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleClipRegionDomain_h
-#define __itkParticleClipRegionDomain_h
+#ifndef _ParticleClipRegionDomain_h
+#define _ParticleClipRegionDomain_h
 
-#include "itkDataObject.h"
-#include "itkParticleRegionDomain.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
-#include "itkExceptionObject.h"
+#include <itkDataObject.h>
+#include "ParticleRegionDomain.h"
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
+#include <itkExceptionObject.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
+
 /** \class ParticleClipRegionDomain
  *  \brief 
  */
 template <unsigned int VDimension=3>
-class ITK_EXPORT ParticleClipRegionDomain : public ParticleRegionDomain<VDimension>
+class ParticleClipRegionDomain : public ParticleRegionDomain<VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef ParticleClipRegionDomain Self;
   typedef ParticleRegionDomain<VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ParticleClipRegionDomain, DataObject);
+  itkTypeMacro(ParticleClipRegionDomain, itk::DataObject);
 
   /** Dimensionality of the domain of the particle system. */
   itkStaticConstMacro(Dimension, unsigned int, VDimension);
 
   /** Point type used to store particle locations. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
 
   /** Apply any constraints to the given point location.  This method may, for
       example, implement boundary conditions or restrict points to lie on a
@@ -74,7 +76,7 @@ public:
 
 protected:
   ParticleClipRegionDomain() {}
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
   }
@@ -85,7 +87,7 @@ private:
   void operator=(const Self&); //purposely not implemented
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -93,7 +95,7 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-//# include "itkParticleClipRegionDomain.txx"
+//# include "ParticleClipRegionDomain.txx"
 #endif
 
 #endif

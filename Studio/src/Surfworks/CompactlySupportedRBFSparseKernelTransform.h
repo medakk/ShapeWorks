@@ -1,40 +1,23 @@
-/*=========================================================================
+#ifndef _CompactlySupportedRBFSparseKernelTransform_h
+#define _CompactlySupportedRBFSparseKernelTransform_h
 
-  Program:   Insight Segmentation & Registration Toolkit
-  Module:    $RCSfile: itkCompactlySupportedRBFSparseKernelTransform.h,v $
-  Language:  C++
-  Date:      $Date: 2014-1-28 14:22:18 $
-  Version:   $Revision: 1.1 $
+#include "SparseKernelTransform.h"
 
-  Copyright (c) Insight Software Consortium. All rights reserved.
-  See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
 
-     This software is distributed WITHOUT ANY WARRANTY; without even
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-     PURPOSE.  See the above copyright notices for more information.
-
-=========================================================================*/
-#ifndef __itkCompactlySupportedRBFSparseKernelTransform_h
-#define __itkCompactlySupportedRBFSparseKernelTransform_h
-
-#include "itkSparseKernelTransform.h"
-
-namespace itk
-{
 /** \class CompactlySupportedRBFSparseKernelTransform
  * \ingroup Transforms
  */
 template <class TScalarType,         // Data type for scalars (float or double)
           unsigned int NDimensions = 3>          // Number of dimensions
-class ITK_EXPORT CompactlySupportedRBFSparseKernelTransform :
+class CompactlySupportedRBFSparseKernelTransform :
         public SparseKernelTransform<   TScalarType, NDimensions>
 {
 public:
     /** Standard class typedefs. */
     typedef CompactlySupportedRBFSparseKernelTransform Self;
     typedef SparseKernelTransform<    TScalarType, NDimensions>   Superclass;
-    typedef SmartPointer<Self>        Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
+    typedef itk::SmartPointer<Self>        Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
 
     /** New macro for creation of through a Smart Pointer */
     itkNewMacro( Self );
@@ -96,10 +79,10 @@ private:
 };
 
 
-} // namespace itk
+
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkCompactlySupportedRBFSparseKernelTransform.hxx"
+#include "CompactlySupportedRBFSparseKernelTransform.hxx"
 #endif
 
-#endif // __itkCompactlySupportedRBFSparseKernelTransform_h
+#endif // _CompactlySupportedRBFSparseKernelTransform_h

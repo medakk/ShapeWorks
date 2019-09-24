@@ -16,22 +16,22 @@
  *
  *=========================================================================*/
 
-#ifndef ____itkPSMCommandLineClass__h
-#define ____itkPSMCommandLineClass__h
+#ifndef ___PSMCommandLineClass__h
+#define ___PSMCommandLineClass__h
 
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "itkImage.h"
-#include "itkPSMProcrustesRegistration.h"
-#include "itkImageFileReader.h"
-#include "itkPSMEntropyModelFilter.h"
-#include "itkPSMProject.h"
-#include "itkPSMProjectReader.h"
-#include "itkPSMParticleSystem.h"
-#include "itkCommand.h"
+#include <itkImage.h>
+#include "PSMProcrustesRegistration.h"
+#include <itkImageFileReader.h>
+#include "PSMEntropyModelFilter.h"
+#include "PSMProject.h"
+#include "PSMProjectReader.h"
+#include "PSMParticleSystem.h"
+#include <itkCommand.h>
 
-namespace itk
+
 {
 /** \class PSMCommandLineClass
  *  \brief This class provides a command line tool to run the Particle Shape
@@ -44,20 +44,20 @@ namespace itk
  */
 
 template <unsigned int VDimension>
-class ITK_EXPORT PSMCommandLineClass : public DataObject
+class PSMCommandLineClass : public itk::DataObject
 {
   public:
     /** Standard class typedefs. */
     typedef PSMCommandLineClass  Self;
-    typedef DataObject Superclass;
-    typedef SmartPointer<Self>   Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
+    typedef itk::DataObject Superclass;
+    typedef itk::SmartPointer<Self>   Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
   
     /** Method for creation through the object factory. */
     itkNewMacro(Self);
   
     /** Run-time type information (and related methods). */
-    itkTypeMacro(PSMCommandLineClass, DataObject);
+    itkTypeMacro(PSMCommandLineClass, itk::DataObject);
   
     /** Input distance transforms image typedef */
     typedef typename itk::Image<float, VDimension> ImageType;
@@ -159,7 +159,7 @@ class ITK_EXPORT PSMCommandLineClass : public DataObject
 } // end namespace
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMCommandLineClass.hxx"
+#include "PSMCommandLineClass.hxx"
 #endif
 
 #endif 

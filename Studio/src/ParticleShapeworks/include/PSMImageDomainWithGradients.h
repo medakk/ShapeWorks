@@ -1,32 +1,16 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMImageDomainWithGradients_h
-#define __itkPSMImageDomainWithGradients_h
+#ifndef __PSMImageDomainWithGradients_h
+#define __PSMImageDomainWithGradients_h
 
-#include "itkImage.h"
-#include "itkImageDuplicator.h"
-#include "itkPSMImageDomain.h"
-#include "itkVectorLinearInterpolateImageFunction.h"
-#include "itkGradientImageFilter.h"
-#include "itkFixedArray.h"
+#include <itkImage.h>
+#include <itkImageDuplicator.h>
+#include "PSMImageDomain.h"
+#include <itkVectorLinearInterpolateImageFunction.h>
+#include <itkGradientImageFilter.h>
+#include <itkFixedArray.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMImageDomainWithGradients
  *
  * An image domain that extends PSMImageDomainWithGradients with image
@@ -38,27 +22,27 @@ namespace itk
  * \sa PSMDomain
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT PSMImageDomainWithGradients : public PSMImageDomain<T, VDimension>
+class PSMImageDomainWithGradients : public PSMImageDomain<T, VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef PSMImageDomainWithGradients Self;
   typedef PSMImageDomain<T, VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
     /** Point type of the domain (not necessarily of the image). */
   typedef typename Superclass::PointType PointType;
   
   typedef typename Superclass::ImageType ImageType;
   typedef typename Superclass::ScalarInterpolatorType ScalarInterpolatorType;
-  typedef GradientImageFilter<ImageType> GradientImageFilterType;
+  typedef itk::GradientImageFilter<ImageType> GradientImageFilterType;
   typedef typename GradientImageFilterType::OutputImageType GradientImageType;
-  typedef VectorLinearInterpolateImageFunction<GradientImageType, typename PointType::CoordRepType>
+  typedef itk::VectorLinearInterpolateImageFunction<GradientImageType, typename PointType::CoordRepType>
   GradientInterpolatorType;
 
-  typedef FixedArray<T, VDimension> VectorType;
+  typedef itk::FixedArray<T, VDimension> VectorType;
   typedef vnl_vector_fixed<T, VDimension> VnlVectorType;
   
   /** Method for creation through the object factory. */
@@ -136,7 +120,7 @@ protected:
     m_GradientInterpolator = GradientInterpolatorType::New();
   }
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
     os << indent << "m_GradientImage = " << m_GradientImage << std::endl;
@@ -152,6 +136,6 @@ private:
   typename GradientInterpolatorType::Pointer m_GradientInterpolator;
 };
 
-} // end namespace itk
+
 
 #endif

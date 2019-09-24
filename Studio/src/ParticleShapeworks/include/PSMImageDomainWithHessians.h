@@ -1,35 +1,19 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMImageDomainWithHessians_h
-#define __itkPSMImageDomainWithHessians_h
+#ifndef __PSMImageDomainWithHessians_h
+#define __PSMImageDomainWithHessians_h
 
-#include "itkImage.h"
-#include "itkPSMImageDomainWithGradients.h"
-#include "itkLinearInterpolateImageFunction.h"
-#include "itkGradientImageFilter.h"
-#include "itkFixedArray.h"
-#include "itkImageDuplicator.h"
-#include "itkDiscreteGaussianImageFilter.h"
-#include "itkDerivativeImageFilter.h"
-#include "vnl/vnl_matrix_fixed.h"
+#include <itkImage.h>
+#include "PSMImageDomainWithGradients.h"
+#include <itkLinearInterpolateImageFunction.h>
+#include <itkGradientImageFilter.h>
+#include <itkFixedArray.h>
+#include <itkImageDuplicator.h>
+#include <itkDiscreteGaussianImageFilter.h>
+#include <itkDerivativeImageFilter.h>
+#include <vnl/vnl_matrix_fixed.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMImageDomainWithHessians
  *
  * An image domain that extends PSMImageDomainWithHessianGradients with Hessian
@@ -42,16 +26,16 @@ namespace itk
  * \sa PSMDomain
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT PSMImageDomainWithHessians
+class PSMImageDomainWithHessians
   : public PSMImageDomainWithGradients<T, VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef PSMImageDomainWithHessians Self;
   typedef PSMImageDomainWithGradients<T, VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
     /** Point type of the domain (not necessarily of the image). */
   typedef typename Superclass::PointType PointType;
@@ -85,8 +69,8 @@ public:
     // Compute the second derivatives and set up the interpolators
     for (unsigned int i = 0; i < VDimension; i++)
       {
-      typename DerivativeImageFilter<ImageType, ImageType>::Pointer
-        deriv = DerivativeImageFilter<ImageType, ImageType>::New();
+      typename itk::DerivativeImageFilter<ImageType, ImageType>::Pointer
+        deriv = itk::DerivativeImageFilter<ImageType, ImageType>::New();
       deriv->SetInput(gaussian->GetOutput());
       deriv->SetDirection(i);
       deriv->SetOrder(2);
@@ -105,16 +89,16 @@ public:
       {
       for (unsigned int j = i+1; j < VDimension; j++, k++)
         {
-        typename DerivativeImageFilter<ImageType, ImageType>::Pointer
-          deriv1 = DerivativeImageFilter<ImageType, ImageType>::New();
+        typename itk::DerivativeImageFilter<ImageType, ImageType>::Pointer
+          deriv1 = itk::DerivativeImageFilter<ImageType, ImageType>::New();
         deriv1->SetInput(gaussian->GetOutput());
         deriv1->SetDirection(i);
         deriv1->SetUseImageSpacingOn();
         deriv1->SetOrder(1);
         deriv1->Update();
 
-        typename DerivativeImageFilter<ImageType, ImageType>::Pointer
-          deriv2 = DerivativeImageFilter<ImageType, ImageType>::New();
+        typename itk::DerivativeImageFilter<ImageType, ImageType>::Pointer
+          deriv2 = itk::DerivativeImageFilter<ImageType, ImageType>::New();
         deriv2->SetInput(deriv1->GetOutput());
         deriv2->SetDirection(j);
         deriv2->SetUseImageSpacingOn();
@@ -167,7 +151,7 @@ protected:
   PSMImageDomainWithHessians() : m_Sigma(0.0)
   {  }
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
   }
@@ -198,6 +182,6 @@ private:
   typename ScalarInterpolatorType::Pointer m_Interpolators[VDimension + ((VDimension * VDimension) - VDimension) / 2];
 };
 
-} // end namespace itk
+
 
 #endif

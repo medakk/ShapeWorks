@@ -12,17 +12,16 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticlePositionMetaWriter_h
-#define __itkParticlePositionMetaWriter_h
+#ifndef _ParticlePositionMetaWriter_h
+#define _ParticlePositionMetaWriter_h
 
-#include "itkDataObject.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
+#include <itkDataObject.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
 #include <vector>
 #include <string>
 
-namespace itk
-{
+
 /** \class ParticlePositionMetaWriter
  *  This class writes a set of Points to disk.  Its input is a std::vector of points.
  *  The file format is simple an ascii list of VDimension-tuples stored one per
@@ -38,24 +37,24 @@ namespace itk
  * etc..
  */
 template <unsigned int VDimension>
-class ITK_EXPORT ParticlePositionMetaWriter : public DataObject
+class ParticlePositionMetaWriter : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef ParticlePositionMetaWriter Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** The point type that this class reads. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
   
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ParticlePositionMetaWriter, DataObject);
+  itkTypeMacro(ParticlePositionMetaWriter, itk::DataObject);
 
   /** Set the input vector.  The input is a reference to a std::vector of PointType. */
   void SetInput( const std::vector<PointType> &p)
@@ -74,7 +73,7 @@ public:
   
 protected:
   ParticlePositionMetaWriter()  { }
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os,indent);
   
@@ -90,7 +89,7 @@ protected:
   std::string m_FileName;
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -98,9 +97,9 @@ protected:
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticlePositionMetaWriter.txx"
+# include "ParticlePositionMetaWriter.txx"
 #endif
 
-#include "itkParticlePositionMetaWriter.txx"
+#include "ParticlePositionMetaWriter.txx"
 
 #endif

@@ -12,16 +12,15 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleEnsembleEntropyFunction_txx
-#define __itkParticleEnsembleEntropyFunction_txx
+#ifndef _ParticleEnsembleEntropyFunction_txx
+#define _ParticleEnsembleEntropyFunction_txx
 
-#include "itkParticleImageDomainWithGradients.h"
-#include "vnl/algo/vnl_symmetric_eigensystem.h"
-#include "itkParticleGaussianModeWriter.h"
+#include "ParticleImageDomainWithGradients.h"
+#include <vnl/algo/vnl_symmetric_eigensystem.h>
+#include "ParticleGaussianModeWriter.h"
 #include <string>
 
-namespace itk
-{
+
 template <unsigned int VDimension>
 void
 ParticleEnsembleEntropyFunction<VDimension>
@@ -230,5 +229,5 @@ ParticleEnsembleEntropyFunction<VDimension>
                                    system->GetInverseTransform(d));
 }
 
-} // end namespace
+
 #endif

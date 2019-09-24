@@ -5,8 +5,8 @@
 #include <fstream>
 #include <string>
 #include <stdio.h>
-#include "itkImage.h"
-#include "itkImageFileReader.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
 
 
 int main(int argc, char *argv[])

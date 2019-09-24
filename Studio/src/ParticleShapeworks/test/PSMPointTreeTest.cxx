@@ -16,9 +16,9 @@
  *
  *=========================================================================*/
 #include <iostream>
-#include "itkPSMPointTree.h"
-#include "itkPoint.h"
-#include "itkMacro.h"
+#include "PSMPointTree.h"
+#include <itkPoint.h>
+#include <itkMacro.h>
 
 /** This test exercises functionality of the base itkPSMPointTree class */
 int itkPSMPointTreeTest(int, char* [])
@@ -77,7 +77,7 @@ int itkPSMPointTreeTest(int, char* [])
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

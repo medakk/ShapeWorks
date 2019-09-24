@@ -1,12 +1,14 @@
-#ifndef ITKPARTICLEGOODBADASSESSMENT_H
-#define ITKPARTICLEGOODBADASSESSMENT_H
+#ifndef _PARTICLEGOODBADASSESSMENT_H
+#define _PARTICLEGOODBADASSESSMENT_H
 
-#include "itkParticleSystem.h"
-#include "itkParticleImageDomainWithGradients.h"
-#include "itkParticleImageDomainWithCurvature.h"
+#include "ParticleSystem.h"
+#include "ParticleImageDomainWithGradients.h"
+#include "ParticleImageDomainWithCurvature.h"
 #include <algorithm>
-namespace itk
-{
+
+
+//using namespace itk;
+
 /** \class ParticleProcrustesRegistration
  *  \brief
  *  Class for replacing bad particles during optimization
@@ -20,9 +22,9 @@ class ParticleGoodBadAssessment : public Object
 public:
 
     typedef ParticleGoodBadAssessment Self;
-    typedef SmartPointer<Self>  Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
-    typedef WeakPointer<const Self>  ConstWeakPointer;
+    typedef itk::SmartPointer<Self>  Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
+    typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
     /** Particle system typedefs. */
     typedef ParticleSystem<VDimension> ParticleSystemType;
@@ -91,12 +93,12 @@ private:
 
 };
 
-} //end namespace
+
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleGoodBadAssessment.txx"
+# include "ParticleGoodBadAssessment.txx"
 #endif
 
-#include "itkParticleGoodBadAssessment.txx"
+#include "ParticleGoodBadAssessment.txx"
 
-#endif // ITKPARTICLEGOODBADASSESSMENT_H
+#endif // _PARTICLEGOODBADASSESSMENT_H

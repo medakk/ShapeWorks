@@ -12,18 +12,17 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleImageDomainWithGradients_h
-#define __itkParticleImageDomainWithGradients_h
+#ifndef _ParticleImageDomainWithGradients_h
+#define _ParticleImageDomainWithGradients_h
 
-#include "itkImage.h"
-#include "itkImageDuplicator.h"
-#include "itkParticleImageDomain.h"
-#include "itkVectorLinearInterpolateImageFunction.h"
-#include "itkGradientImageFilter.h"
-#include "itkFixedArray.h"
+#include <itkImage.h>
+#include <itkImageDuplicator.h>
+#include "ParticleImageDomain.h"
+#include <itkVectorLinearInterpolateImageFunction.h>
+#include <itkGradientImageFilter.h>
+#include <itkFixedArray.h>
 
-namespace itk
-{
+
 /** \class ParticleImageDomainWithGradients
  *
  * An image domain that extends ParticleImageDomainWithGradients with image
@@ -35,27 +34,27 @@ namespace itk
  * \sa ParticleDomain
  */
 template <class T, unsigned int VDimension=3>
-class ITK_EXPORT ParticleImageDomainWithGradients : public ParticleImageDomain<T, VDimension>
+class ParticleImageDomainWithGradients : public ParticleImageDomain<T, VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef ParticleImageDomainWithGradients Self;
   typedef ParticleImageDomain<T, VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
     /** Point type of the domain (not necessarily of the image). */
   typedef typename Superclass::PointType PointType;
   
   typedef typename Superclass::ImageType ImageType;
   typedef typename Superclass::ScalarInterpolatorType ScalarInterpolatorType;
-  typedef GradientImageFilter<ImageType> GradientImageFilterType;
+  typedef itk::GradientImageFilter<ImageType> GradientImageFilterType;
   typedef typename GradientImageFilterType::OutputImageType GradientImageType;
-  typedef VectorLinearInterpolateImageFunction<GradientImageType, typename PointType::CoordRepType>
+  typedef itk::VectorLinearInterpolateImageFunction<GradientImageType, typename PointType::CoordRepType>
   GradientInterpolatorType;
 
-  typedef FixedArray<T, 3> VectorType;
+  typedef itk::FixedArray<T, 3> VectorType;
   typedef vnl_vector_fixed<T, 3> VnlVectorType;
   
   /** Method for creation through the object factory. */
@@ -154,7 +153,7 @@ protected:
     m_GradientInterpolator = GradientInterpolatorType::New();
   }
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
     os << indent << "m_GradientImage = " << m_GradientImage << std::endl;
@@ -170,7 +169,7 @@ private:
   typename GradientInterpolatorType::Pointer m_GradientInterpolator;
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -178,7 +177,7 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-//# include "itkParticleImageDomainWithGradients.txx"
+//# include "ParticleImageDomainWithGradients.txx"
 #endif
 
 #endif

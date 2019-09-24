@@ -17,10 +17,10 @@
  *=========================================================================*/
 #include <iostream>
 
-#include "itkMacro.h"
-#include "itkPSMProject.h"
-#include "itkPSMProjectReader.h"
-#include "itkPSMProjectWriter.h"
+#include <itkMacro.h>
+#include "PSMProject.h"
+#include "PSMProjectReader.h"
+#include "PSMProjectWriter.h"
 
 /** This test exercises functionality of the base itkPSMEntropyModelFilter class */
 int itkPSMProjectTest(int argc, char* argv[] )
@@ -32,7 +32,7 @@ int itkPSMProjectTest(int argc, char* argv[] )
   if (argc < 2)
     {
       std::cout << "Wrong number of arguments. \nUse: " 
-	<< "itkPSMProjectTest PSMProjectFile.xml <outputfile.xml (optional>\n"
+	<< "PSMProjectTest PSMProjectFile.xml <outputfile.xml (optional>\n"
         << "See itk::PSMProject and itk::PSMDOMNode for documentation on the parameter file format."
 	<< std::endl;
       return EXIT_FAILURE;
@@ -82,7 +82,7 @@ int itkPSMProjectTest(int argc, char* argv[] )
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

@@ -12,24 +12,23 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleModifiedCotangentEntropyGradientFunction_h
-#define __itkParticleModifiedCotangentEntropyGradientFunction_h
+#ifndef _ParticleModifiedCotangentEntropyGradientFunction_h
+#define _ParticleModifiedCotangentEntropyGradientFunction_h
 
-#include "itkParticleEntropyGradientFunction.h"
-#include "itkParticleImageDomainWithGradients.h"
-#include "itkParticleImageDomainWithCurvature.h"
-#include "itkParticleMeanCurvatureAttribute.h"
-#include "itkCommand.h"
+#include "ParticleEntropyGradientFunction.h"
+#include "ParticleImageDomainWithGradients.h"
+#include "ParticleImageDomainWithCurvature.h"
+#include "ParticleMeanCurvatureAttribute.h"
+#include <itkCommand.h>
 
 // PRATEEP
 #include <fstream>
 #include <math.h>
-#include "itkMath.h"
+#include <itkMath.h>
 
 // end PRATEEP
 
-namespace itk
-{
+//using namespace itk;
 
 /**
  * \class ParticleModifiedCotangentEntropyGradientFunction
@@ -54,8 +53,8 @@ class ParticleModifiedCotangentEntropyGradientFunction
 public:
     /** Standard class typedefs. */
     typedef ParticleModifiedCotangentEntropyGradientFunction Self;
-    typedef SmartPointer<Self>  Pointer;
-    typedef SmartPointer<const Self>  ConstPointer;
+    typedef itk::SmartPointer<Self>  Pointer;
+    typedef itk::SmartPointer<const Self>  ConstPointer;
     typedef ParticleEntropyGradientFunction<TGradientNumericType, VDimension> Superclass;
     itkTypeMacro( ParticleModifiedCotangentEntropyGradientFunction, ParticleEntropyGradientFunction);
 
@@ -178,16 +177,16 @@ protected:
     std::vector<double> m_GlobalSigma;
 };
 
-} //end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 # include "Templates/itkParticleModifiedCotangentEntropyGradientFunction+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleModifiedCotangentEntropyGradientFunction.txx"
+# include "ParticleModifiedCotangentEntropyGradientFunction.txx"
 #endif
 
-#include "itkParticleModifiedCotangentEntropyGradientFunction.txx"
+#include "ParticleModifiedCotangentEntropyGradientFunction.txx"
 
 #endif

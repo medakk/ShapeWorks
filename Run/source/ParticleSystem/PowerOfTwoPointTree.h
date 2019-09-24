@@ -1,6 +1,6 @@
 /*=========================================================================
   Program:   ShapeWorks: Particle-based Shape Correspondence & Visualization
-  Module:    $RCSfile: itkPowerOfTwoPointTree.h,v $
+  Module:    $RCSfile: PowerOfTwoPointTree.h,v $
   Date:      $Date: 2011/03/24 01:17:34 $
   Version:   $Revision: 1.2 $
   Author:    $Author: wmartin $
@@ -12,19 +12,18 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkPowerOfTwoPointTree_h
-#define __itkPowerOfTwoPointTree_h
+#ifndef _PowerOfTwoPointTree_h
+#define _PowerOfTwoPointTree_h
 
-#include "itkParticlePointIndexPair.h"
-#include "itkLightObject.h"
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "itkTreeContainer.h"
-#include "itkPoint.h"
+#include "ParticlePointIndexPair.h"
+#include <itkLightObject.h>
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include <itkTreeContainer.h>
+#include <itkPoint.h>
 #include <list>
 
-namespace itk
-{
+
 
 /** Compute pow(a,b)=c at compile time.  */
 template <int a, int b>
@@ -53,8 +52,8 @@ class PowerOfTwoPointTreeNode : public LightObject
 public:
   /** Standard class typedefs. */
   typedef PowerOfTwoPointTreeNode   Self;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
   typedef LightObject Superclass;
   itkTypeMacro( PowerOfTwoPointTreeNode, LightObject);
 
@@ -66,7 +65,7 @@ public:
   itkStaticConstMacro(BranchesPerNode, int, (powstruct<2, VDimension>::c));
 
   /** Point type stored in the leaf nodes. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
 
   /** List type for storing lists of points+indices. */
   typedef std::list<ParticlePointIndexPair<VDimension> > PointListType;
@@ -132,7 +131,7 @@ public:
   { this->GetBranch(b) = n; }
   
   /** Standard ITK PrintSelf method. */  
-  void PrintSelf(std::ostream& os, Indent indent) const;
+  void PrintSelf(std::ostream& os, itk::Indent indent) const;
 
   /** Get the list of elements which contain points and associated indices. */
   const PointListType &GetList() const
@@ -166,15 +165,15 @@ private:
  *  itkParticleNeighborhood classes.
  */
  template <unsigned int VDimension>
- class ITK_EXPORT PowerOfTwoPointTree : public DataObject
+ class PowerOfTwoPointTree : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef PowerOfTwoPointTree Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
     /** Shorthand for the object pointed to by each node.   */
   typedef PowerOfTwoPointTreeNode<VDimension> NodeType;
@@ -193,7 +192,7 @@ public:
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(PowerOfTwoPointTree, DataObject);
+  itkTypeMacro(PowerOfTwoPointTree, itk::DataObject);
 
   /** Dimensionality of the domain. */
   itkStaticConstMacro(Dimension, unsigned int, VDimension);
@@ -261,7 +260,7 @@ public:
     return true;
   }
   
-  void PrintSelf(std::ostream& os, Indent indent) const;
+  void PrintSelf(std::ostream& os, itk::Indent indent) const;
 protected:
   PowerOfTwoPointTree()
   {
@@ -288,7 +287,7 @@ private:
   unsigned int m_Depth;
 };
 
-} // end namespace itk
+
 
 
 #if ITK_TEMPLATE_EXPLICIT
@@ -296,9 +295,9 @@ private:
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkPowerOfTwoPointTree.txx"
+# include "PowerOfTwoPointTree.txx"
 #endif
 
-#include "itkPowerOfTwoPointTree.txx"
+#include "PowerOfTwoPointTree.txx"
 
 #endif

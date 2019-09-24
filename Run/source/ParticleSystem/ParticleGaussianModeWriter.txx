@@ -12,16 +12,15 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 ========================================================================*/
-#ifndef __itkParticleGaussianModeWriter_txx
-#define __itkParticleGaussianModeWriter_txx
+#ifndef _ParticleGaussianModeWriter_txx
+#define _ParticleGaussianModeWriter_txx
 
-#include "itkParticleImageDomainWithGradients.h"
-#include "vnl/algo/vnl_symmetric_eigensystem.h"
-#include "itkParticlePositionWriter.h"
+#include "ParticleImageDomainWithGradients.h"
+#include <vnl/algo/vnl_symmetric_eigensystem.h>
+#include "ParticlePositionWriter.h"
 #include <string>
 
-namespace itk
-{
+
 
 template <unsigned int VDimension>
 void
@@ -140,5 +139,5 @@ ParticleGaussianModeWriter<VDimension>
     }
 }
 
-} // end namespace
+
 #endif

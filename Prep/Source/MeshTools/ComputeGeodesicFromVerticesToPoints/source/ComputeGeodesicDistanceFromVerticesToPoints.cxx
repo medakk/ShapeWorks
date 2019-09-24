@@ -5,7 +5,7 @@
 #include "tinyxml.h"
 #include <sstream>
 #include <string>
-#include "vnl/vnl_vector.h"
+#include <vnl/vnl_vector.h>
 
 int main(int argc, char *argv[])
 {

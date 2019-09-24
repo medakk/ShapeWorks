@@ -12,15 +12,14 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleImplicitSurfaceDomain_txx
-#define __itkParticleImplicitSurfaceDomain_txx
+#ifndef _ParticleImplicitSurfaceDomain_txx
+#define _ParticleImplicitSurfaceDomain_txx
 
-#include "vnl/vnl_math.h"
-#include "vnl/vnl_cross.h"
+#include <vnl/vnl_math.h>
+#include <vnl/vnl_cross.h>
 #define PARTICLE_DEBUG_FLAG 1
 
-namespace itk
-{
+
 
 template<class T, unsigned int VDimension>
 void
@@ -435,5 +434,5 @@ ParticleImplicitSurfaceDomain<T, VDimension>::Distance(const PointType &a, const
 #endif   
 }
 
-} // end namespace
+
 #endif

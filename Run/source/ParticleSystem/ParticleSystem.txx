@@ -12,13 +12,12 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleSystem_txx
-#define __itkParticleSystem_txx
+#ifndef _ParticleSystem_txx
+#define _ParticleSystem_txx
 
-#include "itkCommand.h"
-#include "itkParticleImageDomainWithGradients.h"
-namespace itk
-{
+#include <itkCommand.h>
+#include "ParticleImageDomainWithGradients.h"
+
 
 template <unsigned int VDimension>
 ParticleSystem<VDimension>
@@ -86,7 +85,7 @@ void ParticleSystem<VDimension>
 
 template <unsigned int VDimension>
 void ParticleSystem<VDimension>
-::PrintSelf(std::ostream& os, Indent indent) const
+::PrintSelf(std::ostream& os, itk::Indent indent) const
 {
   Superclass::PrintSelf(os, indent);
 
@@ -333,69 +332,69 @@ ParticleSystem<VDimension>
   // ParticleSystem with appropriate events.
   if (attr->m_DefinedCallbacks.Event == true)
     {
-    typename MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< ParticleAttribute<VDimension> >::New();
+    typename itk::MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< ParticleAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &ParticleAttribute<VDimension>::EventCallback);
     this->AddObserver(ParticleEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.EventWithIndex == true)
     {
-    typename MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< ParticleAttribute<VDimension> >::New();
+    typename itk::MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< ParticleAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &ParticleAttribute<VDimension>::EventWithIndexCallback);
     this->AddObserver(ParticleEventWithIndex(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.DomainAddEvent == true)
     {
-    typename MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< ParticleAttribute<VDimension> >::New();
+    typename itk::MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< ParticleAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &ParticleAttribute<VDimension>::DomainAddEventCallback);
     this->AddObserver(ParticleDomainAddEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.TransformSetEvent == true)
     {
-    typename MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< ParticleAttribute<VDimension> >::New();
+    typename itk::MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< ParticleAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &ParticleAttribute<VDimension>::TransformSetEventCallback);
     this->AddObserver(ParticleTransformSetEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.PrefixTransformSetEvent == true)
     {
-    typename MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< ParticleAttribute<VDimension> >::New();
+    typename itk::MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< ParticleAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &ParticleAttribute<VDimension>::PrefixTransformSetEventCallback);
     this->AddObserver(ParticlePrefixTransformSetEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.NeighborhoodSetEvent == true)
     {
-    typename MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< ParticleAttribute<VDimension> >::New();
+    typename itk::MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< ParticleAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &ParticleAttribute<VDimension>::NeighborhoodSetEventCallback);
     this->AddObserver(ParticleNeighborhoodSetEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.PositionSetEvent == true)
     {
-    typename MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< ParticleAttribute<VDimension> >::New();
+    typename itk::MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< ParticleAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &ParticleAttribute<VDimension>::PositionSetEventCallback);
     this->AddObserver(ParticlePositionSetEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.PositionAddEvent == true)
     {
-    typename MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< ParticleAttribute<VDimension> >::New();
+    typename itk::MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< ParticleAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &ParticleAttribute<VDimension>::PositionAddEventCallback);
     this->AddObserver(ParticlePositionAddEvent(), tmpcmd);
     }
   if (attr->m_DefinedCallbacks.PositionRemoveEvent == true)
     {
-    typename MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
-      = MemberCommand< ParticleAttribute<VDimension> >::New();
+    typename itk::MemberCommand< ParticleAttribute<VDimension> >::Pointer tmpcmd
+      = itk::MemberCommand< ParticleAttribute<VDimension> >::New();
     tmpcmd->SetCallbackFunction(attr, &ParticleAttribute<VDimension>::PositionRemoveEventCallback);
     this->AddObserver(ParticlePositionRemoveEvent(), tmpcmd);
     }
 }
 
-} // end namespace
 
-#endif //__itkParticleSystem_txx
+
+#endif //_ParticleSystem_txx

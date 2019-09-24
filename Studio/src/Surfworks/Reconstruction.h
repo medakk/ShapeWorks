@@ -5,7 +5,7 @@
 #include <itkeigen/Eigen/Sparse>
 
 
-#include "itkCompactlySupportedRBFSparseKernelTransform.h"
+#include "CompactlySupportedRBFSparseKernelTransform.h"
 #include <Groom/ShapeWorksGroom.h>
 #include <itkImageToVTKImageFilter.h>
 #include <itkVTKImageToImageFilter.h>
@@ -16,7 +16,7 @@
 #include <itkResampleImageFilter.h>
 #include <itkBSplineInterpolateImageFunction.h>
 #include <itkMultiplyImageFilter.h>
-#include "itkImageRegionConstIterator.h"
+#include <itkImageRegionConstIterator.h>
 #include <itkImageDuplicator.h>
 #include <vtkSmartPointer.h>
 
@@ -48,7 +48,7 @@ class Reconstruction {
 
   typedef itk::ImageDuplicator< ImageType >          DuplicatorType;
   typedef double                                     CoordinateRepType;
-  typedef itk::CompactlySupportedRBFSparseKernelTransform 
+  typedef CompactlySupportedRBFSparseKernelTransform 
     <CoordinateRepType, 3>                    RBFTransformType;
   typedef itk::Point< CoordinateRepType, 3 >  PointType;
   typedef std::vector< PointType >                    PointArrayType;

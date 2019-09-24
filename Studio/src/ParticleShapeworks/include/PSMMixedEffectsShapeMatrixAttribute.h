@@ -1,38 +1,21 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
+#ifndef __PSMMixedEffectsShapeMatrixAttribute_h
+#define __PSMMixedEffectsShapeMatrixAttribute_h
 
-#ifndef __itkPSMMixedEffectsShapeMatrixAttribute_h
-#define __itkPSMMixedEffectsShapeMatrixAttribute_h
+#include "PSMShapeMatrixAttribute.h"
+#include <vnl/vnl_vector.h>
+#include "PSMParticleSystem.h"
+#include <vnl/vnl_trace.h>
 
-#include "itkPSMShapeMatrixAttribute.h"
-#include "vnl/vnl_vector.h"
-#include "itkPSMParticleSystem.h"
-#include "vnl/vnl_trace.h"
+//using namespace itk;
 
-namespace itk
-{
+
  /** \class PSMMixedEffectsShapeMatrixAttribute
   *
   *
   *
   */
  template <class T, unsigned int VDimension>
- class ITK_EXPORT PSMMixedEffectsShapeMatrixAttribute
+ class PSMMixedEffectsShapeMatrixAttribute
    : public PSMShapeMatrixAttribute<T,VDimension>
  {
  public:
@@ -40,9 +23,9 @@ namespace itk
    typedef T DataType;
    typedef PSMMixedEffectsShapeMatrixAttribute Self;
    typedef PSMShapeMatrixAttribute<T,VDimension> Superclass;
-   typedef SmartPointer<Self>  Pointer;
-   typedef SmartPointer<const Self>  ConstPointer;
-   typedef WeakPointer<const Self>  ConstWeakPointer;
+   typedef itk::SmartPointer<Self>  Pointer;
+   typedef itk::SmartPointer<const Self>  ConstPointer;
+   typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
    /** Method for creation through the object factory. */
    itkNewMacro(Self);
@@ -112,10 +95,10 @@ namespace itk
        of these callback methods, the corresponding flag in m_DefinedCallbacks
        should be set to true so that the PSMParticleSystem will know to register
        the appropriate event with this method. */
-   virtual void DomainAddEventCallback(Object *, const EventObject &e)
+   virtual void DomainAddEventCallback(Object *, const itk::EventObject &e)
    {
-     const itk::ParticleDomainAddEvent &event
-       = dynamic_cast<const itk::ParticleDomainAddEvent &>(e);
+     const ParticleDomainAddEvent &event
+       = dynamic_cast<const ParticleDomainAddEvent &>(e);
      unsigned int d = event.GetDomainIndex();
 
      if ( d % this->m_DomainsPerShape  == 0 )
@@ -126,10 +109,10 @@ namespace itk
      }    
    }
 
-   virtual void PositionAddEventCallback(Object *o, const EventObject &e) 
+   virtual void PositionAddEventCallback(Object *o, const itk::EventObject &e) 
    {
-     const itk::ParticlePositionAddEvent &event
-       = dynamic_cast<const itk::ParticlePositionAddEvent &>(e);
+     const ParticlePositionAddEvent &event
+       = dynamic_cast<const ParticlePositionAddEvent &>(e);
      const itk::PSMParticleSystem<VDimension> *ps
        = dynamic_cast<const itk::PSMParticleSystem<VDimension> *>(o);
      const int d = event.GetDomainIndex();
@@ -159,10 +142,10 @@ namespace itk
      }
    }
 
-   virtual void PositionSetEventCallback(Object *o, const EventObject &e) 
+   virtual void PositionSetEventCallback(Object *o, const itk::EventObject &e) 
    {
-     const itk::ParticlePositionSetEvent &event
-       = dynamic_cast <const itk::ParticlePositionSetEvent &>(e);
+     const ParticlePositionSetEvent &event
+       = dynamic_cast <const ParticlePositionSetEvent &>(e);
 
      const itk::PSMParticleSystem<VDimension> *ps
        = dynamic_cast<const itk::PSMParticleSystem<VDimension> *>(o);
@@ -182,7 +165,7 @@ namespace itk
      }
    }
 
-   virtual void PositionRemoveEventCallback(Object *, const EventObject &) 
+   virtual void PositionRemoveEventCallback(Object *, const itk::EventObject &) 
    {
      // NEED TO IMPLEMENT THIS
    }
@@ -344,7 +327,7 @@ namespace itk
 
    virtual ~PSMMixedEffectsShapeMatrixAttribute() {};
 
-   void PrintSelf(std::ostream& os, Indent indent) const
+   void PrintSelf(std::ostream& os, itk::Indent indent) const
    {
      Superclass::PrintSelf(os,indent);
    }
@@ -374,10 +357,10 @@ namespace itk
    vnl_vector<int> m_TimeptsPerIndividual;
  };
 
-} // end namespace
+
 
 #ifndef ITK_MANUAL_INSTANTIATION
-#include "itkPSMMixedEffectsShapeMatrixAttribute.hxx"
+#include "PSMMixedEffectsShapeMatrixAttribute.hxx"
 #endif
 
 #endif

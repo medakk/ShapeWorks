@@ -12,22 +12,21 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleShapeLinearRegressionMatrixAttribute_h
-#define __itkParticleShapeLinearRegressionMatrixAttribute_h
+#ifndef _ParticleShapeLinearRegressionMatrixAttribute_h
+#define _ParticleShapeLinearRegressionMatrixAttribute_h
 
-#include "itkParticleShapeMatrixAttribute.h"
-#include "vnl/vnl_vector.h"
-#include "itkParticleSystem.h"
+#include "ParticleShapeMatrixAttribute.h"
+#include <vnl/vnl_vector.h>
+#include "ParticleSystem.h"
 
-namespace itk
-{
+
 /** \class ParticleShapeLinearRegressionMatrixAttribute
  *
  *
  *
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT ParticleShapeLinearRegressionMatrixAttribute
+class ParticleShapeLinearRegressionMatrixAttribute
   : public ParticleShapeMatrixAttribute<T,VDimension>
 {
 public:
@@ -35,9 +34,9 @@ public:
   typedef T DataType;
   typedef ParticleShapeLinearRegressionMatrixAttribute Self;
   typedef ParticleShapeMatrixAttribute<T,VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -119,10 +118,10 @@ public:
       of these callback methods, the corresponding flag in m_DefinedCallbacks
       should be set to true so that the ParticleSystem will know to register
       the appropriate event with this method. */
-  virtual void DomainAddEventCallback(Object *, const EventObject &e)
+  virtual void DomainAddEventCallback(Object *, const itk::EventObject &e)
   {
-    const itk::ParticleDomainAddEvent &event
-      = dynamic_cast<const itk::ParticleDomainAddEvent &>(e);
+    const ParticleDomainAddEvent &event
+      = dynamic_cast<const ParticleDomainAddEvent &>(e);
     unsigned int d = event.GetDomainIndex();
     
     if ( d % this->m_DomainsPerShape  == 0 )
@@ -133,15 +132,15 @@ public:
       }    
   }
   
-  virtual void PositionAddEventCallback(Object *o, const EventObject &e) 
+  virtual void PositionAddEventCallback(Object *o, const itk::EventObject &e) 
   {
-    const itk::ParticlePositionAddEvent &event
-      = dynamic_cast<const itk::ParticlePositionAddEvent &>(e);
-    const itk::ParticleSystem<VDimension> *ps
-      = dynamic_cast<const itk::ParticleSystem<VDimension> *>(o);
+    const ParticlePositionAddEvent &event
+      = dynamic_cast<const ParticlePositionAddEvent &>(e);
+    const ParticleSystem<VDimension> *ps
+      = dynamic_cast<const ParticleSystem<VDimension> *>(o);
     const int d = event.GetDomainIndex();
     const unsigned int idx = event.GetPositionIndex();
-    const typename itk::ParticleSystem<VDimension>::PointType pos
+    const typename ParticleSystem<VDimension>::PointType pos
       = ps->GetTransformedPosition(idx, d);
     
     const unsigned int PointsPerDomain = ps ->GetNumberOfParticles(d);
@@ -169,16 +168,16 @@ public:
     //   std::cout << "Row " << k << " Col " << d / this->m_DomainsPerShape << " = " << pos << std::endl;
   }
   
-  virtual void PositionSetEventCallback(Object *o, const EventObject &e) 
+  virtual void PositionSetEventCallback(Object *o, const itk::EventObject &e) 
   {
-    const itk::ParticlePositionSetEvent &event
-      = dynamic_cast <const itk::ParticlePositionSetEvent &>(e);
+    const ParticlePositionSetEvent &event
+      = dynamic_cast <const ParticlePositionSetEvent &>(e);
   
-    const itk::ParticleSystem<VDimension> *ps
-      = dynamic_cast<const itk::ParticleSystem<VDimension> *>(o);
+    const ParticleSystem<VDimension> *ps
+      = dynamic_cast<const ParticleSystem<VDimension> *>(o);
     const int d = event.GetDomainIndex();
     const unsigned int idx = event.GetPositionIndex();
-    const typename itk::ParticleSystem<VDimension>::PointType pos = ps->GetTransformedPosition(idx, d);
+    const typename ParticleSystem<VDimension>::PointType pos = ps->GetTransformedPosition(idx, d);
     const unsigned int PointsPerDomain = ps ->GetNumberOfParticles(d);
     
     // Modify matrix info
@@ -193,7 +192,7 @@ public:
       }
   }
   
-  virtual void PositionRemoveEventCallback(Object *, const EventObject &) 
+  virtual void PositionRemoveEventCallback(Object *, const itk::EventObject &) 
   {
     // NEED TO IMPLEMENT THIS
   }
@@ -318,7 +317,7 @@ protected:
   }
   virtual ~ParticleShapeLinearRegressionMatrixAttribute() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   { Superclass::PrintSelf(os,indent);  }
 
 private:
@@ -339,6 +338,6 @@ private:
   vnl_matrix<double> m_MeanMatrix;
 };
 
-} // end namespace
+
 
 #endif

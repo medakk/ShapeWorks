@@ -7,11 +7,11 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
-#include "itkConnectedThresholdImageFilter.h"
-#include "itkTranslationTransform.h"
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
+#include <itkConnectedThresholdImageFilter.h>
+#include <itkTranslationTransform.h>
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
 #include <map>
 #include <string>
 //#include <QObject>

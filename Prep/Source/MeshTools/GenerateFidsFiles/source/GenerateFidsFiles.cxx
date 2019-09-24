@@ -1,8 +1,8 @@
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkBinaryThresholdImageFilter.h"
-#include "itkImageRegionIteratorWithIndex.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include <itkBinaryThresholdImageFilter.h>
+#include <itkImageRegionIteratorWithIndex.h>
 #include "TriMesh.h"
 #include "meshFIM.h"
 #include "math.h"
@@ -14,36 +14,36 @@
 #include <string>
 #include <climits>
 
-#include "itkIdentityTransform.h"
-#include "itkResampleImageFilter.h"
-#include "itkLinearInterpolateImageFunction.h"
+#include <itkIdentityTransform.h>
+#include <itkResampleImageFilter.h>
+#include <itkLinearInterpolateImageFunction.h>
 
 // VTK
-#include "vtkPolyData.h"
-#include "vtkMetaImageReader.h"
-#include "vtkMetaImageWriter.h"
-#include "vtkSmartPointer.h"
-#include "vtkContourFilter.h"
-#include "vtkDecimatePro.h"
-#include "vtkSmoothPolyDataFilter.h"
-#include "vtkPLYWriter.h"
-#include "vtkRenderer.h"
-#include "vtkRenderWindow.h"
-#include "vtkCamera.h"
-#include "vtkRenderWindowInteractor.h"
-#include "vtkPolyDataMapper.h"
-#include "vtkVertexGlyphFilter.h"
-#include "vtkPLYReader.h"
-#include "vtkTriangleFilter.h"
-#include "vtkProperty.h"
-#include "vtkImageCast.h"
-#include "vtkExtractSelection.h"
-#include "vtkIdTypeArray.h"
-#include "vtkInformation.h"
-#include "vtkSelection.h"
-#include "vtkSelectionNode.h"
-#include "vtkUnstructuredGrid.h"
-#include "vtkDataSetMapper.h"
+#include <vtkPolyData.h>
+#include <vtkMetaImageReader.h>
+#include <vtkMetaImageWriter.h>
+#include <vtkSmartPointer.h>
+#include <vtkContourFilter.h>
+#include <vtkDecimatePro.h>
+#include <vtkSmoothPolyDataFilter.h>
+#include <vtkPLYWriter.h>
+#include <vtkRenderer.h>
+#include <vtkRenderWindow.h>
+#include <vtkCamera.h>
+#include <vtkRenderWindowInteractor.h>
+#include <vtkPolyDataMapper.h>
+#include <vtkVertexGlyphFilter.h>
+#include <vtkPLYReader.h>
+#include <vtkTriangleFilter.h>
+#include <vtkProperty.h>
+#include <vtkImageCast.h>
+#include <vtkExtractSelection.h>
+#include <vtkIdTypeArray.h>
+#include <vtkInformation.h>
+#include <vtkSelection.h>
+#include <vtkSelectionNode.h>
+#include <vtkUnstructuredGrid.h>
+#include <vtkDataSetMapper.h>
 
 // C++/STL
 #include <iostream>
@@ -58,10 +58,10 @@
 
 // Etc
 #include "tinyxml.h"
-#include "vnl/vnl_vector.h"
+#include <vnl/vnl_vector.h>
 
 // debug -- prateep
-//#include "itkParticlePositionReader.h"
+//#include "ParticlePositionReader.h"
 // debug -- prateep
 
 #define _USE_MATH_DEFINES
@@ -450,11 +450,11 @@ int main(int argc, char *argv[])
 
         //        std::ofstream fout( opFilename.c_str(), std::ios::out);
 
-        //        itk::ParticlePositionReader<3>::Pointer reader = itk::ParticlePositionReader<3>::New();
+        //        ParticlePositionReader<3>::Pointer reader = ParticlePositionReader<3>::New();
         //        reader->SetFileName( particleFilename.c_str());
         //        reader->Update();
 
-        //        itk::ParticlePositionReader<1>::Pointer r = itk::ParticlePositionReader<1>::New();
+        //        ParticlePositionReader<1>::Pointer r = ParticlePositionReader<1>::New();
         //        r->SetFileName( truefaceFilename.c_str() );
         //        r->Update();
 

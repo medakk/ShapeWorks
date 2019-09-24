@@ -1,6 +1,6 @@
 /*=========================================================================
   Program:   ShapeWorks: Particle-based Shape Correspondence & Visualization
-  Module:    $RCSfile: itkPowerOfTwoPointTree.txx,v $
+  Module:    $RCSfile: PowerOfTwoPointTree.txx,v $
   Date:      $Date: 2011/03/24 01:17:34 $
   Version:   $Revision: 1.2 $
   Author:    $Author: wmartin $
@@ -12,17 +12,16 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkPowerOfTwoPointTree_txx
-#define __itkPowerOfTwoPointTree_txx
+#ifndef _PowerOfTwoPointTree_txx
+#define _PowerOfTwoPointTree_txx
 
 #include <cmath>
 
-namespace itk
-{
+
 
 template <unsigned int VDimension>
 void PowerOfTwoPointTreeNode<VDimension>
-::PrintSelf(std::ostream& os, Indent indent) const
+::PrintSelf(std::ostream& os, itk::Indent indent) const
 {
   os << indent << "PowerOfTwoPointTreeNode: ";
   os << "m_LowerBound = " << m_LowerBound;
@@ -200,7 +199,7 @@ void PowerOfTwoPointTree<VDimension>::BranchNode(NodePointerType &parent,
 }
 
 template  <unsigned int VDimension>
-void PowerOfTwoPointTree<VDimension>::PrintSelf(std::ostream& os, Indent indent) const
+void PowerOfTwoPointTree<VDimension>::PrintSelf(std::ostream& os, itk::Indent indent) const
 {
     os << indent << "BranchesPerNode = " << BranchesPerNode << std::endl;
     os << indent << "m_Depth = " << m_Depth << std::endl;
@@ -209,5 +208,5 @@ void PowerOfTwoPointTree<VDimension>::PrintSelf(std::ostream& os, Indent indent)
     Superclass::PrintSelf(os, indent);
 }
 
-} // end namespace itk
+
 #endif

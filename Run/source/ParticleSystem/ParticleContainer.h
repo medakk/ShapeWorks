@@ -12,39 +12,40 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleContainer_h
-#define __itkParticleContainer_h
+#ifndef _ParticleContainer_h
+#define _ParticleContainer_h
 
-#include "itkDataObject.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
-#include "itkCommand.h"
-#include "itkParticleAttribute.h"
+#include <itkDataObject.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
+#include <itkCommand.h>
+#include "ParticleAttribute.h"
 #include <map>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class ParticleContainer
  *  \brief 
  */
 template <class T>
-class ITK_EXPORT ParticleContainer : public DataObject
+class ParticleContainer : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef T DataType;
   typedef ParticleContainer Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
   //  itkTypeMacro(ParticleContainer, ParticleAttribute);
-  itkTypeMacro(ParticleContainer, DataObject);
+  itkTypeMacro(ParticleContainer, itk::DataObject);
   
   /** Define a map container type.  A map is used because elements will be
       frequently deleted and added.  Map has the property that addition and
@@ -133,7 +134,7 @@ public:
   
 protected:
   ParticleContainer() { }
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os,indent);
   
@@ -152,7 +153,7 @@ protected:
   
 };
 
-} // end namespace itk
+
 
 
 //#if ITK_TEMPLATE_EXPLICIT
@@ -160,7 +161,7 @@ protected:
 //#endif
 
 //#if ITK_TEMPLATE_TXX
-//# include "itkParticleContainer.txx"
+//# include "ParticleContainer.txx"
 //#endif
 
 #endif

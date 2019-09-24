@@ -2,22 +2,21 @@
  * Author - Praful Agrawal
  ---*/
 
-#ifndef __itkParticleMeshBasedGeneralEntropyGradientFunction_txx
-#define __itkParticleMeshBasedGeneralEntropyGradientFunction_txx
+#ifndef _ParticleMeshBasedGeneralEntropyGradientFunction_txx
+#define _ParticleMeshBasedGeneralEntropyGradientFunction_txx
 
 #include "TriMesh.h"
 #include <math.h>
-#include "vnl/algo/vnl_symmetric_eigensystem.h"
-#include "vnl/algo/vnl_svd.h"
-#include "vnl/vnl_diag_matrix.h"
-#include "itkParticleImplicitSurfaceDomain.h"
+#include <vnl/algo/vnl_symmetric_eigensystem.h>
+#include <vnl/algo/vnl_svd.h>
+#include <vnl/vnl_diag_matrix.h>
+#include "ParticleImplicitSurfaceDomain.h"
 #include <ctime>
 #include <time.h>
-#include "itkParticleImageDomainWithGradients.h"
-#include "itkParticleImageDomainWithHessians.h"
+#include "ParticleImageDomainWithGradients.h"
+#include "ParticleImageDomainWithHessians.h"
 
-namespace itk
-{
+
 template <unsigned int VDimension>
 void
 ParticleMeshBasedGeneralEntropyGradientFunction<VDimension>
@@ -278,5 +277,5 @@ ParticleMeshBasedGeneralEntropyGradientFunction<VDimension>
     return system->TransformVector(gradE, system->GetInversePrefixTransform(d) * system->GetInverseTransform(d));
 }
 
-} // end namespace
+
 #endif

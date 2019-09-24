@@ -6,12 +6,12 @@
 #include <fstream>
 #include <string>
 
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkGradientImageFilter.h"
-#include "itkVectorLinearInterpolateImageFunction.h"
-#include "itkPoint.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include <itkGradientImageFilter.h>
+#include <itkVectorLinearInterpolateImageFunction.h>
+#include <itkPoint.h>
 
 int main(int argc, char *argv[])
 {

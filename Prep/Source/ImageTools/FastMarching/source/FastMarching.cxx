@@ -1,10 +1,10 @@
 
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
 
 #include "itksys/SystemTools.hxx"
-#include "itkReinitializeLevelSetImageFilter.h" // for distance transform computation
+#include <itkReinitializeLevelSetImageFilter.h> // for distance transform computation
 
 #include "string.h"
 #include "OptionParser.h"

@@ -12,19 +12,19 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleAttribute_h
-#define __itkParticleAttribute_h
+#ifndef _ParticleAttribute_h
+#define _ParticleAttribute_h
 
-#include "itkDataObject.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
-#include "itkCommand.h"
-#include "itkParticleEvents.h"
+#include <itkDataObject.h>
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
+#include <itkCommand.h>
+#include "ParticleEvents.h"
 
-namespace itk
-{
+//using namespace itk;
 
-#ifndef __itkParticleSystem_h
+
+#ifndef _ParticleSystem_h
 template<unsigned int VDimension> class ParticleSystem;
 #endif
 
@@ -32,21 +32,21 @@ template<unsigned int VDimension> class ParticleSystem;
  *  \brief 
  */
 template< unsigned int VDimension>
-class ITK_EXPORT ParticleAttribute : public DataObject
+class ParticleAttribute : public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   typedef ParticleAttribute Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
   
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
 
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ParticleAttribute, DataObject);
+  itkTypeMacro(ParticleAttribute, itk::DataObject);
 
   /** Data structure indicating which callback functions are defined by a
       subclass.  The ParticleSystem class will reference this structure to
@@ -91,21 +91,21 @@ public:
 //   virtual void PositionRemoveEventCallback(ParticleSystem<VDimension> *,
 //   const ParticlePositionRemoveEvent &) {}
 
-  virtual void EventCallback(Object *, const EventObject &) {}
-  virtual void EventWithIndexCallback(Object *, const EventObject &) {}
-  virtual void DomainAddEventCallback(Object *, const EventObject &) {}
-  virtual void TransformSetEventCallback(Object *, const EventObject &) {}
-  virtual void PrefixTransformSetEventCallback(Object *, const EventObject &) {}
-  virtual void NeighborhoodSetEventCallback(Object *, const EventObject &) {}
-  virtual void PositionSetEventCallback(Object *, const EventObject &) {}
-  virtual void PositionAddEventCallback(Object *, const EventObject &) {}
-  virtual void PositionRemoveEventCallback(Object *, const EventObject &) {}
+  virtual void EventCallback(Object *, const itk::EventObject &) {}
+  virtual void EventWithIndexCallback(Object *, const itk::EventObject &) {}
+  virtual void DomainAddEventCallback(Object *, const itk::EventObject &) {}
+  virtual void TransformSetEventCallback(Object *, const itk::EventObject &) {}
+  virtual void PrefixTransformSetEventCallback(Object *, const itk::EventObject &) {}
+  virtual void NeighborhoodSetEventCallback(Object *, const itk::EventObject &) {}
+  virtual void PositionSetEventCallback(Object *, const itk::EventObject &) {}
+  virtual void PositionAddEventCallback(Object *, const itk::EventObject &) {}
+  virtual void PositionRemoveEventCallback(Object *, const itk::EventObject &) {}
 
 protected:
   ParticleAttribute() {}
   virtual ~ParticleAttribute() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {  Superclass::PrintSelf(os,indent);  }
 
 private:
@@ -113,7 +113,7 @@ private:
   void operator=(const Self&); //purposely not implemented
 };
 
-} // end namespace itk
+
 
 
 //#if ITK_TEMPLATE_EXPLICIT
@@ -121,7 +121,7 @@ private:
 //#endif
 
 //#if ITK_TEMPLATE_TXX
-//# include "itkParticleAttribute.txx"
+//# include "ParticleAttribute.txx"
 //#endif
 
 #endif

@@ -1,28 +1,15 @@
-/*=========================================================================
-  Program:   ShapeWorks: Particle-based Shape Correspondence & Visualization
-  Module:    $RCSfile: itkPSMProcrustesRegistration.h,v $
-  Date:      $Date: 2011/03/24 01:17:33 $
-  Version:   $Revision: 1.3 $
-  Author:    $Author: wmartin $
+#ifndef __PSMProcrustesRegistration_h
+#define __PSMProcrustesRegistration_h
 
-  Copyright (c) 2009 Scientific Computing and Imaging Institute.
-  See ShapeWorksLicense.txt for details.
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include <vnl/vnl_matrix.h>
+#include "PSMParticleSystem.h"
+#include "PSMProcrustesFunction.h"
 
-     This software is distributed WITHOUT ANY WARRANTY; without even 
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
-     PURPOSE.  See the above copyright notices for more information.
-=========================================================================*/
-#ifndef __itkPSMProcrustesRegistration_h
-#define __itkPSMProcrustesRegistration_h
+//using namespace itk;
 
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "vnl/vnl_matrix.h"
-#include "itkPSMParticleSystem.h"
-#include "itkPSMProcrustesFunction.h"
 
-namespace itk
-{
 /** \class PSMProcrustesRegistration
  *  \brief This class interfaces with the PSMProcrustesFunction class 
  *  to register a list of point sets. It transforms the registration transforms
@@ -33,16 +20,16 @@ namespace itk
  *  \ingroup PSM
  */
 template <unsigned int VDimension>
-class ITK_EXPORT PSMProcrustesRegistration: public DataObject
+class PSMProcrustesRegistration: public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   //  typedef TDataType DataType;
   typedef PSMProcrustesRegistration Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Particle system typedefs. */
   typedef PSMParticleSystem<VDimension> PSMParticleSystemType;
@@ -58,7 +45,7 @@ public:
   itkNewMacro(Self);
   
   /** Run-time type information (and related methods). */
-  itkTypeMacro(PSMProcrustesRegistration, DataObject);
+  itkTypeMacro(PSMProcrustesRegistration, itk::DataObject);
 
   /** Set/Get the target particle system. */
   void SetPSMParticleSystem(PSMParticleSystemType *p)
@@ -116,7 +103,7 @@ protected:
     {  }
   virtual ~PSMProcrustesRegistration() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {  Superclass::PrintSelf(os,indent);  }
 
 private:
@@ -136,6 +123,6 @@ private:
   PSMParticleSystemType *m_PSMParticleSystem;
 };
 
-} // end namespace
+
 
 #endif

@@ -1,10 +1,10 @@
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkResampleImageFilter.h"
-#include "itkIdentityTransform.h"
-#include "itkImageRegionIterator.h"
-#include "itkImageRegionIteratorWithIndex.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include <itkResampleImageFilter.h>
+#include <itkIdentityTransform.h>
+#include <itkImageRegionIterator.h>
+#include <itkImageRegionIteratorWithIndex.h>
 #include "string.h"
 #include <iostream>
 #include <fstream>

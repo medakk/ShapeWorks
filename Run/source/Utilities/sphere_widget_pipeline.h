@@ -15,16 +15,16 @@
 #ifndef __sphere_widget_pipeline_h
 #define __sphere_widget_pipeline_h
 
-#include "vtkPolyDataMapper.h"
-#include "vtkActor.h"
-#include "vtkProperty.h"
+#include <vtkPolyDataMapper.h>
+#include <vtkActor.h>
+#include <vtkProperty.h>
 #include <string>
-//#include "vtkSphereWidget.h"
-#include "vtkSphereSource.h"
-#include "vtkTransform.h"
-#include "vtkTransformPolyDataFilter.h"
+//#include <vtkSphereWidget.h>
+#include <vtkSphereSource.h>
+#include <vtkTransform.h>
+#include <vtkTransformPolyDataFilter.h>
 
-#include "itkParticleSystem.h"
+#include "ParticleSystem.h"
 
 class sphere_widget_pipeline
 {

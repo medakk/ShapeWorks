@@ -8,8 +8,8 @@
 
 #define _USE_MATH_DEFINES
 
-#include "itkImage.h"
-#include "itkImageFileReader.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
 
 typedef  float  PixelType;
 typedef itk::Image< PixelType,  3 >   ImageType;

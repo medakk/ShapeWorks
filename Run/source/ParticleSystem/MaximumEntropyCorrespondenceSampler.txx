@@ -12,11 +12,12 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkMaximumEntropyCorrespondenceSampler_txx
-#define __itkMaximumEntropyCorrespondenceSampler_txx
+#ifndef _MaximumEntropyCorrespondenceSampler_txx
+#define _MaximumEntropyCorrespondenceSampler_txx
 
-namespace itk
-{
+
+//using namespace itk;
+
 
 template <class TImage>
 MaximumEntropyCorrespondenceSampler<TImage>::MaximumEntropyCorrespondenceSampler()
@@ -101,6 +102,6 @@ MaximumEntropyCorrespondenceSampler<TImage>::InitializeOptimizationFunctions()
 
 }
 
-} // end namespace
+
 
 #endif

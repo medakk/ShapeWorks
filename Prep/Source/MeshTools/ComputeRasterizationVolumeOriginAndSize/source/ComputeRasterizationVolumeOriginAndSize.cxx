@@ -1,5 +1,5 @@
  
-#include "vtkSmartPointer.h"
+#include <vtkSmartPointer.h>
 #include "tinyxml.h"
 #include <sstream>
 #include <iostream>

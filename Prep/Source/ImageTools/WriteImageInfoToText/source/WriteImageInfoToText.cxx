@@ -1,6 +1,6 @@
 
-#include "itkImage.h"
-#include "itkImageFileReader.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
 #include "string.h"
 #include <fstream>
 

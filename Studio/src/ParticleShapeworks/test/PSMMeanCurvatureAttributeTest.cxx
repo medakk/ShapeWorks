@@ -16,11 +16,11 @@
  *
  *=========================================================================*/
 #include <iostream>
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkPSMMeanCurvatureAttribute.h"
-#include "itkPSMSurfaceNeighborhood.h"
-#include "itkMacro.h"
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include "PSMMeanCurvatureAttribute.h"
+#include "PSMSurfaceNeighborhood.h"
+#include <itkMacro.h>
 
 /** This test exercises functionality of the base itkPSMMeanCurvatureAttribute class */
 int itkPSMMeanCurvatureAttributeTest(int argc, char* argv[] )
@@ -94,7 +94,7 @@ int itkPSMMeanCurvatureAttributeTest(int argc, char* argv[] )
     }
   catch(itk::ExceptionObject &e)
     {
-      errstring = "ITK exception with description: " + std::string(e.GetDescription())
+      errstring = " exception with description: " + std::string(e.GetDescription())
         + std::string("\n at location:") + std::string(e.GetLocation())
         + std::string("\n in file:") + std::string(e.GetFile());
       passed = false;

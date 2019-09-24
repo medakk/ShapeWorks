@@ -1,25 +1,7 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMParticleEntropyFunction_hxx
-#define __itkPSMParticleEntropyFunction_hxx
-#include "itkPSMParticleEntropyFunction.h"
+#ifndef __PSMParticleEntropyFunction_hxx
+#define __PSMParticleEntropyFunction_hxx
+#include "PSMParticleEntropyFunction.h"
 
-namespace itk {
 
 template <class TGradientNumericType, unsigned int VDimension>
 TGradientNumericType
@@ -29,6 +11,8 @@ PSMParticleEntropyFunction<TGradientNumericType, VDimension>
     // Get the cosine of the angle between the two particles' normals
     TGradientNumericType cosine = dot_product(p_i_normal,p_j_normal) /
             (p_i_normal.magnitude()*p_j_normal.magnitude() + 1.0e-6);
+
+//using namespace itk;
 
     // the flat region
     if ( cosine >= m_FlatCutoff ) return 1.0;
@@ -370,5 +354,4 @@ PSMParticleEntropyFunction<TGradientNumericType, VDimension>
 }
 
 
-}// end namespace
 #endif

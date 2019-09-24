@@ -12,17 +12,16 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
    =========================================================================*/
-#ifndef __itkParticleOmegaGradientFunction_h
-#define __itkParticleOmegaGradientFunction_h
+#ifndef _ParticleOmegaGradientFunction_h
+#define _ParticleOmegaGradientFunction_h
 
-#include "itkParticleEntropyGradientFunction.h"
-#include "itkParticleImageDomainWithGradients.h"
-#include "itkParticleImageDomainWithCurvature.h"
-#include "itkParticleMeanCurvatureAttribute.h"
-#include "itkCommand.h"
+#include "ParticleEntropyGradientFunction.h"
+#include "ParticleImageDomainWithGradients.h"
+#include "ParticleImageDomainWithCurvature.h"
+#include "ParticleMeanCurvatureAttribute.h"
+#include <itkCommand.h>
 
-namespace itk
-{
+//using namespace itk;
 
 /**
  * \class ParticleOmegaGradientFunction
@@ -41,8 +40,8 @@ class ParticleOmegaGradientFunction
 public:
   /** Standard class typedefs. */
   typedef ParticleOmegaGradientFunction Self;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
   typedef ParticleEntropyGradientFunction<TGradientNumericType, VDimension> Superclass;
   itkTypeMacro( ParticleOmegaGradientFunction, ParticleEntropyGradientFunction );
 
@@ -230,16 +229,16 @@ protected:
   // end SHIREEN
 };
 
-} //end namespace
+
 
 #if ITK_TEMPLATE_EXPLICIT
 # include "Templates/itkParticleOmegaGradientFunction+-.h"
 #endif
 
 #if ITK_TEMPLATE_TXX
-# include "itkParticleOmegaGradientFunction.txx"
+# include "ParticleOmegaGradientFunction.txx"
 #endif
 
-#include "itkParticleOmegaGradientFunction.txx"
+#include "ParticleOmegaGradientFunction.txx"
 
-#endif // ifndef __itkParticleOmegaGradientFunction_h
+#endif // ifndef _ParticleOmegaGradientFunction_h

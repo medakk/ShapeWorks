@@ -1,33 +1,16 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMProject_h
-#define __itkPSMProject_h
+#ifndef __PSMProject_h
+#define __PSMProject_h
 
-#include "itkMacro.h"
-#include "itkPSMDOMNode.h"
-#include "itkDataObject.h"
-#include "itkObjectFactory.h"
-#include "itkEventObject.h"
-#include "itkExceptionObject.h"
+#include <itkMacro.h>
+#include "PSMDOMNode.h"
+#include <itkDataObject.h>
+#include <itkObjectFactory.h>
+#include <itkEventObject.h>
+#include <itkExceptionObject.h>
 #include <vnl/vnl_vector_fixed.h>
 
-namespace itk
-{
+//using namespace itk;
+
 
 /** \class PSMProject
  *
@@ -44,14 +27,14 @@ namespace itk
  * At its core, this class is a wrapper around a PSMDOMNode object
  * that provides a simplified interface to the data in the DOM node.
  */
-  class ITK_EXPORT PSMProject : public Object
+  class PSMProject : public Object
 {
  public:
   /** Standard class typedefs */
   typedef PSMProject Self;
   typedef Object Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -195,12 +178,12 @@ namespace itk
 
  protected:
   PSMProject() {}; 
-  void PrintSelf(std::ostream& os, Indent indent) const;
+  void PrintSelf(std::ostream& os, itk::Indent indent) const;
   virtual ~PSMProject() {};
 
   /** Helper function for Stream. Like Stream, this method cannot be const
       due to nonconst accessor methods in itkDOMNode. */
-  void StreamChildren(PSMDOMNode *,std::ostream &os, Indent indent);
+  void StreamChildren(PSMDOMNode *,std::ostream &os, itk::Indent indent);
 
   /** Return the parent node of the Data section. */
   const PSMDOMNode *GetDataNode() const;
@@ -212,7 +195,5 @@ namespace itk
   /** The DOM node that holds all of the XML data. */
   PSMDOMNode::Pointer m_DOMNode;
 };
-
-} // end namespace itk
 
 #endif

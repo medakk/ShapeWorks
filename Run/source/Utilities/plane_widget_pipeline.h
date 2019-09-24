@@ -15,16 +15,16 @@
 #ifndef __plane_widget_pipeline_h
 #define __plane_widget_pipeline_h
 
-#include "vtkPolyDataMapper.h"
-#include "vtkActor.h"
-#include "vtkProperty.h"
+#include <vtkPolyDataMapper.h>
+#include <vtkActor.h>
+#include <vtkProperty.h>
 #include <string>
-//#include "vtkPlaneWidget.h"
-#include "vtkPlaneSource.h"
-#include "vtkTransform.h"
-#include "vtkTransformPolyDataFilter.h"
-#include "vnl/vnl_cross.h"
-#include "itkParticleSystem.h"
+//#include <vtkPlaneWidget.h>
+#include <vtkPlaneSource.h>
+#include <vtkTransform.h>
+#include <vtkTransformPolyDataFilter.h>
+#include <vnl/vnl_cross.h>
+#include "ParticleSystem.h"
 
 
 class plane_widget_pipeline

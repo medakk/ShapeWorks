@@ -19,20 +19,20 @@
 #pragma warning( disable: 4996 )
 #endif
 
-#include "itkParticleSystem.h"
+#include "ParticleSystem.h"
 #include <cstdio>
-#include "itkImage.h"
-#include "itkMaximumEntropyCorrespondenceSampler.h"
-#include "itkCommand.h"
+#include <itkImage.h>
+#include "MaximumEntropyCorrespondenceSampler.h"
+#include <itkCommand.h>
 #include <vector>
 #include "tinyxml.h"
-#include "itkParticleProcrustesRegistration.h"
+#include "ParticleProcrustesRegistration.h"
 #include <sstream>
 #include <string>
 #include <numeric>
-#include "itkParticleGoodBadAssessment.h"
+#include "ParticleGoodBadAssessment.h"
 
-#include "itkParticleVectorFunction.h"
+#include "ParticleVectorFunction.h"
 
 template<typename T> std::string toStr(T var) {
     std::ostringstream tmp; tmp << var; return tmp.str();
@@ -47,7 +47,7 @@ public:
     typedef SAMPLERTYPE SamplerType;
     SamplerType *GetSampler()  { return m_Sampler.GetPointer(); }
 
-    typedef typename itk::ParticleVectorFunction<3>::VectorType VectorType;
+    typedef typename ParticleVectorFunction<3>::VectorType VectorType;
     typename itk::MemberCommand< ShapeWorksRunApp<SamplerType> >::Pointer m_Iteratecmd;
 
     virtual void Run()
@@ -145,8 +145,8 @@ public:
 
 protected:
     typename itk::MaximumEntropyCorrespondenceSampler<ImageType>::Pointer m_Sampler;
-    typename itk::ParticleProcrustesRegistration<3>::Pointer m_Procrustes;
-    typename itk::ParticleGoodBadAssessment<float, 3>::Pointer m_GoodBad;
+    typename ParticleProcrustesRegistration<3>::Pointer m_Procrustes;
+    typename ParticleGoodBadAssessment<float, 3>::Pointer m_GoodBad;
 
     static itk::ITK_THREAD_RETURN_TYPE optimize_callback( void *arg );
     //  static ITK_THREAD_RETURN_TYPE auto_init_callback( void *arg );

@@ -17,18 +17,20 @@
 
 #include <iostream>
 #include <vector>
-#include "vnl/vnl_vector.h"
-#include "vnl/algo/vnl_symmetric_eigensystem.h"
-#include "vnl/vnl_matrix.h"
-#include "vnl/vnl_vector_fixed.h"
-#include "vnl/algo/vnl_matrix_inverse.h"
+#include <vnl/vnl_vector.h>
+#include <vnl/algo/vnl_symmetric_eigensystem.h>
+#include <vnl/vnl_matrix.h>
+#include <vnl/vnl_vector_fixed.h>
+#include <vnl/algo/vnl_matrix_inverse.h>
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <cstdio>
 
-#include "itkParticlePositionReader.h"
-#include "itkParticlePositionWriter.h"
+#include "ParticlePositionReader.h"
+#include "ParticlePositionWriter.h"
+
+//using namespace itk;
 
 /**
  * \class ParticleShapeStatistics
@@ -36,13 +38,13 @@
  * and group ids.
  */
 template <unsigned int VDimension>
-class ITK_EXPORT ParticleShapeStatistics
+class ParticleShapeStatistics
 {
 public:
   ParticleShapeStatistics() {}
   ~ParticleShapeStatistics() {}
 
-  typedef typename itk::ParticlePositionReader<3>::PointType PointType;
+  typedef typename ParticlePositionReader<3>::PointType PointType;
 
   int DoPCA(std::vector< std::vector<PointType> > global_pts, int domainsPerShape = 1);
 
@@ -184,5 +186,5 @@ protected:
   std::vector< std::string > m_pointsfiles; 
 };
 
-#include "itkParticleShapeStatistics.cpp"
+#include "ParticleShapeStatistics.cpp"
 #endif

@@ -1,44 +1,28 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMRegionDomain_h
-#define __itkPSMRegionDomain_h
+#ifndef __PSMRegionDomain_h
+#define __PSMRegionDomain_h
 
-#include "itkDataObject.h"
-#include "itkPSMDomain.h"
-#include "itkPoint.h"
-#include "itkWeakPointer.h"
-#include "itkExceptionObject.h"
+#include <itkDataObject.h>
+#include "PSMDomain.h"
+#include <itkPoint.h>
+#include <itkWeakPointer.h>
+#include <itkExceptionObject.h>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMRegionDomain
  *  \brief 
  */
 template <unsigned int VDimension>
-class ITK_EXPORT PSMRegionDomain : public PSMDomain<VDimension>
+class PSMRegionDomain : public PSMDomain<VDimension>
 {
 public:
   /** Standard class typedefs */
   typedef PSMRegionDomain Self;
   typedef PSMDomain<VDimension> Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -50,7 +34,7 @@ public:
   itkStaticConstMacro(Dimension, unsigned int, VDimension);
 
   /** Point type used to store particle locations. */
-  typedef Point<double, VDimension> PointType;
+  typedef itk::Point<double, VDimension> PointType;
 
   /** Apply any constraints to the given point location.  This method may, for
       example, implement boundary conditions or restrict points to lie on a
@@ -90,7 +74,7 @@ public:
   
 protected:
   PSMRegionDomain() {}
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {
     Superclass::PrintSelf(os, indent);
     os << "LowerBound = " << m_LowerBound << std::endl;
@@ -106,7 +90,5 @@ private:
   PointType m_UpperBound;
 
 };
-
-} // end namespace itk
 
 #endif

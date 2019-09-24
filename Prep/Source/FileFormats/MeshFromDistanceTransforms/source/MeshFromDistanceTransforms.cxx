@@ -1,19 +1,19 @@
-#include "vtkMetaImageReader.h"
-#include "vtkSmartPointer.h"
-#include "vtkContourFilter.h"
-#include "vtkSmoothPolyDataFilter.h"
-#include "vtkDecimatePro.h"
-#include "vtkPLYWriter.h"
-#include "vtkPolyDataWriter.h"
+#include <vtkMetaImageReader.h>
+#include <vtkSmartPointer.h>
+#include <vtkContourFilter.h>
+#include <vtkSmoothPolyDataFilter.h>
+#include <vtkDecimatePro.h>
+#include <vtkPLYWriter.h>
+#include <vtkPolyDataWriter.h>
 #include "tinyxml.h"
 #include <sstream>
 #include <iostream>
 #include <string>
 #include <vector>
-#include "vtkMarchingCubes.h"
-#include "itkImage.h"
-#include "itkImageFileReader.h"
-#include "itkImageToVTKImageFilter.h"
+#include <vtkMarchingCubes.h>
+#include <itkImage.h>
+#include <itkImageFileReader.h>
+#include <itkImageToVTKImageFilter.h>
 
 int main(int argc, char *argv[])
 {

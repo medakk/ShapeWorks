@@ -16,14 +16,14 @@
  *
  *=========================================================================*/
 
-#ifndef ____itkPSMCommandLineClass__hxx
-#define ____itkPSMCommandLineClass__hxx
+#ifndef ___PSMCommandLineClass__hxx
+#define ___PSMCommandLineClass__hxx
 
-#include "itkPSMCommandLineClass.h"
+#include "PSMCommandLineClass.h"
 #include <fstream>
 #include <vector>
 
-namespace itk
+
 {
   //template class PSMCommandLineClass<2>;
   //template class PSMCommandLineClass<3>;
@@ -487,6 +487,6 @@ namespace itk
   // }
 
 
-} // end namespace itk
+
 
 #endif

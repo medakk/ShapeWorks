@@ -1,26 +1,8 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMRegressionShapeMatrixAttribute_hxx
-#define __itkPSMRegressionShapeMatrixAttribute_hxx
-#include "itkPSMRegressionShapeMatrixAttribute.h"
+#ifndef __PSMRegressionShapeMatrixAttribute_hxx
+#define __PSMRegressionShapeMatrixAttribute_hxx
+#include "PSMRegressionShapeMatrixAttribute.h"
 
-namespace itk
-{
+
 
 template <class T, unsigned int VDimension>
 void PSMRegressionShapeMatrixAttribute<T,VDimension>
@@ -33,6 +15,8 @@ void PSMRegressionShapeMatrixAttribute<T,VDimension>
       m_MeanMatrix.set_column(i, m_Intercept + m_Slope * m_Explanatory(i));
     }
 }
+
+//using namespace itk;
   
 template <class T, unsigned int VDimension>
 void PSMRegressionShapeMatrixAttribute<T,VDimension>
@@ -96,7 +80,7 @@ void PSMRegressionShapeMatrixAttribute<T,VDimension>
   
 template <class T, unsigned int VDimension>  
 void PSMRegressionShapeMatrixAttribute<T,VDimension>
-::DomainAddEventCallback(Object *, const EventObject &e)
+::DomainAddEventCallback(Object *, const itk::EventObject &e)
 {
   const ParticleDomainAddEvent &event
     = dynamic_cast<const ParticleDomainAddEvent &>(e);
@@ -112,7 +96,7 @@ void PSMRegressionShapeMatrixAttribute<T,VDimension>
   
 template <class T, unsigned int VDimension>
 void PSMRegressionShapeMatrixAttribute<T,VDimension>
-::PositionAddEventCallback(Object *o, const EventObject &e) 
+::PositionAddEventCallback(Object *o, const itk::EventObject &e) 
 {
   const ParticlePositionAddEvent &event
     = dynamic_cast<const ParticlePositionAddEvent &>(e);
@@ -148,7 +132,7 @@ void PSMRegressionShapeMatrixAttribute<T,VDimension>
   
 template <class T, unsigned int VDimension>
 void PSMRegressionShapeMatrixAttribute<T,VDimension>
-::PositionSetEventCallback(Object *o, const EventObject &e) 
+::PositionSetEventCallback(Object *o, const itk::EventObject &e) 
 {
   const ParticlePositionSetEvent &event
     = dynamic_cast <const ParticlePositionSetEvent &>(e);
@@ -278,7 +262,5 @@ void PSMRegressionShapeMatrixAttribute<T,VDimension>
     }
 }
   
-} // end namespace itk
-
 
 #endif

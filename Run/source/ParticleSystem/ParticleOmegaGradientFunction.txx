@@ -12,13 +12,13 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
      PURPOSE.  See the above copyright notices for more information.
    =========================================================================*/
-#ifndef __itkParticleOmegaGradientFunction_txx
-#define __itkParticleOmegaGradientFunction_txx
-#include "vnl/vnl_matrix_fixed.h"
-#include "vnl/vnl_vector_fixed.h"
-#include "vnl/vnl_matrix.h"
+#ifndef _ParticleOmegaGradientFunction_txx
+#define _ParticleOmegaGradientFunction_txx
+#include <vnl/vnl_matrix_fixed.h>
+#include <vnl/vnl_vector_fixed.h>
+#include <vnl/vnl_matrix.h>
 
-namespace itk {
+
 
 template <class TGradientNumericType, unsigned int VDimension>
 double
@@ -243,7 +243,7 @@ ParticleOmegaGradientFunction<TGradientNumericType, VDimension>
     {
         for (unsigned int pidx = 0; pidx < domain->GetNumberOfPlanes(); pidx++)
         {
-            m_CurrentNeighborhood.push_back( itk::ParticlePointIndexPair<VDimension>( planePts[pidx], 0 ) );
+            m_CurrentNeighborhood.push_back( ParticlePointIndexPair<VDimension>( planePts[pidx], 0 ) );
             // SHIREEN
             m_CurrentWeights.push_back( 0.3 );
             // end SHIREEN
@@ -255,7 +255,7 @@ ParticleOmegaGradientFunction<TGradientNumericType, VDimension>
     {
         for ( unsigned int i = 0; i < domain->GetNumberOfSpheres(); i++ )
         {
-            m_CurrentNeighborhood.push_back( itk::ParticlePointIndexPair<VDimension>( spherePts[i], 0 ) );
+            m_CurrentNeighborhood.push_back( ParticlePointIndexPair<VDimension>( spherePts[i], 0 ) );
 //            if (CToP[i] > abs(domain->GetSphereRadius(i)) && domain->GetSphereRadius(i) < 0)
 //            {
 //                std::cerr << "Original position outside the sphere: " << d << "\t" << idx << std::endl;
@@ -306,7 +306,7 @@ ParticleOmegaGradientFunction<TGradientNumericType, VDimension>
         {
             for (unsigned int pidx = 0; pidx < domain->GetNumberOfPlanes(); pidx++)
             {
-                m_CurrentNeighborhood.push_back( itk::ParticlePointIndexPair<VDimension>( planePts[pidx], 0 ) );
+                m_CurrentNeighborhood.push_back( ParticlePointIndexPair<VDimension>( planePts[pidx], 0 ) );
                 // SHIREEN
                 m_CurrentWeights.push_back( 0.3 );
                 // end SHIREEN
@@ -317,7 +317,7 @@ ParticleOmegaGradientFunction<TGradientNumericType, VDimension>
         {
             for ( unsigned int i = 0; i < domain->GetNumberOfSpheres(); i++ )
             {
-                m_CurrentNeighborhood.push_back( itk::ParticlePointIndexPair<VDimension>( spherePts[i], 0 ) );
+                m_CurrentNeighborhood.push_back( ParticlePointIndexPair<VDimension>( spherePts[i], 0 ) );
 //                if (CToP[i] > abs(domain->GetSphereRadius(i)) && domain->GetSphereRadius(i) < 0)
 //                {
 //                    std::cerr << "Original position outside the sphere: " << d << "\t" << idx << std::endl;
@@ -354,7 +354,7 @@ ParticleOmegaGradientFunction<TGradientNumericType, VDimension>
         {
             for (unsigned int pidx = 0; pidx < domain->GetNumberOfPlanes(); pidx++)
             {
-                m_CurrentNeighborhood.push_back( itk::ParticlePointIndexPair<VDimension>( planePts[pidx], 0 ) );
+                m_CurrentNeighborhood.push_back( ParticlePointIndexPair<VDimension>( planePts[pidx], 0 ) );
                 // SHIREEN
                 m_CurrentWeights.push_back( 0.3 );
                 // end SHIREEN
@@ -365,7 +365,7 @@ ParticleOmegaGradientFunction<TGradientNumericType, VDimension>
         {
             for ( unsigned int i = 0; i < domain->GetNumberOfSpheres(); i++ )
             {
-                m_CurrentNeighborhood.push_back( itk::ParticlePointIndexPair<VDimension>( spherePts[i], 0 ) );
+                m_CurrentNeighborhood.push_back( ParticlePointIndexPair<VDimension>( spherePts[i], 0 ) );
 //                if (CToP[i] > abs(domain->GetSphereRadius(i)) && domain->GetSphereRadius(i) < 0)
 //                {
 //                    std::cerr << "Original position outside the sphere: " << d << "\t" << idx << std::endl;
@@ -511,5 +511,5 @@ typename ParticleOmegaGradientFunction<TGradientNumericType, VDimension>::Vector
 
     return gradE;
 }
-} // end namespace
-#endif /* ifndef __itkParticleOmegaGradientFunction_txx */
+
+#endif /* ifndef _ParticleOmegaGradientFunction_txx */

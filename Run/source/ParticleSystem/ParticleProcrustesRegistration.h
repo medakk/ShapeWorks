@@ -12,16 +12,15 @@
      the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR 
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
-#ifndef __itkParticleProcrustesRegistration_h
-#define __itkParticleProcrustesRegistration_h
+#ifndef _ParticleProcrustesRegistration_h
+#define _ParticleProcrustesRegistration_h
 
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "vnl/vnl_matrix.h"
-#include "itkParticleSystem.h"
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include <vnl/vnl_matrix.h>
+#include "ParticleSystem.h"
 
-namespace itk
-{
+
 /** \class ParticleProcrustesRegistration
  *  \brief
  *
@@ -29,16 +28,16 @@ namespace itk
  *
  */
 template <unsigned int VDimension>
-class ITK_EXPORT ParticleProcrustesRegistration: public DataObject
+class ParticleProcrustesRegistration: public itk::DataObject
 {
 public:
   /** Standard class typedefs */
   //  typedef TDataType DataType;
   typedef ParticleProcrustesRegistration Self;
-  typedef DataObject Superclass;
-  typedef SmartPointer<Self>  Pointer;
-  typedef SmartPointer<const Self>  ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::DataObject Superclass;
+  typedef itk::SmartPointer<Self>  Pointer;
+  typedef itk::SmartPointer<const Self>  ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Particle system typedefs. */
   typedef ParticleSystem<VDimension> ParticleSystemType;
@@ -48,7 +47,7 @@ public:
   itkNewMacro(Self);
   
   /** Run-time type information (and related methods). */
-  itkTypeMacro(ParticleProcrustesRegistration, DataObject);
+  itkTypeMacro(ParticleProcrustesRegistration, itk::DataObject);
 
   /** Set/Get the target particle system. */
   void SetParticleSystem(ParticleSystemType *p)
@@ -112,7 +111,7 @@ protected:
   ParticleProcrustesRegistration() : m_DomainsPerShape(1), m_Scaling(true), m_RotationTranslation(true), m_ComputeTransformation(true) {  }
   virtual ~ParticleProcrustesRegistration() {};
 
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {  Superclass::PrintSelf(os,indent);  }
 
 private:
@@ -128,6 +127,6 @@ private:
   ParticleSystemType *m_ParticleSystem;
 };
 
-} // end namespace
+
 
 #endif

@@ -1,43 +1,10 @@
-/*=========================================================================
- *
- *  Copyright UMC Utrecht and contributors
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-/*=========================================================================
+#ifndef __ThinPlateSplineKernelTransform2_h
+#define __ThinPlateSplineKernelTransform2_h
 
-  Program:   Insight Segmentation & Registration Toolkit
-  Module:    $RCSfile: itkThinPlateSplineKernelTransform2.h,v $
-  Language:  C++
-  Date:      $Date: 2006-11-28 14:22:18 $
-  Version:   $Revision: 1.1 $
+#include "KernelTransform2.h"
 
-  Copyright (c) Insight Software Consortium. All rights reserved.
-  See ITKCopyright.txt or http://www.itk.org/HTML/Copyright.htm for details.
+//using namespace itk;
 
-     This software is distributed WITHOUT ANY WARRANTY; without even
-     the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
-     PURPOSE.  See the above copyright notices for more information.
-
-=========================================================================*/
-#ifndef __itkThinPlateSplineKernelTransform2_h
-#define __itkThinPlateSplineKernelTransform2_h
-
-#include "itkKernelTransform2.h"
-
-namespace itk
-{
 /** \class ThinPlateSplineKernelTransform2
  * This class defines the thin plate spline (TPS) transformation.
  * It is implemented in as straightforward a manner as possible from
@@ -57,8 +24,8 @@ public:
   /** Standard class typedefs. */
   typedef ThinPlateSplineKernelTransform2              Self;
   typedef KernelTransform2< TScalarType, NDimensions > Superclass;
-  typedef SmartPointer< Self >                         Pointer;
-  typedef SmartPointer< const Self >                   ConstPointer;
+  typedef itk::SmartPointer< Self >                         Pointer;
+  typedef itk::SmartPointer< const Self >                   ConstPointer;
 
   /** New macro for creation of through a Smart Pointer */
   itkNewMacro( Self );
@@ -130,8 +97,6 @@ private:
 
 };
 
-} // namespace itk
+#include "ThinPlateSplineKernelTransform2.cpp"
 
-#include "itkThinPlateSplineKernelTransform2.cpp"
-
-#endif // __itkThinPlateSplineKernelTransform2_h
+#endif // __ThinPlateSplineKernelTransform2_h

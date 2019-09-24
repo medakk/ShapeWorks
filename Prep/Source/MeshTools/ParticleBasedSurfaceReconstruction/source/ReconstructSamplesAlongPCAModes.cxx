@@ -28,11 +28,11 @@
 #include "Vis.h"
 #include "Reconstruction.h"
 
-#include "itkNrrdImageIOFactory.h"
-#include "itkMetaImageIOFactory.h"
+#include <itkNrrdImageIOFactory.h>
+#include <itkMetaImageIOFactory.h>
 
 // for pca modes
-#include "itkParticleShapeStatistics.h"
+#include "ParticleShapeStatistics.h"
 
 template < template < typename TCoordRep, unsigned > class TTransformType,
            template < typename ImageType, typename TCoordRep > class TInterpolatorType,
@@ -238,24 +238,24 @@ int main( int argc , char* argv[] )
     int status;
     if(params.use_tps_transform){
         if(params.use_bspline_interpolation){
-            status = DoIt<itk::ThinPlateSplineKernelTransform2,
-                    itk::BSplineInterpolateImageFunctionWithDoubleCoefficents,
+            status = DoIt<ThinPlateSplineKernelTransform2,
+                    BSplineInterpolateImageFunctionWithDoubleCoefficents,
                     CoordinateRepType, PixelType, ImageType>(params);
         }
         else{
-            status = DoIt<itk::ThinPlateSplineKernelTransform2,
+            status = DoIt<ThinPlateSplineKernelTransform2,
                     itk::LinearInterpolateImageFunction,
                     CoordinateRepType, PixelType, ImageType>(params);
         }
     }
     else {
         if(params.use_bspline_interpolation){
-            status = DoIt<itk::CompactlySupportedRBFSparseKernelTransform,
-                    itk::BSplineInterpolateImageFunctionWithDoubleCoefficents,
+            status = DoIt<CompactlySupportedRBFSparseKernelTransform,
+                    BSplineInterpolateImageFunctionWithDoubleCoefficents,
                     CoordinateRepType, PixelType, ImageType>(params);
         }
         else{
-            status = DoIt<itk::CompactlySupportedRBFSparseKernelTransform,
+            status = DoIt<CompactlySupportedRBFSparseKernelTransform,
                     itk::LinearInterpolateImageFunction,
                     CoordinateRepType, PixelType, ImageType>(params);
         }

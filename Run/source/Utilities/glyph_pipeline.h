@@ -19,29 +19,29 @@
 #pragma warning(disable : 4996)
 #endif
 
-#include "vtkSphereSource.h"
-#include "vtkDiskSource.h"
-#include "vtkGlyph3D.h"
-#include "vtkPolyDataMapper.h"
-#include "vtkActor.h"
-#include "vtkProperty.h"
-#include "vtkPolyData.h"
-#include "vtkTransformPolyDataFilter.h"
-#include "itkCommand.h"
-#include "itkParticleEvents.h"
-#include "itkParticleSystem.h"
+#include <vtkSphereSource.h>
+#include <vtkDiskSource.h>
+#include <vtkGlyph3D.h>
+#include <vtkPolyDataMapper.h>
+#include <vtkActor.h>
+#include <vtkProperty.h>
+#include <vtkPolyData.h>
+#include <vtkTransformPolyDataFilter.h>
+#include <itkCommand.h>
+#include "ParticleEvents.h"
+#include "ParticleSystem.h"
 #include <string>
-#include "itkCommand.h"
-#include "vtkUnsignedLongArray.h"
-#include "vtkLookupTable.h"
-//#include "vtkSurfaceReconstructionFilter.h"
+#include <itkCommand.h>
+#include <vtkUnsignedLongArray.h>
+#include <vtkLookupTable.h>
+//#include <vtkSurfaceReconstructionFilter.h>
 
   
 class glyph_pipeline
 {
 public:
 
-  typedef itk::ParticleSystem<3>::PointType PointType; 
+  typedef ParticleSystem<3>::PointType PointType; 
 
   
   glyph_pipeline();
@@ -88,7 +88,7 @@ public:
   vtkLookupTable *lut()
   { return m_lut;}
 
-  void color_neighborhood(unsigned long int, double, itk::ParticleSystem<3> *);
+  void color_neighborhood(unsigned long int, double, ParticleSystem<3> *);
 
   /** Set the domain whose events this glyph pipeline will respond to. */
   int MyDomain() const

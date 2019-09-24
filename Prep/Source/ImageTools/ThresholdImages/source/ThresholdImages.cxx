@@ -7,10 +7,10 @@
 #include <climits>
 
 // ITK Dependencies
-#include "itkImageFileReader.h"
-#include "itkImageFileWriter.h"
-#include "itkBinaryThresholdImageFilter.h"
-#include "itkImage.h"
+#include <itkImageFileReader.h>
+#include <itkImageFileWriter.h>
+#include <itkBinaryThresholdImageFilter.h>
+#include <itkImage.h>
 
 const unsigned int dimensions = 3;
 

@@ -13,7 +13,7 @@
      PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/
 #include <iostream>
-#include "itkMeshTovtkPolyData.h"
+#include <itkMeshTovtkPolyData.h>
 
 #ifndef vtkDoubleType
 #define vtkDoubleType double

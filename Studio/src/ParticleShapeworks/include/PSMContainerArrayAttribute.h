@@ -1,38 +1,22 @@
-/*=========================================================================
- *
- *  Copyright Insight Software Consortium
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0.txt
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- *=========================================================================*/
-#ifndef __itkPSMContainerArrayAttribute_h
-#define __itkPSMContainerArrayAttribute_h
+#ifndef __PSMContainerArrayAttribute_h
+#define __PSMContainerArrayAttribute_h
 
-#include "itkDataObject.h"
-#include "itkWeakPointer.h"
-#include "itkPSMAttribute.h"
-#include "itkPSMContainer.h"
+#include <itkDataObject.h>
+#include <itkWeakPointer.h>
+#include "PSMAttribute.h"
+#include "PSMContainer.h"
 #include <vector>
 
-namespace itk
-{
+//using namespace itk;
+
+
 /** \class PSMContainerArrayAttribute
  * \brief 
  * \ingroup PSM
  * \ingroup PSMAttributes
  */
 template <class T, unsigned int VDimension>
-class ITK_EXPORT PSMContainerArrayAttribute
+class PSMContainerArrayAttribute
   : public std::vector<typename PSMContainer<T>::Pointer >,
   public PSMAttribute<VDimension>
 {
@@ -41,9 +25,9 @@ public:
   typedef T DataType;
   typedef PSMContainerArrayAttribute Self;
   typedef PSMAttribute<VDimension> Superclass;
-  typedef SmartPointer<Self> Pointer;
-  typedef SmartPointer<const Self> ConstPointer;
-  typedef WeakPointer<const Self>  ConstWeakPointer;
+  typedef itk::SmartPointer<Self> Pointer;
+  typedef itk::SmartPointer<const Self> ConstPointer;
+  typedef itk::WeakPointer<const Self>  ConstWeakPointer;
 
   /** Method for creation through the object factory. */
   itkNewMacro(Self);
@@ -55,20 +39,20 @@ public:
       of these callback methods, the corresponding flag in m_DefinedCallbacks
       should be set to true so that the ParticleSystem will know to register
       the appropriate event with this method. */
-  virtual void DomainAddEventCallback(Object *, const EventObject &)
+  virtual void DomainAddEventCallback(Object *, const itk::EventObject &)
   {
     this->resize( this->size() +1);
     this->operator[](this->size() -1) = PSMContainer<T>::New();
   }
 
-  virtual void PositionAddEventCallback(Object *, const EventObject &e) 
+  virtual void PositionAddEventCallback(Object *, const itk::EventObject &e) 
   {
-    const itk::ParticlePositionAddEvent &event
-      = dynamic_cast<const itk::ParticlePositionAddEvent &>(e);
+    const ParticlePositionAddEvent &event
+      = dynamic_cast<const ParticlePositionAddEvent &>(e);
     this->operator[](event.GetDomainIndex())->operator[](event.GetPositionIndex()) = 0.0;    
   }
 
-  virtual void PositionRemoveEventCallback(Object *, const EventObject &) 
+  virtual void PositionRemoveEventCallback(Object *, const itk::EventObject &) 
   {
     itkExceptionMacro("This class does note support removal of particles positions.");
   }
@@ -94,7 +78,7 @@ public:
     }
   virtual ~PSMContainerArrayAttribute() {};
   
-  void PrintSelf(std::ostream& os, Indent indent) const
+  void PrintSelf(std::ostream& os, itk::Indent indent) const
   {  Superclass::PrintSelf(os,indent);  }
   
  private:
@@ -103,6 +87,4 @@ public:
   
 };
  
-} // end namespace
-
 #endif
