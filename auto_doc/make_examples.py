@@ -13,7 +13,7 @@ Steps are:
 
 # Stdlib imports
 import os
-import os.path as op
+import os.path as osp
 import sys
 import shutil
 import io
@@ -36,10 +36,10 @@ torem = 'torem.txt'
 open(torem, 'w').write('')
 for fil in os.listdir(docdir):
     if osp.isfile(fil) and (fil.endswith(".py") or fil.endswith(".zip")):
-        shutil.copyfile(op.join(docdir, fil), fil)
+        shutil.copyfile(osp.join(docdir, fil), fil)
         open(torem, 'a+').write(fil + '\n')
 
-rootp = op.abspath('..')
+rootp = osp.abspath('..')
 EG_INDEX_FNAME = 'examples_index.rst'
 
 # Copy the py files; check they are in the examples list and warn if not
@@ -64,7 +64,7 @@ for example in validated_examples:
     if not example.endswith(".py"):
         print("%s not a python file, skipping." % example)
         continue
-    elif not op.isfile(example):
+    elif not osp.isfile(example):
         print("Cannot find file, %s, skipping." % example)
         continue
     file_root = example[:-3]
@@ -78,7 +78,7 @@ for example in validated_examples:
 # added the path so that scripts can import other scripts on the same directory
 sys.path.insert(0, os.getcwd())
 
-if not op.isdir('fig'):
+if not osp.isdir('fig'):
     os.mkdir('fig')
 
 use_xvfb = os.environ.get('TEST_WITH_XVFB', False)
@@ -121,7 +121,7 @@ def run_script():
 
 # Execute each python script in the directory:
 for script in validated_examples:
-    figure_basename = op.join('fig', op.splitext(script)[0])
+    figure_basename = osp.join('fig', osp.splitext(script)[0])
     if use_memprof:
         print("memory profiling ", script)
         memory_profiler.profile(run_script)()
