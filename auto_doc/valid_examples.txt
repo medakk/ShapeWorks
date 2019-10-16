@@ -1,2 +1,1 @@
- quick_start.py
- brain_extraction_dwi.py
+ellipsoidMain.py
